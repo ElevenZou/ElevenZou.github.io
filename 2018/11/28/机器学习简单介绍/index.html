@@ -1,0 +1,139 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="ElevenZou"><meta name="renderer" content="webkit"><meta name="copyright" content="ElevenZou"><meta name="keywords" content="Hexo"><meta name="description" content="null"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>机器学习简单介绍 · ElevenZou's Blog</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
+
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/face02.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">ElevenZou</div><div class="profile-signature">鱼跃此时海，花开彼岸天</div><div class="friends"><div>FRIENDS</div><span><a href="//github.com/Longlongyu" target="_black">网站模板</a></span><span><a href="//zhaoxuhui.top/" target="_black">Secret Land</a></span><span><a href="//www.simon96.online/" target="_black">遇见西门</a></span><span><a href="//hexo.io/zh-cn/docs/index.html" target="_black">Hexo</a></span></div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 45vh;background-image: url(/img/intro/index-bg02.png);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">邹十一的BLOG</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">机器学习简单介绍</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-edit"></i><span>2018-11-28</span></span><span class="post-intro-tags"><a class="intro-tag fa fa-tag" href="javascript:void(0)" date-tags="Machine Learning"> Machine Learning</a></span></div><div class="post-intro-read"><span> Word count: <span class="post-count">833</span> | Reading time: <span class="post-count">2</span>min</span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>本文简单介绍机器学习以及深度学习的基本定义与应用。</p>
+<a id="more"></a>
+<h4 id="机器学习（Machine-Learning，ML）"><a href="#机器学习（Machine-Learning，ML）" class="headerlink" title="机器学习（Machine Learning，ML）"></a>机器学习（Machine Learning，ML）</h4><p>1 概念：多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、算法复杂度理论等多门学科。专门研究计算机怎么模拟或实现人类的学习行为，以获取新的知识或技能，<code>致力于研究如何通过计算的手段，利用经验来改善系统自身的性能</code>。</p>
+<p>2 学科定位：人工智能（Artificial Intelligence，AI）的核心，是使计算机具有智能的根本途径，其应用遍及人工智能的各个领域，它主要使用<code>归纳</code>、<code>综合</code>而不是演绎。</p>
+<p>3 定义：探究和开发以一系列算法来如何使计算机不需要通过外部明显的指示，而可以自己通过数据来学习，从数据中产生模型（model），并且利用建好的模型和新的输入来进行预测的学科。</p>
+<p>4 学习：针对经验E（experience）和一系列任务T（tasks）和一定表现的衡量P，如果随之经验E的积累，针对定义好的任务T可以提高表现P，就说计算机具有学习能力。（Mitchell，1997）例如：下棋、语音识别、自动驾驶等</p>
+<p>5 应用：语音识别、自动驾驶、语言翻译、计算机视觉、推荐系统、无人机、识别垃圾邮件</p>
+<h4 id="市场需求（Market-requirement）"><a href="#市场需求（Market-requirement）" class="headerlink" title="市场需求（Market requirement）"></a>市场需求（Market requirement）</h4><p>LinkedIn所有职业技术需求量第一：机器学习，数据挖掘和统计分析人才</p>
+<h4 id="机器学习项目演示（Demo）"><a href="#机器学习项目演示（Demo）" class="headerlink" title="机器学习项目演示（Demo）"></a>机器学习项目演示（Demo）</h4><ul>
+<li><p><a href="https://www.youtube.com/watch?v=w2itwFJCgFQ" target="_blank" rel="noopener">无人机</a></p>
+</li>
+<li><p><a href="https://www.youtube.com/watch?v=6I82u8d4EO0" target="_blank" rel="noopener">Google自动驾驶汽车</a></p>
+</li>
+<li><p>各大翻译软件的即时听译功能：如Google翻译软件、出国翻译官软件等。</p>
+</li>
+<li><p>人脸识别</p>
+</li>
+</ul>
+<h4 id="深度学习（Deep-Learning，DL）"><a href="#深度学习（Deep-Learning，DL）" class="headerlink" title="深度学习（Deep Learning，DL）"></a>深度学习（Deep Learning，DL）</h4><p>深度学习是基于机器学习延伸出来的一个新的领域，由<code>以人大脑结构为启发的神经网络算法</code>为起源加之模型结构深度的增加发展，并伴随大数据和计算能力的提高而产生的一系列新的算法。</p>
+<p><img src="/img/demo/2018112801.png" alt="深度学习网络"></p>
+<p>深度学习被应用在<code>图像处理，计算机视觉，自然语言处理以及语音识别</code>等领域，自2006年至今，在理论研究与应用上取得了突破性的进展。以<a href="http://www.image-net.org/" target="_blank" rel="noopener">ImageNet</a>为数据库的经典图像中的物体识别竞赛为例，击败了所有传统算法，取得了前所未有的精确度。目前，我们使用的Android手机中Google的语音识别、百度识图、Google的图片搜索都已经使用到了深度学习技术，未来，许多人类从事的活动都因为深度学习和相关技术的发展被机器取代，比如自动汽车驾驶，无人飞机，更加职能的机器人等。</p>
+<h4 id="深度学习代表（Standards）"><a href="#深度学习代表（Standards）" class="headerlink" title="深度学习代表（Standards）"></a>深度学习代表（Standards）</h4><p>学校以多伦多大学、纽约大学、斯坦福大学为代表，工业界以Google、Facebook和百度为代表，走在深度学习研究与应用的前沿。深度学习人才需求量会持续快速增长。</p>
+<h4 id="深度学习项目演示（Demo）"><a href="#深度学习项目演示（Demo）" class="headerlink" title="深度学习项目演示（Demo）"></a>深度学习项目演示（Demo）</h4><ul>
+<li><p><a href="https://www.youtube.com/watch?v=us_uUqQrP1U" target="_blank" rel="noopener">汽车AI</a></p>
+</li>
+<li><p><a href="deep learning demo">无人驾驶中的车辆识别</a></p>
+</li>
+<li><p><a href="http://image.baidu.com/?fr=shitu" target="_blank" rel="noopener">百度识图</a></p>
+</li>
+<li><p>根据图片，自动生成文字描述</p>
+</li>
+</ul>
+</article><!-- lincense--><div class="license-wrapper"><p> <span>Author:  </span><a href="https://elevenzou.github.io">ElevenZou</a></p><p> <span>Link:  </span><a href="https://elevenzou.github.io/2018/11/28/机器学习简单介绍/">https://elevenzou.github.io/2018/11/28/机器学习简单介绍/</a></p><p> <span>Copyright:  </span><span>本博客所有文章除特别声明外，均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/3.0">CC BY-NC-SA 3.0</a> 许可协议，转载请注明出处!</span></p></div><div class="post-paginator"><a class="nextSlogan" href="/2018/11/12/Matplotlib数据可视化/" title="Matplotlib数据可视化"><span>NextPost ></span><br><span class="nextTitle">Matplotlib数据可视化</span></a><div class="clear"></div></div><div id="comment"><div id="lv-container" data-id="city" data-uid="MTAyMC80MDkzOC8xNzQ2Mw=="><script>(function (d, s) {
+  var j, e = d.getElementsByTagName(s)[0];
+  if (typeof LivereTower === 'function') { return; }
+  j = d.createElement(s);
+  j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+  j.async = true;
+  e.parentNode.insertBefore(j, e);
+})(document, 'script');</script></div></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 45vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#机器学习（Machine-Learning，ML）"><span class="toc-number">1.</span> <span class="toc-text">机器学习（Machine Learning，ML）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#市场需求（Market-requirement）"><span class="toc-number">2.</span> <span class="toc-text">市场需求（Market requirement）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#机器学习项目演示（Demo）"><span class="toc-number">3.</span> <span class="toc-text">机器学习项目演示（Demo）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#深度学习（Deep-Learning，DL）"><span class="toc-number">4.</span> <span class="toc-text">深度学习（Deep Learning，DL）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#深度学习代表（Standards）"><span class="toc-number">5.</span> <span class="toc-text">深度学习代表（Standards）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#深度学习项目演示（Demo）"><span class="toc-number">6.</span> <span class="toc-text">深度学习项目演示（Demo）</span></a></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":130,"height":160},"mobile":{"show":false}});</script></body></html>
