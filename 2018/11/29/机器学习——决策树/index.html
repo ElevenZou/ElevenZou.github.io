@@ -6,25 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//elevenzou.github.io">
-  <title>Typora的简易教程 | ElevenZou的博客</title>
+  <title>机器学习——决策树 | ElevenZou的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Typora是一款轻便简洁的Markdown编辑器，支持即时渲染技术，即可以实时预览，这也是与其他Markdown编辑器最显著的区别，Typora使用的是GitHub Flavored Markdown解析器，让你的书写纵享丝滑。">
-<meta name="keywords" content="typora">
+  <meta name="keywords" content="“python,压缩感知,程序猿,代码,机器学习”">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Typora的简易教程">
-<meta property="og:url" content="//elevenzou.github.io/2018/11/11/Typora的简易教程/index.html">
+<meta property="og:title" content="机器学习——决策树">
+<meta property="og:url" content="//elevenzou.github.io/2018/11/29/机器学习——决策树/index.html">
 <meta property="og:site_name" content="ElevenZou的博客">
-<meta property="og:description" content="Typora是一款轻便简洁的Markdown编辑器，支持即时渲染技术，即可以实时预览，这也是与其他Markdown编辑器最显著的区别，Typora使用的是GitHub Flavored Markdown解析器，让你的书写纵享丝滑。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="//elevenzou.github.io/assets/demo/2018111101.png">
-<meta property="og:image" content="//elevenzou.github.io/assets/demo/2018111102.png">
-<meta property="og:image" content="//elevenzou.github.io/assets/demo/2018111103.png">
-<meta property="og:image" content="//elevenzou.github.io/assets/demo/2018111104.png">
-<meta property="og:updated_time" content="2018-11-29T08:12:21.523Z">
+<meta property="og:updated_time" content="2018-11-29T08:32:00.125Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Typora的简易教程">
-<meta name="twitter:description" content="Typora是一款轻便简洁的Markdown编辑器，支持即时渲染技术，即可以实时预览，这也是与其他Markdown编辑器最显著的区别，Typora使用的是GitHub Flavored Markdown解析器，让你的书写纵享丝滑。">
-<meta name="twitter:image" content="//elevenzou.github.io/assets/demo/2018111101.png">
+<meta name="twitter:title" content="机器学习——决策树">
   
     <link rel="alternative" href="/atom.xml" title="ElevenZou的博客" type="application/atom+xml">
   
@@ -168,246 +160,34 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Typora的简易教程" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-机器学习——决策树" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Typora的简易教程
+      机器学习——决策树
     </h1>
   
 
         
-        <a href="/2018/11/11/Typora的简易教程/" class="archive-article-date">
-  	<time datetime="2018-11-11T12:20:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-11</time>
+        <a href="/2018/11/29/机器学习——决策树/" class="archive-article-date">
+  	<time datetime="2018-11-29T08:31:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Typora是一款轻便简洁的Markdown编辑器，支持即时渲染技术，即可以实时预览，这也是与其他Markdown编辑器最显著的区别，Typora使用的是<a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/" target="_blank" rel="noopener">GitHub Flavored Markdown</a>解析器，让你的书写纵享丝滑。<br><a id="more"></a></p>
-<h1 id="1-下载"><a href="#1-下载" class="headerlink" title="1. 下载"></a>1. 下载</h1><p>官方链接：<a href="https://www.typora.io/" target="_blank" rel="noopener">官网</a><br>网盘链接：<a href="https://pan.baidu.com/s/1O5WYBUnhzx2DwlYaswCJZQ" target="_blank" rel="noopener">windows x64_0.9.9.60 (beta)</a>  &#160;&#160;&#160;&#160;提取码：e7f5<br>官方文档：<a href="https://support.typora.io/Markdown-Reference/" target="_blank" rel="noopener">Typora英文文档</a>    </p>
-<p><img src="/assets/demo/2018111101.png" alt="下载界面">  </p>
-<p>选择对应系统的版本下载即可。官方下载可能比较缓慢，请耐心等待，可尝试科学上网或论坛找下载资源 。</p>
-<h1 id="2-安装-windows10"><a href="#2-安装-windows10" class="headerlink" title="2. 安装(windows10)"></a>2. 安装(windows10)</h1><p>typora的在windows10下的安装十分简单，打开下载好的程序，进入下面界面：  </p>
-<p><img src="/assets/demo/2018111102.png" alt="安装">  </p>
-<p>点击<code>next</code>即可快速安装，安装的默认目录为：C:\Program Files\Typora\Typora.exe</p>
-<p>参考网站：<a href="https://jingyan.baidu.com/article/8ebacdf07c71f849f65cd5e5.html" target="_blank" rel="noopener">怎样进行typora下载和安装typora</a></p>
-<h1 id="3-更换主题"><a href="#3-更换主题" class="headerlink" title="3. 更换主题"></a>3. 更换主题</h1><p>下载链接:<a href="https://github.com/typora/typora-theme-gallery/blob/gh-pages/media/theme" target="_blank" rel="noopener">Topyra主题</a>，（部分主题不能用）下载完成后解压</p>
-<p>主题更换起来也简单，只需要把相应的主题文件拷贝到主题文件夹中，重启Typora后就能在主题栏中替换主题。</p>
-<p>进入主题文件夹的操作：打开Typora软件——&gt;文件——&gt;偏好设置——&gt;打开主题文件夹</p>
-<p>将主题文件放到主题文件夹的位置如图所示：</p>
-<p><img src="/assets/demo/2018111103.png" alt=""></p>
-<p><img src="/assets/demo/2018111104.png" alt=""></p>
-<p><strong>注意</strong>: 主要复制<code>.css</code>文件，若该主题文件中没有<code>.css</code>文件，则该主题极有可能不能用。</p>
-<p>参考网站：<a href="https://jingyan.baidu.com/article/2d5afd693f077f85a2e28e3e.html" target="_blank" rel="noopener">如何下载并安装新的typora主题</a></p>
-<h1 id="4-语法总结"><a href="#4-语法总结" class="headerlink" title="4. 语法总结"></a>4. 语法总结</h1><p>typora的语法基本跟markdown的类似，请参考<a href="https://elevenzou.github.io/2018/11/10/markdown常用语法总结/" target="_blank" rel="noopener">markdown常用语法总结</a>  </p>
-<p>下面主要说明与<a href="https://elevenzou.github.io/2018/11/10/markdown常用语法总结/" target="_blank" rel="noopener">markdown常用语法总结</a> 不同的和未提及的部分：</p>
-<h2 id="4-1-换行符"><a href="#4-1-换行符" class="headerlink" title="4.1 换行符"></a>4.1 换行符</h2><p>在markdown中，段落由多个空格分隔。在Typora中，只需回车即可创建新段落。</p>
-<h2 id="4-2-任务列表"><a href="#4-2-任务列表" class="headerlink" title="4.2 任务列表"></a>4.2 任务列表</h2><blockquote>
-<p>-[ ]  不勾选   吃饭</p>
-<p>-[x] 勾选  睡觉</p>
-</blockquote>
-<ul>
-<li><p>[ ] 吃饭</p>
-</li>
-<li><p>[x] 睡觉</p>
-</li>
-</ul>
-<h2 id="4-3-数学表达式"><a href="#4-3-数学表达式" class="headerlink" title="4.3 数学表达式"></a>4.3 数学表达式</h2><script type="math/tex; mode=display">
-\mathbf{V}_1 \times \mathbf{V}_2 = \begin{vmatrix}
-\mathbf{i} & \mathbf{j} & \mathbf{k} \
-\frac{\partial X}{\partial u} & \frac{\partial Y}{\partial u} & 0 \
-\frac{\partial X}{\partial v} & \frac{\partial Y}{\partial v} & 0 \
-\end{vmatrix}</script><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="formula">$$</span></span><br><span class="line"><span class="formula"><span class="tag">\<span class="name">mathbf</span><span class="string">&#123;V&#125;</span></span>_1 <span class="tag">\<span class="name">times</span></span> <span class="tag">\<span class="name">mathbf</span><span class="string">&#123;V&#125;</span></span>_2 = <span class="tag">\<span class="name">begin</span><span class="string">&#123;vmatrix&#125;</span></span></span></span><br><span class="line"><span class="formula"><span class="tag">\<span class="name">mathbf</span><span class="string">&#123;i&#125;</span></span> &amp; <span class="tag">\<span class="name">mathbf</span><span class="string">&#123;j&#125;</span></span> &amp; <span class="tag">\<span class="name">mathbf</span><span class="string">&#123;k&#125;</span></span> <span class="tag">\</span></span></span><br><span class="line"><span class="formula"><span class="tag">\<span class="name">frac</span><span class="string">&#123;\partial X&#125;</span><span class="string">&#123;\partial u&#125;</span></span> &amp; <span class="tag">\<span class="name">frac</span><span class="string">&#123;\partial Y&#125;</span><span class="string">&#123;\partial u&#125;</span></span> &amp; 0 <span class="tag">\</span></span></span><br><span class="line"><span class="formula"><span class="tag">\<span class="name">frac</span><span class="string">&#123;\partial X&#125;</span><span class="string">&#123;\partial v&#125;</span></span> &amp; <span class="tag">\<span class="name">frac</span><span class="string">&#123;\partial Y&#125;</span><span class="string">&#123;\partial v&#125;</span></span> &amp; 0 <span class="tag">\</span></span></span><br><span class="line"><span class="formula"><span class="tag">\<span class="name">end</span><span class="string">&#123;vmatrix&#125;</span></span></span></span><br><span class="line"><span class="formula">$$</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-4-目录-TOC"><a href="#4-4-目录-TOC" class="headerlink" title="4.4 目录[TOC]"></a>4.4 目录[TOC]</h2><p>输入<code>[toc]</code>然后回车，即可创建一个“目录”。TOC从文档中提取所有标题，其内容将自动更新。</p>
-<h2 id="4-5-网址"><a href="#4-5-网址" class="headerlink" title="4.5 网址"></a>4.5 网址</h2><p>Typora允许用&lt;括号括起来&gt;, 把URL作为链接插入。输入\td_simon@outlook.com即 <a href="mailto:td_simon@outlook.com" target="_blank" rel="noopener">td_simon@outlook.com</a>。<br>Typora还会自动链接标准网址。例如：<a href="http://www.simon96.online./" target="_blank" rel="noopener">www.simon96.online。</a></p>
-<h2 id="4-6-表情符号"><a href="#4-6-表情符号" class="headerlink" title="4.6 表情符号"></a>4.6 表情符号</h2><blockquote>
-<p>：smile ：（注意为：是英文的冒号，表情有可能显现不出来）</p>
-</blockquote>
-<p>:smile:</p>
-<h2 id="4-7-下标"><a href="#4-7-下标" class="headerlink" title="4.7 下标"></a>4.7 下标</h2><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">H~<span class="number">2</span>~O <span class="comment">(需在设置中打开该功能)</span></span><br></pre></td></tr></table></figure>
-<p>H~2~O</p>
-<h2 id="4-8-上标"><a href="#4-8-上标" class="headerlink" title="4.8 上标"></a>4.8 上标</h2><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X^<span class="number">2</span>^<span class="comment">(需在设置中打开该功能)</span></span><br></pre></td></tr></table></figure>
-<p>X^2^</p>
-<h2 id="4-9-高亮"><a href="#4-9-高亮" class="headerlink" title="4.9 高亮"></a>4.9 高亮</h2><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">==高亮==<span class="comment">(需在设置中打开该功能)</span></span><br></pre></td></tr></table></figure>
-<p> ==高亮==</p>
-<h2 id="4-10-HTML"><a href="#4-10-HTML" class="headerlink" title="4.10 HTML"></a>4.10 HTML</h2><p>支持HTML格式</p>
-<h2 id="4-11-视频"><a href="#4-11-视频" class="headerlink" title="4.11 视频"></a>4.11 视频</h2><blockquote>
-<p> &lt; video src=”xxx.mp4” /&gt;</p>
-</blockquote>
-<h1 id="5-快捷键整合"><a href="#5-快捷键整合" class="headerlink" title="5. 快捷键整合"></a>5. 快捷键整合</h1><div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">快捷键</th>
-<th style="text-align:center">作用</th>
-<th style="text-align:center">快捷键</th>
-<th style="text-align:center">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Ctrl+0</td>
-<td style="text-align:center">段落</td>
-<td style="text-align:center">Ctrl+B</td>
-<td style="text-align:center">加粗</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+1</td>
-<td style="text-align:center">一阶标题</td>
-<td style="text-align:center">Ctrl+I</td>
-<td style="text-align:center">斜体</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+2</td>
-<td style="text-align:center">二阶标题</td>
-<td style="text-align:center">Ctrl+U</td>
-<td style="text-align:center">下划线</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+3</td>
-<td style="text-align:center">三阶标题</td>
-<td style="text-align:center">Ctrl+Shift+`</td>
-<td style="text-align:center">代码</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+4</td>
-<td style="text-align:center">四阶标题</td>
-<td style="text-align:center">Alt+Shift+5</td>
-<td style="text-align:center">删除线</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+5</td>
-<td style="text-align:center">五阶标题</td>
-<td style="text-align:center">Ctrl+K</td>
-<td style="text-align:center">超链接</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+6</td>
-<td style="text-align:center">六阶标题</td>
-<td style="text-align:center">Ctrl+Shift+I</td>
-<td style="text-align:center">图像</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+=</td>
-<td style="text-align:center">提升标题级别</td>
-<td style="text-align:center">Ctrl+\</td>
-<td style="text-align:center">清除样式</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+-</td>
-<td style="text-align:center">降低标题级别</td>
-<td style="text-align:center">Ctrl+/</td>
-<td style="text-align:center">源代码模式</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+T</td>
-<td style="text-align:center">表格</td>
-<td style="text-align:center">Ctrl+Home</td>
-<td style="text-align:center">返回Typora顶部</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+Shift+M</td>
-<td style="text-align:center">公式块</td>
-<td style="text-align:center">Ctrl+End</td>
-<td style="text-align:center">返回Typora底部</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+Shift+K</td>
-<td style="text-align:center">代码块</td>
-<td style="text-align:center">Ctrl+F</td>
-<td style="text-align:center">搜索</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+Shift+Q</td>
-<td style="text-align:center">引用</td>
-<td style="text-align:center">Ctrl+H</td>
-<td style="text-align:center">搜索并替换</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+Shift+[</td>
-<td style="text-align:center">有序列表</td>
-<td style="text-align:center">Ctrl+L</td>
-<td style="text-align:center">选中当前行/句</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+Shift+]</td>
-<td style="text-align:center">无序列表</td>
-<td style="text-align:center">Ctrl+E</td>
-<td style="text-align:center">选中当前格式文本</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+]</td>
-<td style="text-align:center">增加缩进</td>
-<td style="text-align:center">Ctrl+D</td>
-<td style="text-align:center">选中当前词</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+[</td>
-<td style="text-align:center">减少缩进</td>
-<td style="text-align:center">Ctrl+Shift+D</td>
-<td style="text-align:center">删除当前词</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>参考博客：</p>
-<p>1.<a href="https://www.simon96.online/2018/10/18/Typora入门%EF%BC%88中文版%EF%BC%89/" target="_blank" rel="noopener">Typora入门（中文版）</a></p>
-<p>2.<a href="https://blog.csdn.net/qq_41648756/article/details/81057290" target="_blank" rel="noopener">typora</a></p>
-
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">
       
 
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃辣条<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/alipay.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/weixin.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
       
     </div>
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">typora</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -458,7 +238,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://elevenzou.github.io/2018/11/11/Typora的简易教程/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://elevenzou.github.io/2018/11/29/机器学习——决策树/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -472,18 +252,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2018/11/12/Matplotlib数据可视化/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Matplotlib数据可视化
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/11/10/markdown常用语法总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">markdown常用语法总结</div>
+    <a href="/2018/11/28/机器学习简单介绍/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">机器学习简单介绍</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -522,7 +293,7 @@ var _hmt = _hmt || [];
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "//elevenzou.github.io/2018/11/11/Typora的简易教程/",
+  id: "//elevenzou.github.io/2018/11/29/机器学习——决策树/",
   owner: 'ElevenZou',
   repo: '//elevenzou.github.io',
   oauth: {
