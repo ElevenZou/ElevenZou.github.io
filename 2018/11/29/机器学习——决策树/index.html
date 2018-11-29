@@ -8,15 +8,18 @@
   <link rel="dns-prefetch" href="//elevenzou.github.io">
   <title>机器学习——决策树 | ElevenZou的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Machine Learning">
+  <meta name="description" content="机器学习——&amp;gt;监督学习——&amp;gt;分类——&amp;gt;决策树の原理与应用">
+<meta name="keywords" content="Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习——决策树">
 <meta property="og:url" content="//elevenzou.github.io/2018/11/29/机器学习——决策树/index.html">
 <meta property="og:site_name" content="ElevenZou的博客">
+<meta property="og:description" content="机器学习——&amp;gt;监督学习——&amp;gt;分类——&amp;gt;决策树の原理与应用">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-29T09:45:53.146Z">
+<meta property="og:updated_time" content="2018-11-29T12:11:51.715Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习——决策树">
+<meta name="twitter:description" content="机器学习——&amp;gt;监督学习——&amp;gt;分类——&amp;gt;决策树の原理与应用">
   
     <link rel="alternative" href="/atom.xml" title="ElevenZou的博客" type="application/atom+xml">
   
@@ -55,7 +58,7 @@ var _hmt = _hmt || [];
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="" class="profilepic">
-			<img src="/assets/demo/face02.png" class="js-avatar">
+			<img src="/assets/blogImg/face02.png" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="">ElevenZou</a></h1>
@@ -91,9 +94,11 @@ var _hmt = _hmt || [];
 				
 					<a class="github" target="_blank" href="https://github.com/ElevenZou/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
-		        
 					<a class="mail" target="_blank" href="mailto:1092709330@qq.com" title="mail"><i class="icon-mail"></i></a>
+		        
+					<a class="bilibili" target="_blank" href="https://space.bilibili.com/5770343?from=search&seid=2033176199237225590" title="bilibili"><i class="icon-bilibili"></i></a>
+		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 		        
 			</div>
 		</nav>
@@ -111,7 +116,7 @@ var _hmt = _hmt || [];
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/assets/demo/face02.png" class="js-avatar">
+				<img src="/assets/blogImg/face02.png" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">ElevenZou</h1>
@@ -132,9 +137,11 @@ var _hmt = _hmt || [];
 					
 						<a class="github" target="_blank" href="https://github.com/ElevenZou/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
-			        
 						<a class="mail" target="_blank" href="mailto:1092709330@qq.com" title="mail"><i class="icon-mail"></i></a>
+			        
+						<a class="bilibili" target="_blank" href="https://space.bilibili.com/5770343?from=search&seid=2033176199237225590" title="bilibili"><i class="icon-bilibili"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 				</div>
 			</nav>
@@ -180,7 +187,148 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>机器学习——&gt;监督学习——&gt;分类——&gt;决策树の原理与应用</p>
+<a id="more"></a>
+<h1 id="1-什么是决策树-decision-tree"><a href="#1-什么是决策树-decision-tree" class="headerlink" title="1. 什么是决策树(decision tree)?"></a>1. 什么是决策树(decision tree)?</h1><p>决策树是一个类似于流程图的树结构，其中，每个内部结点表示一个在属性上的测试，每个分支代表一个属性输出，而每个树叶结点代表类或类分布，输的最顶层是根结点。决策树是机器学习常见中一种分类方法。</p>
+<h1 id="2-信息熵-entropy"><a href="#2-信息熵-entropy" class="headerlink" title="2. 信息熵(entropy)"></a>2. 信息熵(entropy)</h1><p>信息量的度量，等于不确定性的多少</p>
+<script type="math/tex; mode=display">
+H(X)=-\sum_xP(x)log_2[P(x)]</script><p>变量的不确定性越大，熵越大</p>
+<h1 id="3-决策树归纳算法（ID3）"><a href="#3-决策树归纳算法（ID3）" class="headerlink" title="3. 决策树归纳算法（ID3）"></a>3. 决策树归纳算法（ID3）</h1><p>选择属性判断结点</p>
+<p>信息获取量（Information Gain）：Gain(A)=Info(D)-Info_A(D)</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">RID</th>
+<th style="text-align:center">age</th>
+<th style="text-align:center">income</th>
+<th style="text-align:center">student</th>
+<th style="text-align:center">credit_rating</th>
+<th style="text-align:center">Class:buys_computer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">youth</td>
+<td style="text-align:center">high</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">fair</td>
+<td style="text-align:center">no</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">youth</td>
+<td style="text-align:center">high</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">excellent</td>
+<td style="text-align:center">no</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">middle_aged</td>
+<td style="text-align:center">high</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">fair</td>
+<td style="text-align:center">yes</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">senior</td>
+<td style="text-align:center">medium</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">fair</td>
+<td style="text-align:center">yes</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">senior</td>
+<td style="text-align:center">low</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">fair</td>
+<td style="text-align:center">yes</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">senior</td>
+<td style="text-align:center">low</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">excellent</td>
+<td style="text-align:center">no</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">middle_aged</td>
+<td style="text-align:center">low</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">excellent</td>
+<td style="text-align:center">yes</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">youth</td>
+<td style="text-align:center">medium</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">fair</td>
+<td style="text-align:center">no</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">youth</td>
+<td style="text-align:center">low</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">fair</td>
+<td style="text-align:center">yes</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">senior</td>
+<td style="text-align:center">medium</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">fair</td>
+<td style="text-align:center">yes</td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">youth</td>
+<td style="text-align:center">medium</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">excellent</td>
+<td style="text-align:center">yes</td>
+</tr>
+<tr>
+<td style="text-align:center">12</td>
+<td style="text-align:center">middle_aged</td>
+<td style="text-align:center">medium</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">excellent</td>
+<td style="text-align:center">yes</td>
+</tr>
+<tr>
+<td style="text-align:center">13</td>
+<td style="text-align:center">middle_aged</td>
+<td style="text-align:center">high</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">fair</td>
+<td style="text-align:center">yes</td>
+</tr>
+<tr>
+<td style="text-align:center">14</td>
+<td style="text-align:center">senior</td>
+<td style="text-align:center">medium</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">excellent</td>
+<td style="text-align:center">no</td>
+</tr>
+</tbody>
+</table>
+</div>
+<script type="math/tex; mode=display">
+Info(D)=-\frac{9}{14}log_2(\frac{9}{14})-\frac{5}{14}log_2(\frac{5}{14})=0.940\quad bits</script><script type="math/tex; mode=display">
+\begin{align}
+Info_{age}(D)=&\frac{5}{14}\times(-\frac{2}{5}log_2\frac{2}{5}-\frac{3}{5}log_2\frac{3}{5})\\&+\frac{4}{14}\times(-\frac{4}{4}log_2\frac{4}{4}-\frac{0}{4}log_2\frac{0}{4})\\&+\frac{5}{14}\times(-\frac{3}{5}log_2\frac{3}{5}-\frac{2}{5}log_2\frac{2}{5})\\=&0.694\quad bits
+\end{align}</script><script type="math/tex; mode=display">
+Gain(age)=Info(D)-Info_{age}(D)=0.940-0.694=0.246 \quad bits</script>
       
       
 	  
@@ -342,7 +490,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-什么是决策树-decision-tree"><span class="toc-number">1.</span> <span class="toc-text">1. 什么是决策树(decision tree)?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-信息熵-entropy"><span class="toc-number">2.</span> <span class="toc-text">2. 信息熵(entropy)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-决策树归纳算法（ID3）"><span class="toc-number">3.</span> <span class="toc-text">3. 决策树归纳算法（ID3）</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -475,11 +623,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -534,7 +682,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">ElevenZou，&lt;br&gt;一名就读于中国矿业大学（北京）的研究僧，&lt;br&gt;目标是高薪程序猿，&lt;br&gt;性格开朗，容易相处，&lt;br&gt;单身狗一枚。 &lt;br&gt;ps:评论功能还在施工中，暂时不能用。</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">ElevenZou，&lt;br&gt;一名就读于中国矿业大学（北京）的研究僧，&lt;br&gt;目标是高薪程序猿，&lt;br&gt;性格开朗，容易相处，&lt;br&gt;单身狗一枚。 &lt;br&gt;ps:评论功能还在施工中，可以随时邮箱联系。</div>
   	  	
     	</section>
     
