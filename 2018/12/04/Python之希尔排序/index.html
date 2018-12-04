@@ -6,24 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//elevenzou.github.io">
-  <title>Python之直接插入排序 | ElevenZou的博客</title>
+  <title>Python之希尔排序 | ElevenZou的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="直接插入排序（Straight Insertion Sort）是一种最简单的排序方法。">
+  <meta name="description" content="希尔排序(Shell’s Sort)是直接插入排序算法的一种更高级的改进版本。">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python之直接插入排序">
-<meta property="og:url" content="//elevenzou.github.io/2018/12/03/Python之直接插入排序/index.html">
+<meta property="og:title" content="Python之希尔排序">
+<meta property="og:url" content="//elevenzou.github.io/2018/12/04/Python之希尔排序/index.html">
 <meta property="og:site_name" content="ElevenZou的博客">
-<meta property="og:description" content="直接插入排序（Straight Insertion Sort）是一种最简单的排序方法。">
+<meta property="og:description" content="希尔排序(Shell’s Sort)是直接插入排序算法的一种更高级的改进版本。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="//elevenzou.github.io/assets/demo/2018120304.png">
-<meta property="og:image" content="//elevenzou.github.io/assets/demo/2018120303.png">
-<meta property="og:image" content="//elevenzou.github.io/assets/demo/algorithm_2_1.gif">
-<meta property="og:updated_time" content="2018-12-04T04:58:20.755Z">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2018120401.png">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2018120402.png">
+<meta property="og:updated_time" content="2018-12-04T04:58:51.564Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python之直接插入排序">
-<meta name="twitter:description" content="直接插入排序（Straight Insertion Sort）是一种最简单的排序方法。">
-<meta name="twitter:image" content="//elevenzou.github.io/assets/demo/2018120304.png">
+<meta name="twitter:title" content="Python之希尔排序">
+<meta name="twitter:description" content="希尔排序(Shell’s Sort)是直接插入排序算法的一种更高级的改进版本。">
+<meta name="twitter:image" content="//elevenzou.github.io/assets/demo/2018120401.png">
   
     <link rel="alternative" href="/atom.xml" title="ElevenZou的博客" type="application/atom+xml">
   
@@ -171,51 +170,81 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Python之直接插入排序" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Python之希尔排序" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Python之直接插入排序
+      Python之希尔排序
     </h1>
   
 
         
-        <a href="/2018/12/03/Python之直接插入排序/" class="archive-article-date">
-  	<time datetime="2018-12-03T08:12:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-03</time>
+        <a href="/2018/12/04/Python之希尔排序/" class="archive-article-date">
+  	<time datetime="2018-12-04T03:53:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>直接插入排序（Straight Insertion Sort）是一种最简单的排序方法。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>希尔排序(Shell’s Sort)是直接插入排序算法的一种更高级的改进版本。</p>
 <a id="more"></a>
-<h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h1><p>冒泡排序的基本操作是将一个新数据插入到已排好的有序队列中，从而得到一个新的、记录数量增1的有序表。</p>
-<p><img src="/assets/demo/2018120304.png" alt="算法性能"></p>
-<h1 id="2-算法原理"><a href="#2-算法原理" class="headerlink" title="2. 算法原理"></a>2. 算法原理</h1><p>假设有一组无序序列 R0, R1, … , RN-1。</p>
-<p>(1) 我们先将这个序列中下标为 0 的元素视为元素个数为 1 的有序序列。</p>
-<p>(2) 然后，我们要依次把 R1, R2, … , RN-1 插入到这个有序序列中。所以，我们需要一个外部循环，从下标 1 扫描到 N-1 。</p>
-<p>(3) 接下来描述插入过程。假设这是要将 Ri 插入到前面有序的序列中。由前面所述，我们可知，插入Ri时，前 i-1 个数肯定已经是有序了。</p>
-<p>所以我们需要将Ri 和R0 ~ Ri-1 进行比较，确定要插入的合适位置。这就需要一个内部循环，我们一般是从后往前比较，即从下标 i-1 开始向 0 进行扫描。</p>
-<p><img src="/assets/demo/2018120303.png" alt="算法流程图"></p>
-<p><img src="/assets/demo/algorithm_2_1.gif" alt="动态效果示意图"></p>
-<h1 id="3-python示例"><a href="#3-python示例" class="headerlink" title="3. python示例"></a>3. python示例</h1><h2 id="3-1-代码"><a href="#3-1-代码" class="headerlink" title="3.1 代码"></a>3.1 代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding = utf-8 -*-</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insertSort</span><span class="params">(input_list)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    函数说明： 直接插入排序（升序）</span></span><br><span class="line"><span class="string">    :param: input_list —— 待排序序列</span></span><br><span class="line"><span class="string">    :return: sorted_list —— 排序后的列表</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">if</span> len(input_list) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> []</span><br><span class="line">    sorted_list = input_list</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(sorted_list)):</span><br><span class="line">        temp = sorted_list[i]</span><br><span class="line">        j = i - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> j &gt;= <span class="number">0</span> <span class="keyword">and</span> temp &lt; sorted_list[j]:</span><br><span class="line">            sorted_list[j + <span class="number">1</span>] = sorted_list[j]</span><br><span class="line">            j -= <span class="number">1</span></span><br><span class="line">            sorted_list[j + <span class="number">1</span>] = temp</span><br><span class="line">    <span class="keyword">return</span> sorted_list</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    input_list = [<span class="number">6</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">11</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">1</span>]</span><br><span class="line">    print(<span class="string">'排序前：\n'</span>, input_list)</span><br><span class="line">    sorted_list = insertSort(input_list)</span><br><span class="line">    print(<span class="string">'排序后：\n'</span>, sorted_list)</span><br></pre></td></tr></table></figure>
-<h2 id="3-2-结果"><a href="#3-2-结果" class="headerlink" title="3.2 结果"></a>3.2 结果</h2><blockquote>
-<p>排序前：<br> [6, 4, 8, 11, 3, 9, 1]<br>排序后：<br> [1, 3, 4, 6, 8, 9, 11]</p>
-</blockquote>
-<h1 id="4-优化"><a href="#4-优化" class="headerlink" title="4. 优化"></a>4. 优化</h1><p>使用二分查找对直接插入排序进行优化，减少元素比较次数提高效率，二分查找算法就是不断对数组进行对半分割，每次拿中间元素和目标数字进行比较，如果中间元素小于目标数字，则说明目标数字应该在右侧被分割的数组中，如果中间元素大于目标数字，则说明目标数字应该在左侧被分割的数组中。</p>
-<p>如下代码所示：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding = utf-8 -*-</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binarySearch</span><span class="params">(input_list, end, value)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    函数说明：找出二分位置</span></span><br><span class="line"><span class="string">    :param input_list:</span></span><br><span class="line"><span class="string">    :param end:</span></span><br><span class="line"><span class="string">    :param value:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    left = <span class="number">0</span></span><br><span class="line">    right = end - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">        middle = left + (right - left) // <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> input_list[middle] &gt;= value:</span><br><span class="line">            right = middle - <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            left = middle + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> left <span class="keyword">if</span> left &lt; end <span class="keyword">else</span> <span class="number">-1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binaryInsertSort</span><span class="params">(input_list)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    函数说明： 二分法插入排序（升序）</span></span><br><span class="line"><span class="string">    :param: input_list —— 待排序序列</span></span><br><span class="line"><span class="string">    :return: sorted_list —— 排序后的列表</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">if</span> len(input_list) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> []</span><br><span class="line">    result = input_list</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(input_list)):</span><br><span class="line">        j = i - <span class="number">1</span></span><br><span class="line">        temp = result[i]</span><br><span class="line">        insert_index = binarySearch(result, i, result[i])</span><br><span class="line">        <span class="keyword">if</span> insert_index != <span class="number">-1</span>:</span><br><span class="line">            <span class="keyword">while</span> j &gt;= insert_index:</span><br><span class="line">                result[j + <span class="number">1</span>] = result[j]</span><br><span class="line">                j -= <span class="number">1</span></span><br><span class="line">                result[j + <span class="number">1</span>] = temp</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    input_list = [<span class="number">8</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">11</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">1</span>]</span><br><span class="line">    print(<span class="string">'排序前：\n'</span>, input_list)</span><br><span class="line">    sorted_list = binaryInsertSort(input_list)</span><br><span class="line">    print(<span class="string">'排序后：\n'</span>, sorted_list)</span><br></pre></td></tr></table></figure>
-<p>结果如下：</p>
+<h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h1><p>希尔排序是插入排序的一种，又称“缩小增量排序”，是直接插入排序算法的一种更高级的改进版本。希尔排序是非稳定排序算法。该方法因Donald Shell于1959年提出而得名。</p>
+<p>希尔排序是把记录按下标的一定增量分组，对每组使用直接插入排序算法排序；随着增量逐渐减少，每组包含的关键词越来越多，当增量减至1时，整个文件恰被分成一组，算法便终止。</p>
+<p><img src="/assets/demo/2018120401.png" alt="算法性能"></p>
+<h1 id="2-算法原理"><a href="#2-算法原理" class="headerlink" title="2. 算法原理"></a>2. 算法原理</h1><p>假设有一组数:</p>
 <blockquote>
-<p>排序前：<br> [8, 4, 8, 11, 3, 9, 1]<br>排序后：<br> [1, 3, 4, 8, 8, 9, 11]</p>
+<p>{13，14，94，33，82，25，59，94，65，23，45，27，73，25，39，10}</p>
+</blockquote>
+<p>如果以步长为5开始进行排序：</p>
+<blockquote>
+<p>13  14  94  33  82</p>
+<p>25  59  94  65  23</p>
+<p>45  27  73  25  39</p>
+<p>10</p>
+</blockquote>
+<p>对每列进行排序：</p>
+<blockquote>
+<p>10  14  73  25  23</p>
+<p>13  27  94  33  39</p>
+<p>25  59  94  65   82</p>
+<p>45</p>
+</blockquote>
+<p>将上述四行数字，依序接在一起，得到：</p>
+<blockquote>
+<p>{10，14，73，25，23，13，27，94，33，39，25，59，94，65，82，45}</p>
+</blockquote>
+<p>然后以步长为3开始进行排序：</p>
+<blockquote>
+<p>10  14  73</p>
+<p>25  23  13</p>
+<p>27  94  33</p>
+<p>39  25  59  </p>
+<p>94  65  82</p>
+<p>45</p>
+</blockquote>
+<p>对每列进行排序之后变成：</p>
+<blockquote>
+<p>10  14  13</p>
+<p>25  23  33</p>
+<p>27  25  59</p>
+<p>39  65  73</p>
+<p>45  94  82</p>
+<p>94</p>
+</blockquote>
+<p>最后以1为步长进行排序（此时为简单的插入排序法）</p>
+<p>希尔排序是按照不同步长对元素进行插入排序，当刚开始元素很无序的时候，步长最大，所以插入排序的元素个数很少，速度很快；当元素基本有序了，步长很小，插入排序对于有序的序列效率很高。</p>
+<p><img src="/assets/demo/2018120402.png" alt="算法步骤示意图"></p>
+<h1 id="3-python示例"><a href="#3-python示例" class="headerlink" title="3. python示例"></a>3. python示例</h1><h2 id="3-1-代码"><a href="#3-1-代码" class="headerlink" title="3.1 代码"></a>3.1 代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding = utf-8 -*-</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shellSort</span><span class="params">(input_list)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    函数说明： 希尔排序</span></span><br><span class="line"><span class="string">    :param: input_list —— 待排序序列</span></span><br><span class="line"><span class="string">    :return: sorted_list —— 排序后的列表</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    length = len(input_list)</span><br><span class="line">    <span class="keyword">if</span> length &lt;= <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> input_list</span><br><span class="line">    sorted_list = input_list</span><br><span class="line">    gap = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> gap &lt; length/<span class="number">3</span>:</span><br><span class="line">        gap = <span class="number">3</span> * gap + <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> gap &gt;= <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(gap, length):</span><br><span class="line">            j = i</span><br><span class="line">            <span class="keyword">while</span> j &gt;= gap <span class="keyword">and</span> sorted_list[j] &lt; sorted_list[j-gap]:</span><br><span class="line">                sorted_list[j], sorted_list[j - gap] = sorted_list[j - gap], sorted_list[j]</span><br><span class="line">                j -= gap</span><br><span class="line">        gap //= <span class="number">3</span></span><br><span class="line">    <span class="keyword">return</span> sorted_list</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    input_list = [<span class="number">50</span>, <span class="number">123</span>, <span class="number">543</span>, <span class="number">187</span>, <span class="number">49</span>, <span class="number">30</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">11</span>, <span class="number">100</span>]</span><br><span class="line">    print(<span class="string">'排序前'</span>, input_list)</span><br><span class="line">    sorted_list = shellSort(input_list)</span><br><span class="line">    print(<span class="string">'排序后'</span>, sorted_list)</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-结果"><a href="#3-2-结果" class="headerlink" title="3.2 结果"></a>3.2 结果</h2><blockquote>
+<p>排序前: [50, 123, 543, 187, 49, 30, 0, 2, 11, 100]<br>排序后: [0, 2, 11, 30, 49, 50, 100, 123, 187, 543]</p>
 </blockquote>
 <p>参考文章：</p>
-<p>【1】<a href="https://cuijiahua.com/blog/2017/12/algorithm_2.html" target="_blank" rel="noopener">Jack Cui 技术博客</a></p>
-<p>【2】<a href="https://baike.baidu.com/item/直接插入排序" target="_blank" rel="noopener">直接排序百度百科</a></p>
+<p>【1】<a href="https://cuijiahua.com/blog/2017/12/algorithm_3.html" target="_blank" rel="noopener">Jack Cui 技术博客</a></p>
+<p>【2】<a href="https://baike.baidu.com/item/希尔排序/3229428?fr=aladdin" target="_blank" rel="noopener">希尔排序百度百科</a></p>
 
       
       
@@ -228,7 +257,7 @@ var _hmt = _hmt || [];
           
           <br>
           <strong>本文链接：</strong>
-          https://elevenzou.github.io/2018/12/03/Python之直接插入排序/
+          https://elevenzou.github.io/2018/12/04/Python之希尔排序/
           <br>
           <strong>版权声明：</strong>
           本作品采用
@@ -335,7 +364,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://elevenzou.github.io/2018/12/03/Python之直接插入排序/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://elevenzou.github.io/2018/12/04/Python之希尔排序/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -349,18 +378,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2018/12/04/Python之希尔排序/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Python之希尔排序
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/12/03/Python之冒泡排序/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python之冒泡排序</div>
+    <a href="/2018/12/03/Python之直接插入排序/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Python之直接插入排序</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -387,7 +407,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-介绍"><span class="toc-number">1.</span> <span class="toc-text">1. 介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-算法原理"><span class="toc-number">2.</span> <span class="toc-text">2. 算法原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-python示例"><span class="toc-number">3.</span> <span class="toc-text">3. python示例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-代码"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-结果"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 结果</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-优化"><span class="toc-number">4.</span> <span class="toc-text">4. 优化</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-介绍"><span class="toc-number">1.</span> <span class="toc-text">1. 介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-算法原理"><span class="toc-number">2.</span> <span class="toc-text">2. 算法原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-python示例"><span class="toc-number">3.</span> <span class="toc-text">3. python示例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-代码"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-结果"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 结果</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
