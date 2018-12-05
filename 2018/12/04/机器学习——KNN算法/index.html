@@ -6,19 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//elevenzou.github.io">
-  <title>Tag: markdown | ElevenZou的博客</title>
+  <title>机器学习——KNN算法 | ElevenZou的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="中国矿业大学(北京)17级研究生，擅长python，深入研究压缩感知，游戏爱好者。">
-<meta name="keywords" content="“python,压缩感知,程序猿,代码,机器学习”">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ElevenZou的博客">
-<meta property="og:url" content="//elevenzou.github.io/tags/markdown/index.html">
+  <meta name="description" content="k近邻算法(k-nearest neighbor, k-NN)是1967年由Cover T和Hart P提出的一种基本分类与回归方法。">
+<meta name="keywords" content="Machine Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习——KNN算法">
+<meta property="og:url" content="//elevenzou.github.io/2018/12/04/机器学习——KNN算法/index.html">
 <meta property="og:site_name" content="ElevenZou的博客">
-<meta property="og:description" content="中国矿业大学(北京)17级研究生，擅长python，深入研究压缩感知，游戏爱好者。">
+<meta property="og:description" content="k近邻算法(k-nearest neighbor, k-NN)是1967年由Cover T和Hart P提出的一种基本分类与回归方法。">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2018120406.png">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2018120501.png">
+<meta property="og:updated_time" content="2018-12-05T03:35:50.710Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ElevenZou的博客">
-<meta name="twitter:description" content="中国矿业大学(北京)17级研究生，擅长python，深入研究压缩感知，游戏爱好者。">
+<meta name="twitter:title" content="机器学习——KNN算法">
+<meta name="twitter:description" content="k近邻算法(k-nearest neighbor, k-NN)是1967年由Cover T和Hart P提出的一种基本分类与回归方法。">
+<meta name="twitter:image" content="//elevenzou.github.io/assets/demo/2018120406.png">
   
     <link rel="alternative" href="/atom.xml" title="ElevenZou的博客" type="application/atom+xml">
   
@@ -166,60 +170,309 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-机器学习——KNN算法" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/10/markdown常用语法总结/" class="archive-article-date">
-  	<time datetime="2018-11-10T13:22:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-10</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/10/markdown常用语法总结/">markdown常用语法总结</a>
+    <h1 class="article-title" itemprop="name">
+      机器学习——KNN算法
     </h1>
   
 
-        <div class="article-info info-on-right">
+        
+        <a href="/2018/12/04/机器学习——KNN算法/" class="archive-article-date">
+  	<time datetime="2018-12-04T13:51:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>k近邻算法(k-nearest neighbor, k-NN)是1967年由Cover T和Hart P提出的一种基本分类与回归方法。</p>
+<a id="more"></a>
+<h1 id="1-K近邻算法-K-Nearest-Neighbor"><a href="#1-K近邻算法-K-Nearest-Neighbor" class="headerlink" title="1. K近邻算法(K-Nearest Neighbor)"></a>1. K近邻算法(K-Nearest Neighbor)</h1><p><strong>K近邻算法</strong>又叫最近邻规则分类算法，由Cover T和Hart P在1968年提出，是一种基本分类与回归算法，是输入基于实例的学习(instance-based learning)、懒惰学习(lazy learning)、监督学习(supervised learning)。其原理很简单：给定测试样本，基于某种距离度量找出训练集中与其最靠近的k个训练样本，然后基于这K个“邻居”的信息来进行预测。</p>
+<p>比如，我们可以使用K近邻算法分类一个电影是爱情片还是动作片：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">电影名称</th>
+<th style="text-align:center">打斗镜头</th>
+<th style="text-align:center">接吻镜头</th>
+<th style="text-align:center">电影类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">电影1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">101</td>
+<td style="text-align:center">爱情电影</td>
+</tr>
+<tr>
+<td style="text-align:center">电影2</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">89</td>
+<td style="text-align:center">爱情电影</td>
+</tr>
+<tr>
+<td style="text-align:center">电影3</td>
+<td style="text-align:center">108</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">动作电影</td>
+</tr>
+<tr>
+<td style="text-align:center">电影4</td>
+<td style="text-align:center">115</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">动作电影</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>如果有一部未分类的电影，打斗镜头101次，接吻镜头20次，那么如何判断这部电影是属于爱情片还是动作片？以人的经验会告诉你这个是动作片，K近邻算法也会告诉你这个是动作片，K近邻算法是靠已有的数据来进行判断的。</p>
+<p><img src="/assets/demo/2018120406.png" alt="电影分类问题"></p>
+<h1 id="2-算法步骤"><a href="#2-算法步骤" class="headerlink" title="2. 算法步骤"></a>2. 算法步骤</h1><p>（1）计算已知类别数据集中的点与当前点之间的距离；</p>
+<p>（2）按照距离递增次序排序；</p>
+<p>（3）选取与当前点距离最小的K个点；</p>
+<p>（4）确定前K个点所在类别的出现频率；</p>
+<p>（5）根据少数服从多数的投票法则(majority-voting)，返回前K个点所出现频率最高的类别作为当前点的预测分类。</p>
+<p><strong>注意细节</strong>：</p>
+<p>K的选取，一般是不大于20的整数。</p>
+<p>距离度量方法的选取，如欧几米德距离、切比雪夫距离、马氏距离、曼哈顿距离、余弦值、相关度等。</p>
+<p>此处选择欧几米德距离公式来计算距离：</p>
+<script type="math/tex; mode=display">
+E(d)=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}</script><p>记未分类电影为M(101,20)，电影1为A(1,101)，电影2为B(5,89)，电影3为C(108,5)，电影4为D(115,8)，使用上式分别计算M点与A、B、C、D点的距离，得到：</p>
+<blockquote>
+<p>MA = 128.689，MB = 118.224，MC = 16.552，MD = 18.439</p>
+</blockquote>
+<p>选择K=2，即C点与D点离M点较近，故将电影归类为动作片。</p>
+<h1 id="3-KNN算法的优缺点"><a href="#3-KNN算法的优缺点" class="headerlink" title="3. KNN算法的优缺点"></a>3. KNN算法的优缺点</h1><p><strong>优点</strong></p>
+<ul>
+<li>简单好用，容易理解，精度高，理论成熟，既可以用来做分类也可以用来做回归；</li>
+<li>可用于数值型数据和离散型数据；</li>
+<li>训练时间复杂度为O(n)；无数据输入假定；</li>
+<li>对异常值不敏感</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>计算复杂性高；空间复杂性高；</li>
+<li>样本不平衡问题（即有些类别的样本数量很多，而其它样本的数量很少）；</li>
+<li>一般数值很大的时候不用这个，计算量太大。但是单个样本又不能太少，否则容易发生误分。</li>
+<li>最大的缺点是无法给出数据的内在含义。</li>
+</ul>
+<h1 id="4-KNN算法的python实现"><a href="#4-KNN算法的python实现" class="headerlink" title="4. KNN算法的python实现"></a>4. KNN算法的python实现</h1><h2 id="4-1-Iris-DataSet鸢尾花数据集"><a href="#4-1-Iris-DataSet鸢尾花数据集" class="headerlink" title="4.1 Iris DataSet鸢尾花数据集"></a>4.1 Iris DataSet鸢尾花数据集</h2><p><a href="https://www.tensorflow.org/guide/premade_estimators#classifying_irises_an_overview" target="_blank" rel="noopener">鸢尾花数据集</a>以鸢尾花的特征作为数据来源，数据集包含150个数据样本，分为3类：setosa, versicolor, virginica。每类50个数据，每个数据包含4个独立属性：萼片长度, 萼片宽度,花瓣长度, 花瓣宽度。该数据集是在数据挖掘、数据分类中非常常用的测试集、训练集。</p>
+<p><strong>数据样例：</strong></p>
+<blockquote>
+<p>sepal length,   sepal width,    petal length,   petal width,    species (label)</p>
+<p>5.1,    3.3,    1.7,    0.5,    0 (Setosa)</p>
+<p>5.0,    2.3,    3.3,    1.0,    1 (versicolor)</p>
+<p>6.4,    2.8,    5.6,    2.2,    2 (virginica)</p>
+</blockquote>
+<p>python库sklearn的datasets自带Iris数据集，只需下面代码即可调用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line">iris = datasets.load_iris()</span><br><span class="line">features=iris.data  <span class="comment"># ndarray, shape is (150,4), dtype is float64</span></span><br><span class="line">labels=iris.target <span class="comment"># ndarray, shape is (150,), dtype is int32, range is [0,2]</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://scikit-learn.org/stable/modules/neighbors.html" target="_blank" rel="noopener">scikit-learn库中KNN说明文档</a></p>
+<h2 id="4-2-代码实例"><a href="#4-2-代码实例" class="headerlink" title="4.2 代码实例"></a>4.2 代码实例</h2><h3 id="4-2-1-sklearn-knn实现KNN"><a href="#4-2-1-sklearn-knn实现KNN" class="headerlink" title="4.2.1 sklearn-knn实现KNN"></a>4.2.1 sklearn-knn实现KNN</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding=utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> neighbors</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line">knn = neighbors.KNeighborsClassifier()</span><br><span class="line">iris = datasets.load_iris()</span><br><span class="line">knn.fit(iris.data, iris.target)</span><br><span class="line">predictedLabel = knn.predict([[<span class="number">0.1</span>, <span class="number">0.2</span>, <span class="number">0.3</span>, <span class="number">0.4</span>]])</span><br><span class="line">print(predictedLabel)</span><br></pre></td></tr></table></figure>
+<p><strong>代码输出结果:</strong></p>
+<blockquote>
+<p>[0]</p>
+</blockquote>
+<h3 id="4-2-2-自编代码实现KNN"><a href="#4-2-2-自编代码实现KNN" class="headerlink" title="4.2.2 自编代码实现KNN"></a>4.2.2 自编代码实现KNN</h3><p>首先，我们需要准备iris数据集，将网上的<a href="http://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data" target="_blank" rel="noopener">iris.data</a>数据保存为’iris.data.txt’格式，并放在代码文件目录下，如下所示：</p>
+<p><img src="/assets/demo/2018120501.png" alt="iris.data.txt"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding = utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> operator</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadDataset</span><span class="params">(filename, split, trainingSet=[], testSet=[])</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(filename, <span class="string">'rt'</span>, encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> csvfile:</span><br><span class="line">        lines = csv.reader(csvfile)</span><br><span class="line">        dataset = list(lines)</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> range(len(dataset)):</span><br><span class="line">            <span class="keyword">for</span> y <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">                dataset[x][y] = float(dataset[x][y])</span><br><span class="line">            <span class="keyword">if</span> random.random() &lt; split:</span><br><span class="line">                trainingSet.append(dataset[x])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                testSet.append(dataset[x])</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">euclideanDistance</span><span class="params">(instance1, instance2, length)</span>:</span></span><br><span class="line">    distance = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> range(length):</span><br><span class="line">        distance += pow((instance1[x] - instance2[x]), <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> math.sqrt(distance)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getNeighbors</span><span class="params">(trainingSet, testInstance, k)</span>:</span></span><br><span class="line">    distances = []</span><br><span class="line">    length = len(testInstance) - <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> range(len(trainingSet)):</span><br><span class="line">        dist = euclideanDistance(testInstance, trainingSet[x], length)</span><br><span class="line">        distances.append((trainingSet[x], dist))</span><br><span class="line">    distances.sort(key=operator.itemgetter(<span class="number">1</span>))</span><br><span class="line">    neighbors = []</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> range(k):</span><br><span class="line">        neighbors.append(distances[x][<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">return</span> neighbors</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getResponse</span><span class="params">(neighbors)</span>:</span></span><br><span class="line">    classVotes = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> range(len(neighbors)):</span><br><span class="line">        ressponse = neighbors[x][<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">if</span> ressponse <span class="keyword">in</span> classVotes:</span><br><span class="line">            classVotes[ressponse] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            classVotes[ressponse] = <span class="number">1</span></span><br><span class="line">    sortedVotes = sorted(classVotes.items(), key=operator.itemgetter(<span class="number">1</span>), reverse=<span class="keyword">True</span>)</span><br><span class="line">    <span class="keyword">return</span> sortedVotes[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getAccuracy</span><span class="params">(testSet, predictions)</span>:</span></span><br><span class="line">    correct = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> range(len(testSet)):</span><br><span class="line">        <span class="keyword">if</span> testSet[x][<span class="number">-1</span>] == predictions[x]:</span><br><span class="line"></span><br><span class="line">            correct += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> (correct/float(len(testSet))) * <span class="number">100.0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    trainingSet = []</span><br><span class="line">    testSet = []</span><br><span class="line">    split = <span class="number">0.67</span></span><br><span class="line">    loadDataset(<span class="string">r'iris.data.txt'</span>, split, trainingSet, testSet)</span><br><span class="line">    print(<span class="string">"Train set:"</span> + repr(len(trainingSet)))</span><br><span class="line">    print(<span class="string">"Test set:"</span> + repr(len(testSet)))</span><br><span class="line"></span><br><span class="line">    predictions = []</span><br><span class="line">    k = <span class="number">3</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> range(len(testSet)):</span><br><span class="line">        neighbors = getNeighbors(trainingSet, testSet[x], k)</span><br><span class="line">        result = getResponse(neighbors)</span><br><span class="line">        predictions.append(result)</span><br><span class="line">        print(<span class="string">'&gt;predicted = '</span> + repr(result) + <span class="string">', actual = '</span> + repr(testSet[x][<span class="number">-1</span>]))</span><br><span class="line">    accuracy = getAccuracy(testSet, predictions)</span><br><span class="line">    print(<span class="string">"Accuracy: "</span> + repr(accuracy) + <span class="string">'%'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">   main()</span><br></pre></td></tr></table></figure>
+<p><strong>代码输出结果：</strong></p>
+<blockquote>
+<p>Train set:98<br>Test set:52<br>—&gt;predicted = ‘Iris-setosa’, actual = ‘Iris-setosa’<br>—&gt;predicted = ‘Iris-setosa’, actual = ‘Iris-setosa’<br>—&gt;predicted = ‘Iris-setosa’, actual = ‘Iris-setosa’<br>—&gt;predicted = ‘Iris-setosa’, actual = ‘Iris-setosa’<br>—&gt;predicted = ‘Iris-setosa’, actual = ‘Iris-setosa’<br>—&gt;predicted = ‘Iris-setosa’, actual = ‘Iris-setosa’<br>—&gt;predicted = ‘Iris-setosa’, actual = ‘Iris-setosa’<br>—&gt;predicted = ‘Iris-setosa’, actual = ‘Iris-setosa’<br>—&gt;predicted = ‘Iris-setosa’, actual = ‘Iris-setosa’<br>—&gt;predicted = ‘Iris-setosa’, actual = ‘Iris-setosa’<br>—&gt;predicted = ‘Iris-setosa’, actual = ‘Iris-setosa’<br>—&gt;predicted = ‘Iris-setosa’, actual = ‘Iris-setosa’<br>—&gt;predicted = ‘Iris-setosa’, actual = ‘Iris-setosa’<br>—&gt;predicted = ‘Iris-setosa’, actual = ‘Iris-setosa’<br>—&gt;predicted = ‘Iris-setosa’, actual = ‘Iris-setosa’<br>—&gt;predicted = ‘Iris-setosa’, actual = ‘Iris-setosa’<br>—&gt;predicted = ‘Iris-setosa’, actual = ‘Iris-setosa’<br>—&gt;predicted = ‘Iris-setosa’, actual = ‘Iris-setosa’<br>—&gt;predicted = ‘Iris-versicolor’, actual = ‘Iris-versicolor’<br>—&gt;predicted = ‘Iris-versicolor’, actual = ‘Iris-versicolor’<br>—&gt;predicted = ‘Iris-versicolor’, actual = ‘Iris-versicolor’<br>—&gt;predicted = ‘Iris-versicolor’, actual = ‘Iris-versicolor’<br>—&gt;predicted = ‘Iris-versicolor’, actual = ‘Iris-versicolor’<br>—&gt;predicted = ‘Iris-versicolor’, actual = ‘Iris-versicolor’<br>—&gt;predicted = ‘Iris-versicolor’, actual = ‘Iris-versicolor’<br>—&gt;predicted = ‘Iris-versicolor’, actual = ‘Iris-versicolor’<br>—&gt;predicted = ‘Iris-versicolor’, actual = ‘Iris-versicolor’<br>—&gt;predicted = ‘Iris-virginica’, actual = ‘Iris-versicolor’<br>—&gt;predicted = ‘Iris-versicolor’, actual = ‘Iris-versicolor’<br>—&gt;predicted = ‘Iris-versicolor’, actual = ‘Iris-versicolor’<br>—&gt;predicted = ‘Iris-versicolor’, actual = ‘Iris-versicolor’<br>—&gt;predicted = ‘Iris-versicolor’, actual = ‘Iris-versicolor’<br>—&gt;predicted = ‘Iris-versicolor’, actual = ‘Iris-versicolor’<br>—&gt;predicted = ‘Iris-virginica’, actual = ‘Iris-versicolor’<br>—&gt;predicted = ‘Iris-versicolor’, actual = ‘Iris-versicolor’<br>—&gt;predicted = ‘Iris-versicolor’, actual = ‘Iris-versicolor’<br>—&gt;predicted = ‘Iris-versicolor’, actual = ‘Iris-versicolor’<br>—&gt;predicted = ‘Iris-virginica’, actual = ‘Iris-virginica’<br>—&gt;predicted = ‘Iris-virginica’, actual = ‘Iris-virginica’<br>—&gt;predicted = ‘Iris-virginica’, actual = ‘Iris-virginica’<br>—&gt;predicted = ‘Iris-virginica’, actual = ‘Iris-virginica’<br>—&gt;predicted = ‘Iris-virginica’, actual = ‘Iris-virginica’<br>—&gt;predicted = ‘Iris-virginica’, actual = ‘Iris-virginica’<br>—&gt;predicted = ‘Iris-virginica’, actual = ‘Iris-virginica’<br>—&gt;predicted = ‘Iris-virginica’, actual = ‘Iris-virginica’<br>—&gt;predicted = ‘Iris-virginica’, actual = ‘Iris-virginica’<br>—&gt;predicted = ‘Iris-virginica’, actual = ‘Iris-virginica’<br>—&gt;predicted = ‘Iris-virginica’, actual = ‘Iris-virginica’<br>—&gt;predicted = ‘Iris-virginica’, actual = ‘Iris-virginica’<br>—&gt;predicted = ‘Iris-virginica’, actual = ‘Iris-virginica’<br>—&gt;predicted = ‘Iris-virginica’, actual = ‘Iris-virginica’<br>—&gt;predicted = ‘Iris-virginica’, actual = ‘Iris-virginica’<br>Accuracy: 96.15384615384616%</p>
+</blockquote>
+<p>因为是随机划分训练集与测试集，所以每次输出的结果都不一样，但是准确率基本上保持90%以上。</p>
+<p><strong>[参考]：</strong></p>
+<ol>
+<li><a href="https://cuijiahua.com/blog/2017/11/ml_1_knn.html" target="_blank" rel="noopener">Jack Cui技术博客</a></li>
+</ol>
+
+      
+      
+	  
+      
+        <div class="declare">
+          <strong>本文作者：</strong>
           
+            ElevenZou
+          
+          <br>
+          <strong>本文链接：</strong>
+          https://elevenzou.github.io/2018/12/04/机器学习——KNN算法/
+          <br>
+          <strong>版权声明：</strong>
+          本作品采用
+          <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+          进行许可。转载请注明出处！
+          
+        </div>
+      
+	  
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃辣条<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://elevenzou.github.io/2018/12/04/机器学习——KNN算法/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/12/04/Python之希尔排序/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Python之希尔排序</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-K近邻算法-K-Nearest-Neighbor"><span class="toc-number">1.</span> <span class="toc-text">1. K近邻算法(K-Nearest Neighbor)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-算法步骤"><span class="toc-number">2.</span> <span class="toc-text">2. 算法步骤</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-KNN算法的优缺点"><span class="toc-number">3.</span> <span class="toc-text">3. KNN算法的优缺点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-KNN算法的python实现"><span class="toc-number">4.</span> <span class="toc-text">4. KNN算法的python实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-Iris-DataSet鸢尾花数据集"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 Iris DataSet鸢尾花数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-代码实例"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 代码实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-sklearn-knn实现KNN"><span class="toc-number">4.2.1.</span> <span class="toc-text">4.2.1 sklearn-knn实现KNN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-自编代码实现KNN"><span class="toc-number">4.2.2.</span> <span class="toc-text">4.2.2 自编代码实现KNN</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -242,9 +495,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
