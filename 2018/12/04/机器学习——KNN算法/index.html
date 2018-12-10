@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="//elevenzou.github.io/assets/demo/2018120406.png">
 <meta property="og:image" content="//elevenzou.github.io/assets/demo/2018120501.png">
-<meta property="og:updated_time" content="2018-12-05T11:53:05.005Z">
+<meta property="og:updated_time" content="2018-12-06T08:08:18.011Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习——KNN算法">
 <meta name="twitter:description" content="k近邻算法(k-nearest neighbor, k-NN)是1967年由Cover T和Hart P提出的一种基本分类与回归方法。">
@@ -273,7 +273,7 @@ E(d)=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}</script><p>记未分类电影为M(101,20)，
 </blockquote>
 <p>python库sklearn的datasets自带Iris数据集，只需下面代码即可调用：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line">iris = datasets.load_iris()</span><br><span class="line">features=iris.data  <span class="comment"># ndarray, shape is (150,4), dtype is float64</span></span><br><span class="line">labels=iris.target <span class="comment"># ndarray, shape is (150,), dtype is int32, range is [0,2]</span></span><br></pre></td></tr></table></figure>
-<p><a href="https://scikit-learn.org/stable/modules/neighbors.html" target="_blank" rel="noopener">scikit-learn库中KNN说明文档</a></p>
+<p><a href="https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html#sklearn.neighbors.KNeighborsClassifier" target="_blank" rel="noopener">scikit-learn库中KNN说明文档</a></p>
 <h2 id="4-2-代码实例"><a href="#4-2-代码实例" class="headerlink" title="4.2 代码实例"></a>4.2 代码实例</h2><h3 id="4-2-1-sklearn-knn实现KNN"><a href="#4-2-1-sklearn-knn实现KNN" class="headerlink" title="4.2.1 sklearn-knn实现KNN"></a>4.2.1 sklearn-knn实现KNN</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding=utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> neighbors</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line">knn = neighbors.KNeighborsClassifier()</span><br><span class="line">iris = datasets.load_iris()</span><br><span class="line">knn.fit(iris.data, iris.target)</span><br><span class="line">predictedLabel = knn.predict([[<span class="number">0.1</span>, <span class="number">0.2</span>, <span class="number">0.3</span>, <span class="number">0.4</span>]])</span><br><span class="line">print(predictedLabel)</span><br></pre></td></tr></table></figure>
 <p><strong>代码输出结果:</strong></p>
 <blockquote>
@@ -595,11 +595,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color2">typora</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">typora</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
