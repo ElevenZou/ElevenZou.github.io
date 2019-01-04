@@ -8,15 +8,24 @@
   <link rel="dns-prefetch" href="//elevenzou.github.io">
   <title>Python之归并排序 | ElevenZou的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="python">
+  <meta name="description" content="归并排序(Merge sort)是建立在归并操作上的一种有效排序算法，该算法是采用分治法(Divide and Conquer)的一个非常典型的应用。">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python之归并排序">
-<meta property="og:url" content="//elevenzou.github.io/2019/01/03/Python之归并排序/index.html">
+<meta property="og:url" content="//elevenzou.github.io/2019/01/04/Python之归并排序/index.html">
 <meta property="og:site_name" content="ElevenZou的博客">
+<meta property="og:description" content="归并排序(Merge sort)是建立在归并操作上的一种有效排序算法，该算法是采用分治法(Divide and Conquer)的一个非常典型的应用。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-03T06:22:09.489Z">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019010404.png">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/algorithm_7_0.gif">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019010401.png">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019010402.png">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019010403.png">
+<meta property="og:updated_time" content="2019-01-04T01:28:01.533Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python之归并排序">
+<meta name="twitter:description" content="归并排序(Merge sort)是建立在归并操作上的一种有效排序算法，该算法是采用分治法(Divide and Conquer)的一个非常典型的应用。">
+<meta name="twitter:image" content="//elevenzou.github.io/assets/demo/2019010404.png">
   
     <link rel="alternative" href="/atom.xml" title="ElevenZou的博客" type="application/atom+xml">
   
@@ -176,15 +185,39 @@ var _hmt = _hmt || [];
   
 
         
-        <a href="/2019/01/03/Python之归并排序/" class="archive-article-date">
-  	<time datetime="2019-01-03T06:15:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-03</time>
+        <a href="/2019/01/04/Python之归并排序/" class="archive-article-date">
+  	<time datetime="2019-01-04T06:15:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>归并排序(Merge sort)是建立在归并操作上的一种有效排序算法，该算法是采用<strong>分治法</strong>(Divide and Conquer)的一个非常典型的应用。</p>
+<a id="more"></a>
+<h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h1><p>归并排序使用经典的<strong>分治</strong>策略(分治法将问题<strong>分(divide)</strong>成一些小的问题，然后递归求解，而<strong>治(conquer)</strong>则是将分得到的各答案“修补”在一起，即分而治之)。</p>
+<p><img src="/assets/demo/2019010404.png" alt="算法性能"></p>
+<h1 id="2-算法原理"><a href="#2-算法原理" class="headerlink" title="2. 算法原理"></a>2. 算法原理</h1><p><img src="/assets/demo/algorithm_7_0.gif" alt="动态效果示意图"></p>
+<ol>
+<li><p>分阶段：</p>
+<p><img src="/assets/demo/2019010401.png" alt="分阶段"></p>
+<p>可以看出这种结构很像一颗完全二叉树，归并排序可以采用递归和迭代的方法来实现（本文使用的是递归法）。<strong>分</strong>阶段可以理解为递归拆分子序列的过程，递归深度为$\log_2 n$</p>
+</li>
+<li><p>治阶段：我们需要将两个已经有序的子序列合并成一个有序序列，比如上图中的最后一次合并，要将[4,5,7,8]和[1,2,3,6]两个已经有序的子序列，合并为最终序列[1,2,3,4,5,6,7,8]，如图所示。</p>
+<p><img src="/assets/demo/2019010402.png" alt="治阶段1"></p>
+<p><img src="/assets/demo/2019010403.png" alt="治阶段2"></p>
+</li>
+</ol>
+<h1 id="3-python示例"><a href="#3-python示例" class="headerlink" title="3. python示例"></a>3. python示例</h1><h2 id="3-1-代码"><a href="#3-1-代码" class="headerlink" title="3.1 代码"></a>3.1 代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding = utf-8 -*-</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">MergeSort</span><span class="params">(input_list)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    函数说明: 归并排序（升序）</span></span><br><span class="line"><span class="string">    :param input_list: 待排序列表</span></span><br><span class="line"><span class="string">    :return: sorted_list: 升序排序好的列表</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(input_list, left, mid, right, temp)</span>:</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        函数说明: 合并函数</span></span><br><span class="line"><span class="string">        :param input_list: 待合并列表 </span></span><br><span class="line"><span class="string">        :param left: 左指针</span></span><br><span class="line"><span class="string">        :param right: 右指针</span></span><br><span class="line"><span class="string">        :param temp: 临时列表</span></span><br><span class="line"><span class="string">        :return: 无</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        i = left</span><br><span class="line">        j = mid + <span class="number">1</span></span><br><span class="line">        k = <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> i &lt;= mid <span class="keyword">and</span> j &lt;= right:</span><br><span class="line">            <span class="keyword">if</span> input_list[i] &lt;= input_list[j]:</span><br><span class="line">                temp[k] = input_list[i]</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                temp[k] = input_list[j]</span><br><span class="line">                j += <span class="number">1</span></span><br><span class="line">            k += <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> i &lt;= mid:</span><br><span class="line">            temp[k] = input_list[i]</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            k += <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> j &lt;= right:</span><br><span class="line">            temp[k] = input_list[j]</span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">            k += <span class="number">1</span></span><br><span class="line">        k = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">            input_list[left] = temp[k]</span><br><span class="line">            left += <span class="number">1</span></span><br><span class="line">            k += <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">merge_sort</span><span class="params">(input_list, left, right, temp)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> left &gt;= right:</span><br><span class="line">            <span class="keyword">return</span> </span><br><span class="line">        mid = (right + left) // <span class="number">2</span></span><br><span class="line">        merge_sort(input_list, left, mid, temp)</span><br><span class="line">        merge_sort(input_list, mid + <span class="number">1</span>, right, temp)</span><br><span class="line">        </span><br><span class="line">        merge(input_list, left, mid, right, temp)</span><br><span class="line">    <span class="keyword">if</span> len(input_list) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> []</span><br><span class="line">    sorted_list = input_list</span><br><span class="line">    temp = [<span class="number">0</span>] * len(sorted_list)</span><br><span class="line">    merge_sort(sorted_list, <span class="number">0</span>, len(sorted_list) - <span class="number">1</span>, temp)</span><br><span class="line">    <span class="keyword">return</span> sorted_list</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    input_list = [<span class="number">6</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>]</span><br><span class="line">    print(<span class="string">'排序前:'</span>, input_list)</span><br><span class="line">    sorted_list = MergeSort(input_list)</span><br><span class="line">    print(<span class="string">'排序后:'</span>, sorted_list)</span><br></pre></td></tr></table></figure>
+<p>另一种实现方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="3-2-结果"><a href="#3-2-结果" class="headerlink" title="3.2 结果"></a>3.2 结果</h2><blockquote>
+<p>排序前: [6, 10, 8, 9, 2, 3, 1]<br>排序后: [1, 2, 3, 6, 8, 9, 10]</p>
+</blockquote>
+<p>参考文章：</p>
+<p>【1】<a href="https://cuijiahua.com/blog/2017/12/algorithm_7.html" target="_blank" rel="noopener">Jack Cui 技术博客</a></p>
+<p>【2】<a href="https://baike.baidu.com/item/归并排序/1639015?fr=aladdin" target="_blank" rel="noopener">归并排序百度百科</a></p>
+
       
       
 	  
@@ -196,7 +229,7 @@ var _hmt = _hmt || [];
           
           <br>
           <strong>本文链接：</strong>
-          https://elevenzou.github.io/2019/01/03/Python之归并排序/
+          https://elevenzou.github.io/2019/01/04/Python之归并排序/
           <br>
           <strong>版权声明：</strong>
           本作品采用
@@ -303,7 +336,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://elevenzou.github.io/2019/01/03/Python之归并排序/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://elevenzou.github.io/2019/01/04/Python之归并排序/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -317,7 +350,7 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2019/01/03/Python之基数排序/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/01/05/Python之基数排序/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -355,7 +388,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-介绍"><span class="toc-number">1.</span> <span class="toc-text">1. 介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-算法原理"><span class="toc-number">2.</span> <span class="toc-text">2. 算法原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-python示例"><span class="toc-number">3.</span> <span class="toc-text">3. python示例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-代码"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-结果"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 结果</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
