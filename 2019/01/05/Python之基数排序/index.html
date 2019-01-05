@@ -8,15 +8,22 @@
   <link rel="dns-prefetch" href="//elevenzou.github.io">
   <title>Python之基数排序 | ElevenZou的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="python">
+  <meta name="description" content="基数排序(Radix sort)是一种非比较型整数排序算法，属于分配式排序。">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python之基数排序">
 <meta property="og:url" content="//elevenzou.github.io/2019/01/05/Python之基数排序/index.html">
 <meta property="og:site_name" content="ElevenZou的博客">
+<meta property="og:description" content="基数排序(Radix sort)是一种非比较型整数排序算法，属于分配式排序。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-04T01:30:47.272Z">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019010501.png">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/algorithm_8_2.gif">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019010502.png">
+<meta property="og:updated_time" content="2019-01-05T07:20:32.426Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python之基数排序">
+<meta name="twitter:description" content="基数排序(Radix sort)是一种非比较型整数排序算法，属于分配式排序。">
+<meta name="twitter:image" content="//elevenzou.github.io/assets/demo/2019010501.png">
   
     <link rel="alternative" href="/atom.xml" title="ElevenZou的博客" type="application/atom+xml">
   
@@ -184,7 +191,29 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>基数排序(Radix sort)是一种非比较型整数排序算法，属于分配式排序。</p>
+<a id="more"></a>
+<h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h1><p>基数排序的原理是将整数按位数切割成不同的数字，然后按每个位数分别比较。由于整数也可以表达字符串和特定格式的浮点数，所以基数排序不止用于整数。</p>
+<p><img src="/assets/demo/2019010501.png" alt="算法性能"></p>
+<h1 id="2-算法原理"><a href="#2-算法原理" class="headerlink" title="2. 算法原理"></a>2. 算法原理</h1><p><img src="/assets/demo/algorithm_8_2.gif" alt="动态效果示意图"></p>
+<p>基本思想：将所有待比较数值（正整数）统一为同样的数位长度，数位较短的数前面补零。然后，从最低位开始，依次进行一次排序。这样从最低位排序一直到做高位排序完成以后，数列就变成了一个有序序列。</p>
+<p>通过一个实例展示如何进行基数排序。设有一个初始序列为：$R\{50, 123, 543, 187, 49, 30, 0, 2, 11, 100\}$</p>
+<p>任何一个阿拉伯数个位数上的基数都是以 0~9 来表示的，所有不妨把 0~9 视为 10 个桶。先根据序列的个位数的数字来进行分类，将其分到指定的桶中。例如$R[0]=50$，个位上数是0，将这个数存入编号为0的桶中。</p>
+<p><img src="/assets/demo/2019010502.png" alt="基数排序示意图"></p>
+<p>分类后，从各个桶中，将这些数按照编号0到编号9的顺序依次将所有数取出来，这是，得到的序列就是个位数上呈递增趋势的序列。</p>
+<p>按照个位数排序得到：{50，30，0，100，11，2，123，543，187，49}</p>
+<p>然后对十位数按照这种方法进行排序，得到：{0，100，2，11，123，30，543，49，50，187}</p>
+<p>再对百位数按照这种方法进行排序，得到：{0，2，11，30，49，50，100，123，187，543}</p>
+<p>这时候整个数列已经排序完毕，如果排序的对象有三位数以上，则持续进行以上的动作直至最高位数为止。</p>
+<p>因此，基数排序又叫“桶子法”。</p>
+<h1 id="3-python示例"><a href="#3-python示例" class="headerlink" title="3. python示例"></a>3. python示例</h1><h2 id="3-1-代码"><a href="#3-1-代码" class="headerlink" title="3.1 代码"></a>3.1 代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding = utf-8 -*-</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">RadixSort</span><span class="params">(input_list)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    函数说明:基数排序（升序）</span></span><br><span class="line"><span class="string">    Parameters:</span></span><br><span class="line"><span class="string">        input_list - 待排序列表</span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">        sorted_list - 升序排序好的列表</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">MaxBit</span><span class="params">(input_list)</span>:</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        函数说明:求出数组中最大数的位数的函数</span></span><br><span class="line"><span class="string">        Parameters:</span></span><br><span class="line"><span class="string">            input_list - 待排序列表</span></span><br><span class="line"><span class="string">        Returns:</span></span><br><span class="line"><span class="string">            bits-num - 位数</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        max_data = max(input_list)</span><br><span class="line">        bits_num = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> max_data:</span><br><span class="line">            bits_num += <span class="number">1</span></span><br><span class="line">            max_data //= <span class="number">10</span></span><br><span class="line">        <span class="keyword">return</span> bits_num</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">digit</span><span class="params">(num, d)</span>:</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        函数说明:取数xxx上的第d位数字</span></span><br><span class="line"><span class="string">        Parameters:</span></span><br><span class="line"><span class="string">            num - 待操作的数</span></span><br><span class="line"><span class="string">            d - 第d位的数</span></span><br><span class="line"><span class="string">        Returns:</span></span><br><span class="line"><span class="string">            取数结果</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        p = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> d &gt; <span class="number">1</span>:</span><br><span class="line">            d -= <span class="number">1</span></span><br><span class="line">            p *= <span class="number">10</span></span><br><span class="line">        <span class="keyword">return</span> num // p % <span class="number">10</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> len(input_list) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> []</span><br><span class="line">    sorted_list = input_list</span><br><span class="line">    length = len(sorted_list)</span><br><span class="line">    bucket = [<span class="number">0</span>] * length</span><br><span class="line">    <span class="keyword">for</span> d <span class="keyword">in</span> range(<span class="number">1</span>, MaxBit(sorted_list) + <span class="number">1</span>):</span><br><span class="line">        count = [<span class="number">0</span>] * <span class="number">10</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, length):</span><br><span class="line">            count[digit(sorted_list[i], d)] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>):</span><br><span class="line">            count[i] += count[i - <span class="number">1</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, length)[::<span class="number">-1</span>]:</span><br><span class="line">            k = digit(sorted_list[i], d)</span><br><span class="line">            bucket[count[k] - <span class="number">1</span>] = sorted_list[i]</span><br><span class="line">            count[k] -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, length):</span><br><span class="line">            sorted_list[i] = bucket[i]</span><br><span class="line">    <span class="keyword">return</span> sorted_list</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    input_list = [<span class="number">50</span>, <span class="number">123</span>, <span class="number">543</span>, <span class="number">187</span>, <span class="number">49</span>, <span class="number">30</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">11</span>, <span class="number">100</span>]</span><br><span class="line">    print(<span class="string">'排序前:'</span>, input_list)</span><br><span class="line">    sorted_list = RadixSort(input_list)</span><br><span class="line">    print(<span class="string">'排序后:'</span>, sorted_list)</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-结果"><a href="#3-2-结果" class="headerlink" title="3.2 结果"></a>3.2 结果</h2><blockquote>
+<p>排序前: [50, 123, 543, 187, 49, 30, 0, 2, 11, 100]<br>排序后: [0, 2, 11, 30, 49, 50, 100, 123, 187, 543]</p>
+</blockquote>
+<p>参考文章：</p>
+<p>【1】<a href="https://cuijiahua.com/blog/2017/12/algorithm_8.html" target="_blank" rel="noopener">Jack Cui 技术博客</a></p>
+<p>【2】<a href="https://baike.baidu.com/item/基数排序/7875498?fr=aladdin" target="_blank" rel="noopener">快速排序百度百科</a></p>
+
       
       
 	  
@@ -346,7 +375,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-介绍"><span class="toc-number">1.</span> <span class="toc-text">1. 介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-算法原理"><span class="toc-number">2.</span> <span class="toc-text">2. 算法原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-python示例"><span class="toc-number">3.</span> <span class="toc-text">3. python示例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-代码"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-结果"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 结果</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -479,15 +508,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">typora</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">字典学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -496,6 +521,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">paper writing</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">typora</a>
               </li>
             
             <div class="clearfix"></div>
