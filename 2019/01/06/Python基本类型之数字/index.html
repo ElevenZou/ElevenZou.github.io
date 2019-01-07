@@ -6,24 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//elevenzou.github.io">
-  <title>Python之快速排序 | ElevenZou的博客</title>
+  <title>Python基本类型 | ElevenZou的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="快速排序(Quicksort)是对冒泡排序的一种改进。">
+  <meta name="description" content="Python的基本类型包括数字、字符串、">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python之快速排序">
-<meta property="og:url" content="//elevenzou.github.io/2018/12/06/Python之快速排序/index.html">
+<meta property="og:title" content="Python基本类型">
+<meta property="og:url" content="//elevenzou.github.io/2019/01/06/Python基本类型之数字/index.html">
 <meta property="og:site_name" content="ElevenZou的博客">
-<meta property="og:description" content="快速排序(Quicksort)是对冒泡排序的一种改进。">
+<meta property="og:description" content="Python的基本类型包括数字、字符串、">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="//elevenzou.github.io/assets/demo/2018120601.png">
-<meta property="og:image" content="//elevenzou.github.io/assets/demo/algorithm_4_0.gif">
-<meta property="og:image" content="//elevenzou.github.io/assets/demo/2018120602.png">
-<meta property="og:updated_time" content="2018-12-10T08:55:16.339Z">
+<meta property="og:updated_time" content="2019-01-07T08:30:04.034Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python之快速排序">
-<meta name="twitter:description" content="快速排序(Quicksort)是对冒泡排序的一种改进。">
-<meta name="twitter:image" content="//elevenzou.github.io/assets/demo/2018120601.png">
+<meta name="twitter:title" content="Python基本类型">
+<meta name="twitter:description" content="Python的基本类型包括数字、字符串、">
   
     <link rel="alternative" href="/atom.xml" title="ElevenZou的博客" type="application/atom+xml">
   
@@ -171,47 +167,364 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Python之快速排序" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Python基本类型之数字" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Python之快速排序
+      Python基本类型
     </h1>
   
 
         
-        <a href="/2018/12/06/Python之快速排序/" class="archive-article-date">
-  	<time datetime="2018-12-06T03:17:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-06</time>
+        <a href="/2019/01/06/Python基本类型之数字/" class="archive-article-date">
+  	<time datetime="2019-01-06T13:05:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>快速排序(Quicksort)是对冒泡排序的一种改进。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Python的基本类型包括数字、字符串、</p>
 <a id="more"></a>
-<h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h1><p>快速排序由C. A. R. Hoare在1962年提出。</p>
-<p>它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，割点左边都是比它小的数，右边都是比它大的数。</p>
-<p>然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。</p>
-<p><img src="/assets/demo/2018120601.png" alt="算法性能"></p>
-<h1 id="2-算法原理"><a href="#2-算法原理" class="headerlink" title="2. 算法原理"></a>2. 算法原理</h1><p><img src="/assets/demo/algorithm_4_0.gif" alt="动态效果示意图"></p>
-<p><img src="/assets/demo/2018120602.png" alt="算法示例图"></p>
-<p>上图演示了快速排序的处理过程：</p>
-<p>(1):初始状态为一组无序的数组：2、4、5、1、3。</p>
-<p>(2):经过以上操作步骤后，完成了第一次的排序，得到新的数组：1、2、5、4、3。该数组中，以2为分割点，左边都是比2小的数，右边都是比2大的数，因为2已经在数组中找到了合适的位置，所以不用再动。2左边的数组只有一个元素1，所以显然不用再排序，位置也被确定。（注：这种情况时，left指针和right指针显然是重合的。因此在代码中，我们可以通过设置判定条件left必须小于right，如果不满足，则不用排序了）。</p>
-<p>（3）而对于2右边的数组5、4、3，设置left指向5，right指向3，开始继续重复图中的一、二、三、四步骤，对新的数组进行排序。</p>
-<h1 id="3-python示例"><a href="#3-python示例" class="headerlink" title="3. python示例"></a>3. python示例</h1><h2 id="3-1-代码"><a href="#3-1-代码" class="headerlink" title="3.1 代码"></a>3.1 代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding = utf-8 -*-</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quickSort</span><span class="params">(array, left, right)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    函数说明： 快速排序</span></span><br><span class="line"><span class="string">    :param: array —— 待排序序列</span></span><br><span class="line"><span class="string">            left  —— 最左边的数的序号</span></span><br><span class="line"><span class="string">            right —— 最右边的数的序号</span></span><br><span class="line"><span class="string">    :return: array —— 排序后的列表</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">if</span> left &gt;= right:  <span class="comment"># 退出递归</span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    low = left</span><br><span class="line">    high = right</span><br><span class="line">    key = array[low]</span><br><span class="line">    <span class="keyword">while</span> left &lt; right:</span><br><span class="line">        <span class="keyword">while</span> left &lt; right <span class="keyword">and</span> array[right] &gt; key:</span><br><span class="line">            right -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            array[left] = array[right]</span><br><span class="line">        <span class="keyword">while</span> left &lt; right <span class="keyword">and</span> array[left] &lt;= key:</span><br><span class="line">            left += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            array[right] = array[left]</span><br><span class="line">    array[right] = key</span><br><span class="line">    quickSort(array, low, left <span class="number">-1</span>)</span><br><span class="line">    quickSort(array, left + <span class="number">1</span>, high)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    array = [<span class="number">6</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>]</span><br><span class="line">    print(<span class="string">"排序前："</span>, array)</span><br><span class="line">    quickSort(array, <span class="number">0</span>, len(array) - <span class="number">1</span>)</span><br><span class="line">    print(<span class="string">"排序后："</span>, array)</span><br></pre></td></tr></table></figure>
-<p>另外一种实现方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding = utf-8 -*-</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quickSort</span><span class="params">(nums)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> len(nums) &lt;= <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> nums</span><br><span class="line">    left = []</span><br><span class="line">    right = []</span><br><span class="line">    base = nums.pop()</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> nums:</span><br><span class="line">        <span class="keyword">if</span> x &lt; base:</span><br><span class="line">            left.append(x)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            right.append(x)</span><br><span class="line">    <span class="keyword">return</span> quickSort(left) + [base] + quickSort(right)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    array = [<span class="number">6</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>]</span><br><span class="line">    print(<span class="string">"排序前："</span>, array)</span><br><span class="line">    print(<span class="string">"排序后："</span>, quickSort(array))</span><br></pre></td></tr></table></figure>
-<h2 id="3-2-结果"><a href="#3-2-结果" class="headerlink" title="3.2 结果"></a>3.2 结果</h2><blockquote>
-<p>排序前： [6, 4, 8, 9, 2, 3, 1]<br>排序后： [1, 2, 3, 4, 6, 8, 9]</p>
-</blockquote>
-<p>参考文章：</p>
-<p>【1】<a href="https://cuijiahua.com/blog/2017/12/algorithm_4.html" target="_blank" rel="noopener">Jack Cui 技术博客</a></p>
-<p>【2】<a href="https://baike.baidu.com/item/快速排序算法/369842?fromtitle=%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F&amp;fromid=2084344&amp;fr=aladdin" target="_blank" rel="noopener">快速排序百度百科</a></p>
+<h1 id="1-数字"><a href="#1-数字" class="headerlink" title="1. 数字"></a>1. 数字</h1><h2 id="1-1-基本数字常量"><a href="#1-1-基本数字常量" class="headerlink" title="1.1 基本数字常量"></a>1.1 基本数字常量</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>数字</th>
+<th>常量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1234，-24，0，999999999999999</td>
+<td>整数(无穷大小)</td>
+</tr>
+<tr>
+<td>1.23，1.，3.14e-10，4E210，4.0e+210</td>
+<td>浮点数</td>
+</tr>
+<tr>
+<td>0177，0x9ff，0b101010</td>
+<td>python2.6中的八进制、十六进制和二进制常量</td>
+</tr>
+<tr>
+<td>0o177，0x9ff，0b101010</td>
+<td>python3.0中的八进制、十六进制和二进制常量</td>
+</tr>
+<tr>
+<td>3+4j，3.0+4.0j，3J</td>
+<td>复数常量</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="1-2-Python表达式操作符及程序"><a href="#1-2-Python表达式操作符及程序" class="headerlink" title="1.2 Python表达式操作符及程序"></a>1.2 Python表达式操作符及程序</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yield x</td>
+<td>生成器函数发送协议</td>
+</tr>
+<tr>
+<td>lambda args：expression</td>
+<td>生成匿名函数</td>
+</tr>
+<tr>
+<td>x if y else z</td>
+<td>三元选择表达式</td>
+</tr>
+<tr>
+<td>x or y</td>
+<td>逻辑或(只有x为假，才会计算y)</td>
+</tr>
+<tr>
+<td>x and y</td>
+<td>逻辑与(只有x为真，才会计算y)</td>
+</tr>
+<tr>
+<td>not x</td>
+<td>逻辑非</td>
+</tr>
+<tr>
+<td>x in y, x not in y</td>
+<td>成员关系(可迭代对象、集合)</td>
+</tr>
+<tr>
+<td>x is y, x is not y</td>
+<td>对象实体测试</td>
+</tr>
+<tr>
+<td>x<y, x<="y," x="">y, x&gt;=y, x==y, x!=y</y,></td>
+<td>大小比较，集合子集和超集值相等性操作符</td>
+</tr>
+<tr>
+<td>x\</td>
+<td>y</td>
+<td>位或，集合并集</td>
+</tr>
+<tr>
+<td>x ^ y</td>
+<td>位异或，集合对称差</td>
+</tr>
+<tr>
+<td>x &amp; y</td>
+<td>位与，集合交集</td>
+</tr>
+<tr>
+<td>x &lt;&lt; y, x &gt;&gt; y</td>
+<td>左移或右移y位</td>
+</tr>
+<tr>
+<td>x + y, x - y</td>
+<td>加法/合并，减法，集合并集</td>
+</tr>
+<tr>
+<td>x * y, x % y, x / y, x // y</td>
+<td>乘法/重复，余数/格式化，除法。真除法或floor除法</td>
+</tr>
+<tr>
+<td>-x, +x</td>
+<td>一元减法，识别</td>
+</tr>
+<tr>
+<td>~x</td>
+<td>按位求补(取反)</td>
+</tr>
+<tr>
+<td>x ** y</td>
+<td>幂运算</td>
+</tr>
+<tr>
+<td>x[i]</td>
+<td>索引(序列、映射及其他)点号取属性运算，函数调用</td>
+</tr>
+<tr>
+<td>x[i:j:k]</td>
+<td>分片</td>
+</tr>
+<tr>
+<td>x(…)</td>
+<td>调用(函数、方法、类及其他可调用的)</td>
+</tr>
+<tr>
+<td>x.attr</td>
+<td>属性引用</td>
+</tr>
+<tr>
+<td>(…)</td>
+<td>元组，表达式，生成器表达式</td>
+</tr>
+<tr>
+<td>[…]</td>
+<td>列表，列表解析</td>
+</tr>
+<tr>
+<td>{…}</td>
+<td>字典、集合、字典和集合解析</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="2-字符串"><a href="#2-字符串" class="headerlink" title="2. 字符串"></a>2. 字符串</h1><h2 id="2-1-常见的字符串常量和表达式"><a href="#2-1-常见的字符串常量和表达式" class="headerlink" title="2.1 常见的字符串常量和表达式"></a>2.1 常见的字符串常量和表达式</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>s = ‘ ‘</td>
+<td>空字符串</td>
+</tr>
+<tr>
+<td>s = “spam”</td>
+<td>双引号和单引号相同</td>
+</tr>
+<tr>
+<td>S = ‘s\np\ta\x00m’</td>
+<td>转义序列</td>
+</tr>
+<tr>
+<td>s = “””…”””</td>
+<td>三重引号字符串块</td>
+</tr>
+<tr>
+<td>s = r’\temp\spam’</td>
+<td>Raw字符串</td>
+</tr>
+<tr>
+<td>S = b’spam’</td>
+<td>Python3.0中的字节字符串</td>
+</tr>
+<tr>
+<td>s = u’spam’</td>
+<td>仅Python2.6使用的Unicode字符串</td>
+</tr>
+<tr>
+<td>s1 + s2, s * 3</td>
+<td>合并，重复</td>
+</tr>
+<tr>
+<td>s[i], s[i:j], len(s)</td>
+<td>索引，分块，求长度</td>
+</tr>
+<tr>
+<td>“a %s parrot” % kind</td>
+<td>字符串格式化表达式</td>
+</tr>
+<tr>
+<td>“a{0} parrot”.format(kind)</td>
+<td>Python2.6和Python3.0中的字符串格式化方法</td>
+</tr>
+<tr>
+<td>s.find(‘pa’)</td>
+<td>字符串方法调用：搜索</td>
+</tr>
+<tr>
+<td>s.rstrip()</td>
+<td>移除空格</td>
+</tr>
+<tr>
+<td>s.replace(‘pa’,’xx’)</td>
+<td>替换</td>
+</tr>
+<tr>
+<td>s.split(‘,’)</td>
+<td>用展位符分隔</td>
+</tr>
+<tr>
+<td>s.isdigit()</td>
+<td>内容测试</td>
+</tr>
+<tr>
+<td>s.lower()</td>
+<td>短信息转换</td>
+</tr>
+<tr>
+<td>S.endwith(‘spam’)</td>
+<td>结束测试</td>
+</tr>
+<tr>
+<td>‘spam’.join(strlist)</td>
+<td>插入分隔符</td>
+</tr>
+<tr>
+<td>S.encode(‘latin-1’)</td>
+<td>Unicode编码</td>
+</tr>
+<tr>
+<td>for x in S: print(x)</td>
+<td>迭代，成员关系</td>
+</tr>
+<tr>
+<td>‘spam’ in S</td>
+<td></td>
+</tr>
+<tr>
+<td>[c * 2 for c in S]</td>
+<td></td>
+</tr>
+<tr>
+<td>map(ord, S)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="2-2-字符串反斜杠字符"><a href="#2-2-字符串反斜杠字符" class="headerlink" title="2.2 字符串反斜杠字符"></a>2.2 字符串反斜杠字符</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>转义</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\newline</td>
+<td>忽视（连续）</td>
+</tr>
+<tr>
+<td>\\\</td>
+<td>反斜杠（保留\)</td>
+</tr>
+<tr>
+<td>\’</td>
+<td>单引号（保留’)</td>
+</tr>
+<tr>
+<td>\’’</td>
+<td>双引号（保留”）</td>
+</tr>
+<tr>
+<td>\a</td>
+<td>响铃</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>倒退</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>换页</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>新行（换行）</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>返回</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>水平制表符</td>
+</tr>
+<tr>
+<td>\v</td>
+<td>垂直制表符</td>
+</tr>
+<tr>
+<td>\N{id}</td>
+<td>Unicode数据库ID</td>
+</tr>
+<tr>
+<td>\uhhhh</td>
+<td>Unicode16位的十六进制值</td>
+</tr>
+<tr>
+<td>\Uhhhhhhhh</td>
+<td>Unicode32位的十六进制值</td>
+</tr>
+<tr>
+<td>\xhh</td>
+<td>十六进制值</td>
+</tr>
+<tr>
+<td>\ooo</td>
+<td>八进制值</td>
+</tr>
+<tr>
+<td>\0</td>
+<td>Null（不是字符串结尾）</td>
+</tr>
+<tr>
+<td>\other</td>
+<td>不转义（保留）</td>
+</tr>
+</tbody>
+</table>
+</div>
 
       
       
@@ -224,7 +537,7 @@ var _hmt = _hmt || [];
           
           <br>
           <strong>本文链接：</strong>
-          https://elevenzou.github.io/2018/12/06/Python之快速排序/
+          https://elevenzou.github.io/2019/01/06/Python基本类型之数字/
           <br>
           <strong>版权声明：</strong>
           本作品采用
@@ -331,7 +644,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://elevenzou.github.io/2018/12/06/Python之快速排序/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://elevenzou.github.io/2019/01/06/Python基本类型之数字/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -345,18 +658,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2018/12/10/Python之简单选择排序/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Python之简单选择排序
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/12/04/机器学习——KNN算法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">机器学习——KNN算法</div>
+    <a href="/2019/01/05/Python之基数排序/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Python之基数排序</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -383,7 +687,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-介绍"><span class="toc-number">1.</span> <span class="toc-text">1. 介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-算法原理"><span class="toc-number">2.</span> <span class="toc-text">2. 算法原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-python示例"><span class="toc-number">3.</span> <span class="toc-text">3. python示例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-代码"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-结果"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 结果</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-数字"><span class="toc-number">1.</span> <span class="toc-text">1. 数字</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-基本数字常量"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 基本数字常量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-Python表达式操作符及程序"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 Python表达式操作符及程序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-字符串"><span class="toc-number">2.</span> <span class="toc-text">2. 字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-常见的字符串常量和表达式"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 常见的字符串常量和表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-字符串反斜杠字符"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 字符串反斜杠字符</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

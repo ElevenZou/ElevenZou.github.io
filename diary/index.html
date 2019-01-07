@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="ElevenZou的博客">
 <meta property="og:description" content="2018-11-29今天又重新整理了博客，将博客主题从Cxo换成了Yilia，在这个过程中，我还是遇到了各种问题，自己不是学前端的，虽然略懂博客样式的设置原理，但还是容易在格式上出错。当遇到问题的时候着急也没有用，只有静下心来，一个一个排查，才容易将错误检查出来并处理掉。目前，博客的评论功能还没好的解决办法，Cxo博客主题支持来比力，而Yilia博客主题并不支持，之前的评论管理只能暂时弃用了。 前">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-05T06:06:16.318Z">
+<meta property="og:updated_time" content="2019-01-07T05:23:54.204Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="随笔">
 <meta name="twitter:description" content="2018-11-29今天又重新整理了博客，将博客主题从Cxo换成了Yilia，在这个过程中，我还是遇到了各种问题，自己不是学前端的，虽然略懂博客样式的设置原理，但还是容易在格式上出错。当遇到问题的时候着急也没有用，只有静下心来，一个一个排查，才容易将错误检查出来并处理掉。目前，博客的评论功能还没好的解决办法，Cxo博客主题支持来比力，而Yilia博客主题并不支持，之前的评论管理只能暂时弃用了。 前">
@@ -180,7 +180,7 @@ var _hmt = _hmt || [];
 
         
         <a href="/diary/index.html" class="archive-article-date">
-  	<time datetime="2019-01-05T06:06:16.318Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-05</time>
+  	<time datetime="2019-01-07T05:23:54.204Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-07</time>
 </a>
         
       </header>
@@ -194,9 +194,12 @@ var _hmt = _hmt || [];
 <h1 id="2018-11-30"><a href="#2018-11-30" class="headerlink" title="2018-11-30"></a>2018-11-30</h1><p>今天看了看<code>机器学习——决策树</code>方面的博客，当我看到<code>python</code>不调用<code>scikit-learn</code>实现决策树算法的代码的时候，我是懵逼的，这是什么操作，我怎么看不明白，python我也学过一阵子了，可是怎么自己写起来这么困难呢？原因就像是小时候学写作，手上有一大把素材，可是不理解含义，不去练习，是写不出好的作文的。由此可见，写代码什么的也需要<code>勤加练习</code>呀，并不是照着哪段代码敲一敲实现某个功能就完事了的，需要理解通透。</p>
 <p>网上的博客那么多，大神比比皆是，任重而道远呀。</p>
 <hr>
-<h1 id="2018-12-21"><a href="#2018-12-21" class="headerlink" title="2018-12-21"></a>2018-12-21</h1><p>近来忙于改论文，修专利，博客也荒废了够久的了。改论文的时候叹息自己能力不足，前人所用的算法无法复现，对比实验也就作不了，如果想完成论文的话，就必须数据作假了，这与我的本心是违背的。要是不发表论文的话，明年的国奖评定就算不上我，如此利益相关、两难境地，要我如何抉择？用游戏来逃避这个问题，陷入另一个世界，就不必管这些烦心事了，可我知道，我迟早要面临这个问题的。</p>
+<h1 id="2018-12-21"><a href="#2018-12-21" class="headerlink" title="2018-12-21"></a>2018-12-21</h1><p>近来忙于改论文，修专利，博客也荒废了够久的了。</p>
+<hr>
 <h1 id="2019-01-03"><a href="#2019-01-03" class="headerlink" title="2019-01-03"></a>2019-01-03</h1><p>喜欢一个人好难，还要考虑那么多的现实问题。</p>
+<hr>
 <h1 id="2019-01-04"><a href="#2019-01-04" class="headerlink" title="2019-01-04"></a>2019-01-04</h1><p>2019开年就经历了求之不得的苦痛，往后的路也许会更加难走，但是为了能够顺利地度过每一次的劫难，我必须从大学这座象牙塔里走出去，锻炼自己的能力和意志，成为更加优秀的人。</p>
+<hr>
 <h1 id="2019-01-05"><a href="#2019-01-05" class="headerlink" title="2019-01-05"></a>2019-01-05</h1><p>实验室的师兄找实习的时候，面试官给他出了一道考题，“使用python实现：在不用排序和比较大小的内置函数的情况下，找出一个列表中的第二大的数。“</p>
 <p>问题看起来挺简单的，初步的思路是：循环比较两次，每次都选出来列表中最大的那个数，第一次找出最大的那个数后，将这个数从列表中剔除；第二次找出最大的那个数后，将它返回。第二次找出的最大的数便是列表中第二大的数。</p>
 <p>实现如下：</p>
@@ -206,7 +209,8 @@ var _hmt = _hmt || [];
 <p>数组： [1, 10, 7, 9, 123, 113]<br>第二大数： 113</p>
 </blockquote>
 <p>另外，也可以通过列表的索引来进行筛选，上面并不是最优的方法。</p>
-<p>在此过程中，我发现了python学习上的问题，一些常用的基本对象的内置函数还是无法熟练地使用，在使用的时候都需要重复查验资料，要想成为一名合格的程序猿的话，基本函数的使用还是需要熟稔于心的，因此，再花几天功夫记录和整理一下一些基本对象，比如：数字、字符串、列表、字典等对象的内置函数的使用。</p>
+<p>在此过程中，我发现了python学习上的问题，一些常用的基本对象的内置函数还是无法熟练地使用，在使用的时候都需要重复查验资料，要想成为一名合格的程序猿的话，基本函数的使用还是需要熟稔于心的，因此，再花几天重新学习一下一些基本对象，比如：数字、字符串、列表、字典等对象的内置函数的使用。</p>
+<hr>
 
       
       
@@ -436,6 +440,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
@@ -444,15 +452,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">paper writing</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">typora</a>
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
             
             <div class="clearfix"></div>

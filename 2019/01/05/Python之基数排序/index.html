@@ -19,7 +19,7 @@
 <meta property="og:image" content="//elevenzou.github.io/assets/demo/2019010501.png">
 <meta property="og:image" content="//elevenzou.github.io/assets/demo/algorithm_8_2.gif">
 <meta property="og:image" content="//elevenzou.github.io/assets/demo/2019010502.png">
-<meta property="og:updated_time" content="2019-01-05T07:20:32.426Z">
+<meta property="og:updated_time" content="2019-01-05T07:32:45.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python之基数排序">
 <meta name="twitter:description" content="基数排序(Radix sort)是一种非比较型整数排序算法，属于分配式排序。">
@@ -195,6 +195,7 @@ var _hmt = _hmt || [];
 <a id="more"></a>
 <h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h1><p>基数排序的原理是将整数按位数切割成不同的数字，然后按每个位数分别比较。由于整数也可以表达字符串和特定格式的浮点数，所以基数排序不止用于整数。</p>
 <p><img src="/assets/demo/2019010501.png" alt="算法性能"></p>
+<p>其中$d$代表数组元素最高位位数，$n$代表元素个数。</p>
 <h1 id="2-算法原理"><a href="#2-算法原理" class="headerlink" title="2. 算法原理"></a>2. 算法原理</h1><p><img src="/assets/demo/algorithm_8_2.gif" alt="动态效果示意图"></p>
 <p>基本思想：将所有待比较数值（正整数）统一为同样的数位长度，数位较短的数前面补零。然后，从最低位开始，依次进行一次排序。这样从最低位排序一直到做高位排序完成以后，数列就变成了一个有序序列。</p>
 <p>通过一个实例展示如何进行基数排序。设有一个初始序列为：$R\{50, 123, 543, 187, 49, 30, 0, 2, 11, 100\}$</p>
@@ -345,6 +346,15 @@ var _hmt = _hmt || [];
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/01/06/Python基本类型之数字/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Python基本类型
+        
+      </div>
+    </a>
   
   
     <a href="/2019/01/04/Python之归并排序/" id="article-nav-older" class="article-nav-link-wrap">
@@ -508,6 +518,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
@@ -516,15 +530,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">paper writing</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">typora</a>
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
             
             <div class="clearfix"></div>
