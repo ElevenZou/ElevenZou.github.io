@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="//elevenzou.github.io">
   <title>Python基本类型 | ElevenZou的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Python的基本类型包括数字、字符串、">
+  <meta name="description" content="Python的基本类型包括数字、字符串、列表、字典、元组、文件及其他等。">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python基本类型">
-<meta property="og:url" content="//elevenzou.github.io/2019/01/06/Python基本类型之数字/index.html">
+<meta property="og:url" content="//elevenzou.github.io/2019/01/06/Python基本类型/index.html">
 <meta property="og:site_name" content="ElevenZou的博客">
-<meta property="og:description" content="Python的基本类型包括数字、字符串、">
+<meta property="og:description" content="Python的基本类型包括数字、字符串、列表、字典、元组、文件及其他等。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-07T08:30:04.034Z">
+<meta property="og:updated_time" content="2019-01-09T06:38:03.709Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python基本类型">
-<meta name="twitter:description" content="Python的基本类型包括数字、字符串、">
+<meta name="twitter:description" content="Python的基本类型包括数字、字符串、列表、字典、元组、文件及其他等。">
   
     <link rel="alternative" href="/atom.xml" title="ElevenZou的博客" type="application/atom+xml">
   
@@ -167,7 +167,7 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Python基本类型之数字" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Python基本类型" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -179,7 +179,7 @@ var _hmt = _hmt || [];
   
 
         
-        <a href="/2019/01/06/Python基本类型之数字/" class="archive-article-date">
+        <a href="/2019/01/06/Python基本类型/" class="archive-article-date">
   	<time datetime="2019-01-06T13:05:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-06</time>
 </a>
         
@@ -187,7 +187,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Python的基本类型包括数字、字符串、</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Python的基本类型包括数字、字符串、列表、字典、元组、文件及其他等。</p>
 <a id="more"></a>
 <h1 id="1-数字"><a href="#1-数字" class="headerlink" title="1. 数字"></a>1. 数字</h1><h2 id="1-1-基本数字常量"><a href="#1-1-基本数字常量" class="headerlink" title="1.1 基本数字常量"></a>1.1 基本数字常量</h2><div class="table-container">
 <table>
@@ -525,6 +525,646 @@ var _hmt = _hmt || [];
 </tbody>
 </table>
 </div>
+<h2 id="2-3-Python3-0中的字符串方法调用"><a href="#2-3-Python3-0中的字符串方法调用" class="headerlink" title="2.3 Python3.0中的字符串方法调用"></a>2.3 Python3.0中的字符串方法调用</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>s.captialize()</th>
+<th>s.ljust(width [, fill])</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>s.center(width [, fill])</td>
+<td>s.lower()</td>
+</tr>
+<tr>
+<td>s.count(sub [, start [, end]])</td>
+<td>s.lstrip([chars])</td>
+</tr>
+<tr>
+<td>s.encode([encoding [,errors]])</td>
+<td>s.maketrans(x[, y[, z])</td>
+</tr>
+<tr>
+<td>s.endswith(suffix [, start [, end]])</td>
+<td>s.partition(sep)</td>
+</tr>
+<tr>
+<td>s.expandtabs([tabsize])</td>
+<td>s.replace(old, new [, count])</td>
+</tr>
+<tr>
+<td>s.find(sub [, start [,end]])</td>
+<td>s.rfind(sub [, start [, end]])</td>
+</tr>
+<tr>
+<td>s.format(fmrstr, <em>args, *</em>kwargs)</td>
+<td>s.rindex(sub [, start [, end]])</td>
+</tr>
+<tr>
+<td>s.index(sub [, start [, end]])</td>
+<td>s.rjust(width [, fill])</td>
+</tr>
+<tr>
+<td>s.isalnum()</td>
+<td>s.rpartition(seq)</td>
+</tr>
+<tr>
+<td>s.isalpha()</td>
+<td>s.rstrip([chars])</td>
+</tr>
+<tr>
+<td>s.isdecimal()</td>
+<td>s.split([seq [, maxsplit]])</td>
+</tr>
+<tr>
+<td>s.isdigit()</td>
+<td>s.splitlines([keepends])</td>
+</tr>
+<tr>
+<td>s.isidentifier()</td>
+<td>s.startswith(prefix [, start [, end]])</td>
+</tr>
+<tr>
+<td>s.islower()</td>
+<td>s.strip([chars])</td>
+</tr>
+<tr>
+<td>s.isnumeric()</td>
+<td>s.swapcase()</td>
+</tr>
+<tr>
+<td>s.isprintable()</td>
+<td>s.title()</td>
+</tr>
+<tr>
+<td>s.isspace()</td>
+<td>s.translate(map)</td>
+</tr>
+<tr>
+<td>s.istitle()</td>
+<td>s.upper()</td>
+</tr>
+<tr>
+<td>s.isupper()</td>
+<td>s.rsplit([seq [, maxsplit]])</td>
+</tr>
+<tr>
+<td>s.join(iterable)</td>
+<td>s.zfill(width)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="2-4-字符串格式化代码"><a href="#2-4-字符串格式化代码" class="headerlink" title="2.4 字符串格式化代码"></a>2.4 字符串格式化代码</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>s</td>
+<td>字符串（或任何对象）</td>
+</tr>
+<tr>
+<td>r</td>
+<td>s，但使用repr，而不是str</td>
+</tr>
+<tr>
+<td>c</td>
+<td>字符</td>
+</tr>
+<tr>
+<td>d</td>
+<td>十进制（整数）</td>
+</tr>
+<tr>
+<td>i</td>
+<td>整数</td>
+</tr>
+<tr>
+<td>u</td>
+<td>无号（整数）</td>
+</tr>
+<tr>
+<td>o</td>
+<td>八进制整数</td>
+</tr>
+<tr>
+<td>x</td>
+<td>十六进制整数</td>
+</tr>
+<tr>
+<td>X</td>
+<td>x，但打印大写</td>
+</tr>
+<tr>
+<td>e</td>
+<td>浮点指数</td>
+</tr>
+<tr>
+<td>E</td>
+<td>e，但打印大写</td>
+</tr>
+<tr>
+<td>f</td>
+<td>浮点十进制</td>
+</tr>
+<tr>
+<td>F</td>
+<td>浮点十进制</td>
+</tr>
+<tr>
+<td>g</td>
+<td>浮点e或f</td>
+</tr>
+<tr>
+<td>G</td>
+<td>浮点E或f</td>
+</tr>
+<tr>
+<td>%</td>
+<td>常量%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="3-列表"><a href="#3-列表" class="headerlink" title="3. 列表"></a>3. 列表</h1><h2 id="3-1-常用列表常量和操作"><a href="#3-1-常用列表常量和操作" class="headerlink" title="3.1 常用列表常量和操作"></a>3.1 常用列表常量和操作</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>L = []</th>
+<th>一个空的列表</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L = [0, 1, 2, 3]</td>
+<td>四项：索引为0到3</td>
+</tr>
+<tr>
+<td>L = [‘abc’, [‘def’, ‘ghi’]]</td>
+<td>嵌套的子列表</td>
+</tr>
+<tr>
+<td>L = list(‘spam’)</td>
+<td>可迭代项目的列表</td>
+</tr>
+<tr>
+<td>L = list(range(-4, 4))</td>
+<td>连续整数的列表</td>
+</tr>
+<tr>
+<td>L[i]</td>
+<td>索引</td>
+</tr>
+<tr>
+<td>L[i][j]</td>
+<td>索引的索引</td>
+</tr>
+<tr>
+<td>L[i:j]</td>
+<td>分片</td>
+</tr>
+<tr>
+<td>len(L)</td>
+<td>求长度</td>
+</tr>
+<tr>
+<td>L1 + L2</td>
+<td>合并</td>
+</tr>
+<tr>
+<td>L * 3</td>
+<td>重复</td>
+</tr>
+<tr>
+<td>for x in L : print(x)</td>
+<td>迭代</td>
+</tr>
+<tr>
+<td>3 in L</td>
+<td>成员关系</td>
+</tr>
+<tr>
+<td>L.append(4)</td>
+<td>方法：增长，排序，搜索，插入，反转等</td>
+</tr>
+<tr>
+<td>L.extend([5,6,7])</td>
+<td></td>
+</tr>
+<tr>
+<td>L.insert(I, X)</td>
+<td></td>
+</tr>
+<tr>
+<td>L.index(1)</td>
+<td></td>
+</tr>
+<tr>
+<td>L.Count(x)</td>
+<td></td>
+</tr>
+<tr>
+<td>L.sort()</td>
+<td></td>
+</tr>
+<tr>
+<td>L.reverse()</td>
+<td></td>
+</tr>
+<tr>
+<td>del L(k)</td>
+<td>方法，语句：缩短</td>
+</tr>
+<tr>
+<td>del L[i:j]</td>
+<td></td>
+</tr>
+<tr>
+<td>L.pop()</td>
+<td></td>
+</tr>
+<tr>
+<td>L.remove(2)</td>
+<td></td>
+</tr>
+<tr>
+<td>L[i:j] = []</td>
+<td></td>
+</tr>
+<tr>
+<td>L[i] = 1</td>
+<td>索引赋值，分片赋值</td>
+</tr>
+<tr>
+<td>L[i:j] = [4, 5, 6]</td>
+<td></td>
+</tr>
+<tr>
+<td>L = [x**2 for x in range(5)]</td>
+<td>列表解析</td>
+</tr>
+<tr>
+<td>list(map(ord, ‘spam’))</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="4-字典"><a href="#4-字典" class="headerlink" title="4. 字典"></a>4. 字典</h1><h2 id="4-1-常见字典常量和操作"><a href="#4-1-常见字典常量和操作" class="headerlink" title="4.1 常见字典常量和操作"></a>4.1 常见字典常量和操作</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D = {}</td>
+<td>空字典</td>
+</tr>
+<tr>
+<td>D = {‘spam’ : 2, ‘eggs’ : 3}</td>
+<td>两项目字典</td>
+</tr>
+<tr>
+<td>D = {‘food’ : {‘ham’ : 1, ‘egg’ : 2}}</td>
+<td>嵌套</td>
+</tr>
+<tr>
+<td>D = dict.fromkeys([‘a’, ‘b’])</td>
+<td>其他构造技术</td>
+</tr>
+<tr>
+<td>D = dict(zip(keyslist, valslist))</td>
+<td>关键字、对应的对、键列表</td>
+</tr>
+<tr>
+<td>D = dict(name= ‘Bob’, age = 42)</td>
+<td></td>
+</tr>
+<tr>
+<td>D [‘eggs’]</td>
+<td>以键进行索引运算</td>
+</tr>
+<tr>
+<td>D [‘food’][‘ham’]</td>
+<td></td>
+</tr>
+<tr>
+<td>‘eggs’ in D</td>
+<td>成员关系：键存在测试</td>
+</tr>
+<tr>
+<td>D.keys()</td>
+<td>方法：键</td>
+</tr>
+<tr>
+<td>D.values()</td>
+<td>值</td>
+</tr>
+<tr>
+<td>D.items()</td>
+<td>键+值</td>
+</tr>
+<tr>
+<td>D.copy()</td>
+<td>副本</td>
+</tr>
+<tr>
+<td>D.get(key, default)</td>
+<td>默认</td>
+</tr>
+<tr>
+<td>D.update(D2)</td>
+<td>合并</td>
+</tr>
+<tr>
+<td>D.pop(key)</td>
+<td>删除等</td>
+</tr>
+<tr>
+<td>len(D)</td>
+<td>长度（储存的元素的数目）</td>
+</tr>
+<tr>
+<td>D[key] = 42</td>
+<td>新增/修改键，删除键</td>
+</tr>
+<tr>
+<td>del D[key]</td>
+<td>根据键删除条目</td>
+</tr>
+<tr>
+<td>list(D.keys())</td>
+<td>字典视图（Python3.0）</td>
+</tr>
+<tr>
+<td>D1.keys() &amp; D2.keys()</td>
+<td></td>
+</tr>
+<tr>
+<td>Dictionary views (Python3.0)</td>
+<td></td>
+</tr>
+<tr>
+<td>D = {x: X*2 for x in range(10)}</td>
+<td>字典解析（python3.0）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="5-元组"><a href="#5-元组" class="headerlink" title="5. 元组"></a>5. 元组</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>运算</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>()</td>
+<td>空元组</td>
+</tr>
+<tr>
+<td>T = (0,)</td>
+<td>单个元素的元组（非表达式）</td>
+</tr>
+<tr>
+<td>T = (0, ‘Ni’, 1.2, 3)</td>
+<td>四个元素的元组</td>
+</tr>
+<tr>
+<td>T = 0, ‘Ni’, 1.2, 3</td>
+<td>另一个四元素的元组（与前列相同）</td>
+</tr>
+<tr>
+<td>T = (‘abc’, (‘def’, ‘ghi’))</td>
+<td>嵌套元组</td>
+</tr>
+<tr>
+<td>T = tuple(‘spam’)</td>
+<td>一个可迭代对象的项的元组</td>
+</tr>
+<tr>
+<td>T[i]</td>
+<td>索引、索引的索引、分片、长度</td>
+</tr>
+<tr>
+<td>T[i][j]</td>
+<td></td>
+</tr>
+<tr>
+<td>len(T)</td>
+<td></td>
+</tr>
+<tr>
+<td>T1 + T2</td>
+<td>合并、重复</td>
+</tr>
+<tr>
+<td>T * 3</td>
+<td></td>
+</tr>
+<tr>
+<td>for x in T: print(x)</td>
+<td>迭代、成员关系</td>
+</tr>
+<tr>
+<td>‘spam’ in T</td>
+<td></td>
+</tr>
+<tr>
+<td>[x ** 2 for x in T]</td>
+<td></td>
+</tr>
+<tr>
+<td>T.index(‘Ni’)</td>
+<td>Python2.6和Python3.0中的方法：搜索、计数</td>
+</tr>
+<tr>
+<td>T.count(‘Ni’)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="6-文件"><a href="#6-文件" class="headerlink" title="6. 文件"></a>6. 文件</h1><h2 id="6-1-常见文件运算"><a href="#6-1-常见文件运算" class="headerlink" title="6.1 常见文件运算"></a>6.1 常见文件运算</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>output = open(r’C:\spam’, ‘w’)</td>
+<td>创建输出文件（’w’是指写入）</td>
+</tr>
+<tr>
+<td>input = open(‘data’, ‘r’)</td>
+<td>创建输入文件（’r’是指读写）</td>
+</tr>
+<tr>
+<td>input = open(‘data’)</td>
+<td>与上一行相同（’r’是默认值)</td>
+</tr>
+<tr>
+<td>aString = input.read()</td>
+<td>把整个文件读进单一字符串</td>
+</tr>
+<tr>
+<td>aString = input.read(N)</td>
+<td>读取之后的N个字节（一或多个）到一个字符串</td>
+</tr>
+<tr>
+<td>aString = input.readline()</td>
+<td>读取下一行（包括行末标识符）到一个字符串</td>
+</tr>
+<tr>
+<td>alist = input.readlines()</td>
+<td>读取整个文件到字符串列表</td>
+</tr>
+<tr>
+<td>output.write(aString)</td>
+<td>写入字节字符串到文件</td>
+</tr>
+<tr>
+<td>output.writelines(aList)</td>
+<td>把列表内所有字符串写入文件</td>
+</tr>
+<tr>
+<td>output.close()</td>
+<td>手动关闭（当文件收集完成时会替你关闭文件）</td>
+</tr>
+<tr>
+<td>output.flush()</td>
+<td>把输出缓冲区刷到硬盘中，但不关闭文件</td>
+</tr>
+<tr>
+<td>anyFile.seek(N)</td>
+<td>修改文件位置到偏移量N处以便进行下一个操作</td>
+</tr>
+<tr>
+<td>for line in open(‘data’): use line</td>
+<td>文件迭代器，一行一行地读取</td>
+</tr>
+<tr>
+<td>open(‘f.txt’, encoding = ‘lantin-1’)</td>
+<td>python3.0 Unicode文本文件（str字符串）</td>
+</tr>
+<tr>
+<td>open(‘f.bin’, ‘rb’)</td>
+<td>python3.0 二进制byte文件（bytes字符串）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="7-对象"><a href="#7-对象" class="headerlink" title="7. 对象"></a>7. 对象</h1><h2 id="7-1-对象分类"><a href="#7-1-对象分类" class="headerlink" title="7.1 对象分类"></a>7.1 对象分类</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>对象类型</th>
+<th>分类</th>
+<th>是否可变</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数字</td>
+<td>数值</td>
+<td>否</td>
+</tr>
+<tr>
+<td>字符串</td>
+<td>序列</td>
+<td>否</td>
+</tr>
+<tr>
+<td>列表</td>
+<td>序列</td>
+<td>是</td>
+</tr>
+<tr>
+<td>字典</td>
+<td>对应</td>
+<td>是</td>
+</tr>
+<tr>
+<td>元组</td>
+<td>序列</td>
+<td>否</td>
+</tr>
+<tr>
+<td>文件</td>
+<td>扩展</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Sets</td>
+<td>集合</td>
+<td>是</td>
+</tr>
+<tr>
+<td>frozenset</td>
+<td>集合</td>
+<td>否</td>
+</tr>
+<tr>
+<td>bytearry （python3.0）</td>
+<td>序列</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="7-2-对象真值"><a href="#7-2-对象真值" class="headerlink" title="7.2 对象真值"></a>7.2 对象真值</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“spam”</td>
+<td>True</td>
+</tr>
+<tr>
+<td>“”</td>
+<td>False</td>
+</tr>
+<tr>
+<td>[]</td>
+<td>False</td>
+</tr>
+<tr>
+<td>{}</td>
+<td>False</td>
+</tr>
+<tr>
+<td>1</td>
+<td>True</td>
+</tr>
+<tr>
+<td>0.0</td>
+<td>False</td>
+</tr>
+<tr>
+<td>None</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+</div>
 
       
       
@@ -537,7 +1177,7 @@ var _hmt = _hmt || [];
           
           <br>
           <strong>本文链接：</strong>
-          https://elevenzou.github.io/2019/01/06/Python基本类型之数字/
+          https://elevenzou.github.io/2019/01/06/Python基本类型/
           <br>
           <strong>版权声明：</strong>
           本作品采用
@@ -644,7 +1284,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://elevenzou.github.io/2019/01/06/Python基本类型之数字/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://elevenzou.github.io/2019/01/06/Python基本类型/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -687,7 +1327,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-数字"><span class="toc-number">1.</span> <span class="toc-text">1. 数字</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-基本数字常量"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 基本数字常量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-Python表达式操作符及程序"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 Python表达式操作符及程序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-字符串"><span class="toc-number">2.</span> <span class="toc-text">2. 字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-常见的字符串常量和表达式"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 常见的字符串常量和表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-字符串反斜杠字符"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 字符串反斜杠字符</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-数字"><span class="toc-number">1.</span> <span class="toc-text">1. 数字</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-基本数字常量"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 基本数字常量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-Python表达式操作符及程序"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 Python表达式操作符及程序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-字符串"><span class="toc-number">2.</span> <span class="toc-text">2. 字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-常见的字符串常量和表达式"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 常见的字符串常量和表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-字符串反斜杠字符"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 字符串反斜杠字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-Python3-0中的字符串方法调用"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 Python3.0中的字符串方法调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-字符串格式化代码"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 字符串格式化代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-列表"><span class="toc-number">3.</span> <span class="toc-text">3. 列表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-常用列表常量和操作"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 常用列表常量和操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-字典"><span class="toc-number">4.</span> <span class="toc-text">4. 字典</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-常见字典常量和操作"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 常见字典常量和操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-元组"><span class="toc-number">5.</span> <span class="toc-text">5. 元组</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-文件"><span class="toc-number">6.</span> <span class="toc-text">6. 文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-常见文件运算"><span class="toc-number">6.1.</span> <span class="toc-text">6.1 常见文件运算</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-对象"><span class="toc-number">7.</span> <span class="toc-text">7. 对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-对象分类"><span class="toc-number">7.1.</span> <span class="toc-text">7.1 对象分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-对象真值"><span class="toc-number">7.2.</span> <span class="toc-text">7.2 对象真值</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -820,10 +1460,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">typora</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
@@ -832,11 +1468,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">paper writing</a>
+                <a href="javascript:void(0)" class="js-tag color2">typora</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">paper writing</a>
               </li>
             
             <div class="clearfix"></div>
