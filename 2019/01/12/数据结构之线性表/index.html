@@ -21,7 +21,7 @@
 <meta property="og:image" content="//elevenzou.github.io/assets/demo/2019011203.png">
 <meta property="og:image" content="//elevenzou.github.io/assets/demo/2019011204.png">
 <meta property="og:image" content="//elevenzou.github.io/assets/demo/2019011205.png">
-<meta property="og:updated_time" content="2019-01-12T13:15:41.051Z">
+<meta property="og:updated_time" content="2019-01-12T13:26:26.707Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构之线性表">
 <meta name="twitter:description" content="“线性表”(Linear List)是计算机科学中一种相当简单与基本的数据结构，可以说，线性表是$n$个元素的有限序列($n\geq 0$)，数组(Array)是一种典型的线性表应用。">
@@ -290,7 +290,7 @@ var _hmt = _hmt || [];
 <p><strong>插入或删除结点</strong>时都需要考虑三种情况：1.插入或删除的节点是链表的首节点；2.插入或删除的节点是链表的最后一个节点；3.插入或删除的节点在链表中间任意位置</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新节点插入在第一个节点之前</span></span><br><span class="line">newnode.next = first</span><br><span class="line">first = newnode</span><br><span class="line"><span class="comment"># 新节点插入在最后一个节点之后</span></span><br><span class="line">ptr.next = newnode</span><br><span class="line">newnode.next = <span class="keyword">None</span></span><br><span class="line"><span class="comment"># 新节点插入在链表中间任意节点x之后</span></span><br><span class="line">newnode.next = x.next</span><br><span class="line">x.next = newnode</span><br><span class="line"><span class="comment"># 删除链表中的第一个节点</span></span><br><span class="line">top = head</span><br><span class="line">head = head.next</span><br><span class="line"><span class="comment"># 删除链表中的最后一个节点</span></span><br><span class="line">ptr.next = tail</span><br><span class="line">pte.next = <span class="keyword">None</span></span><br><span class="line"><span class="comment"># 删除链表内的中间节点</span></span><br><span class="line">Y = ptr.next</span><br><span class="line">ptr.next = Y.next</span><br></pre></td></tr></table></figure>
 <p>单向链表的<strong>反转</strong>比较需要技巧，单向链表中的节点特性是知道下一个节点的位置，可是却无从得知它的上一个节点位置，如果要将单向链表反转，就必须使用3个指针变量。单向链表的反转python代码实现如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">employee</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.num = <span class="number">0</span></span><br><span class="line">        self.salary = <span class="number">0</span></span><br><span class="line">        self.name = <span class="string">''</span></span><br><span class="line">        self.next = <span class="keyword">None</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">invert</span><span class="params">(x)</span>:</span>  <span class="comment"># x为链表的头指针</span></span><br><span class="line">    p = x  <span class="comment"># 将p指向链表的开头</span></span><br><span class="line">    q = <span class="keyword">None</span>  <span class="comment"># q和p的前一个节点</span></span><br><span class="line">    <span class="keyword">while</span> p != <span class="keyword">None</span>:</span><br><span class="line">        r = q  <span class="comment"># 将r接到q之后</span></span><br><span class="line">        q = p  <span class="comment"># 将q接到p之后</span></span><br><span class="line">        p = p.next  <span class="comment"># p移到下一个节点</span></span><br><span class="line">        q.next = r  <span class="comment"># q连接到之前的节点</span></span><br><span class="line">    <span class="keyword">return</span> q</span><br></pre></td></tr></table></figure>
 <p>对于两个或两个以上链表的连接（也称级联），只需要将链表的首尾相连即可，下面看一个示例：</p>
 <div class="table-container">
 <table>
@@ -643,11 +643,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">字典学习</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color5">字典学习</a>
               </li>
              
               <li class="article-tag-list-item">
