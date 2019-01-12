@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="ElevenZou的博客">
 <meta property="og:description" content="2018-11-29今天又重新整理了博客，将博客主题从Cxo换成了Yilia，在这个过程中，我还是遇到了各种问题，自己不是学前端的，虽然略懂博客样式的设置原理，但还是容易在格式上出错。当遇到问题的时候着急也没有用，只有静下心来，一个一个排查，才容易将错误检查出来并处理掉。目前，博客的评论功能还没好的解决办法，Cxo博客主题支持来比力，而Yilia博客主题并不支持，之前的评论管理只能暂时弃用了。 前">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-07T05:23:54.204Z">
+<meta property="og:updated_time" content="2019-01-12T08:44:40.313Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="随笔">
 <meta name="twitter:description" content="2018-11-29今天又重新整理了博客，将博客主题从Cxo换成了Yilia，在这个过程中，我还是遇到了各种问题，自己不是学前端的，虽然略懂博客样式的设置原理，但还是容易在格式上出错。当遇到问题的时候着急也没有用，只有静下心来，一个一个排查，才容易将错误检查出来并处理掉。目前，博客的评论功能还没好的解决办法，Cxo博客主题支持来比力，而Yilia博客主题并不支持，之前的评论管理只能暂时弃用了。 前">
@@ -180,7 +180,7 @@ var _hmt = _hmt || [];
 
         
         <a href="/diary/index.html" class="archive-article-date">
-  	<time datetime="2019-01-07T05:23:54.204Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-07</time>
+  	<time datetime="2019-01-12T08:44:40.313Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-12</time>
 </a>
         
       </header>
@@ -200,7 +200,7 @@ var _hmt = _hmt || [];
 <hr>
 <h1 id="2019-01-04"><a href="#2019-01-04" class="headerlink" title="2019-01-04"></a>2019-01-04</h1><p>2019开年就经历了求之不得的苦痛，往后的路也许会更加难走，但是为了能够顺利地度过每一次的劫难，我必须从大学这座象牙塔里走出去，锻炼自己的能力和意志，成为更加优秀的人。</p>
 <hr>
-<h1 id="2019-01-05"><a href="#2019-01-05" class="headerlink" title="2019-01-05"></a>2019-01-05</h1><p>实验室的师兄找实习的时候，面试官给他出了一道考题，“使用python实现：在不用排序和比较大小的内置函数的情况下，找出一个列表中的第二大的数。“</p>
+<h1 id="2019-01-05"><a href="#2019-01-05" class="headerlink" title="2019-01-05"></a>2019-01-05</h1><p>实验室的师兄找联想人工智能开发实习的时候，面试官给他出了一道考题，“使用python实现：在不用排序和比较大小的内置函数的情况下，找出一个列表中的第二大的数。“</p>
 <p>问题看起来挺简单的，初步的思路是：循环比较两次，每次都选出来列表中最大的那个数，第一次找出最大的那个数后，将这个数从列表中剔除；第二次找出最大的那个数后，将它返回。第二次找出的最大的数便是列表中第二大的数。</p>
 <p>实现如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding = utf-8 -*-</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">selectSecond</span><span class="params">(input_list)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    函数功能: 将列表中第二大的数选出来</span></span><br><span class="line"><span class="string">    :param input_list: 待处理的列表</span></span><br><span class="line"><span class="string">    :return: temp 列表中第二大的数</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">if</span> len(input_list) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> []</span><br><span class="line">    select_list = input_list</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">2</span>):</span><br><span class="line">        temp = select_list[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(select_list)):</span><br><span class="line">            <span class="keyword">if</span> temp &lt; select_list[i]:</span><br><span class="line">                temp = select_list[i]</span><br><span class="line">        select_list.remove(temp)</span><br><span class="line">    <span class="keyword">return</span> temp</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    input_list = [<span class="number">1</span>, <span class="number">10</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">123</span>, <span class="number">113</span>]</span><br><span class="line">    print(<span class="string">'数组：'</span>, input_list)</span><br><span class="line">    temp = selectSecond(input_list)</span><br><span class="line">    print(<span class="string">'第二大数：'</span>, temp)</span><br></pre></td></tr></table></figure>
@@ -211,6 +211,13 @@ var _hmt = _hmt || [];
 <p>另外，也可以通过列表的索引来进行筛选，上面并不是最优的方法。</p>
 <p>在此过程中，我发现了python学习上的问题，一些常用的基本对象的内置函数还是无法熟练地使用，在使用的时候都需要重复查验资料，要想成为一名合格的程序猿的话，基本函数的使用还是需要熟稔于心的，因此，再花几天重新学习一下一些基本对象，比如：数字、字符串、列表、字典等对象的内置函数的使用。</p>
 <hr>
+<h1 id="2019-01-12"><a href="#2019-01-12" class="headerlink" title="2019-01-12"></a>2019-01-12</h1><p>我近来准备找实习，简历已经投了好几家大公司，虽然还没有接到面试通知，但是近段时间也在恶补计算机知识，特别是数据结构，这是许多公司招聘程序员的硬性要求，同时也想好好提升一下自己编写python代码的能力。既然立志做一名程序猿，那么程序猿到底需要具备哪些基本素质呢，我在实习僧上找到了答案，总结如下：</p>
+<ul>
+<li>计算机基础过硬：学好计算机基础知识和数据结构，掌握常用的办公软件，掌握一门或多门程序设计语言：如C、C++、Java、Python等，对常用的信息技术标准安全性以及有关法律法规的基本知识有一定的了解。</li>
+<li>学习能力强：不仅仅满足课程知识，还要吸纳新知识新技术，数学与英语是程序员必须攻克的重点。</li>
+<li>要有程序员的思维：如何将产品和运营程序化。</li>
+</ul>
+<p>想要做一名优雅的程序猿，还是要继续努力呀，但愿我最终能拿到一个不错的实习offer。加油。</p>
 
       
       
@@ -307,7 +314,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-11-29"><span class="toc-number">1.</span> <span class="toc-text">2018-11-29</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-11-30"><span class="toc-number">2.</span> <span class="toc-text">2018-11-30</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-12-21"><span class="toc-number">3.</span> <span class="toc-text">2018-12-21</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-01-03"><span class="toc-number">4.</span> <span class="toc-text">2019-01-03</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-01-04"><span class="toc-number">5.</span> <span class="toc-text">2019-01-04</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-01-05"><span class="toc-number">6.</span> <span class="toc-text">2019-01-05</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-11-29"><span class="toc-number">1.</span> <span class="toc-text">2018-11-29</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-11-30"><span class="toc-number">2.</span> <span class="toc-text">2018-11-30</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-12-21"><span class="toc-number">3.</span> <span class="toc-text">2018-12-21</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-01-03"><span class="toc-number">4.</span> <span class="toc-text">2019-01-03</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-01-04"><span class="toc-number">5.</span> <span class="toc-text">2019-01-04</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-01-05"><span class="toc-number">6.</span> <span class="toc-text">2019-01-05</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-01-12"><span class="toc-number">7.</span> <span class="toc-text">2019-01-12</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -444,15 +451,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Data Structure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">字典学习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Data Structure</a>
               </li>
              
               <li class="article-tag-list-item">

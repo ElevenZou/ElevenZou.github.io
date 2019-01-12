@@ -6,22 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//elevenzou.github.io">
-  <title>ElevenZou的博客</title>
+  <title>数据结构之线性表 | ElevenZou的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="数据结构之线性表 “线性表”(Linear List)是计算机科学中一种相当简单与基本的数据结构，可以说，线性表是$n$个元素的有限序列($n\geq 0$)，数组(Array)是一种典型的线性表应用。">
-<meta name="keywords" content="“python,压缩感知,程序猿,代码,机器学习”">
+  <meta name="description" content="“线性表”(Linear List)是计算机科学中一种相当简单与基本的数据结构，可以说，线性表是$n$个元素的有限序列($n\geq 0$)，数组(Array)是一种典型的线性表应用。">
+<meta name="keywords" content="Data Structure">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ElevenZou的博客">
+<meta property="og:title" content="数据结构之线性表">
 <meta property="og:url" content="//elevenzou.github.io/2019/01/12/数据结构之线性表/index.html">
 <meta property="og:site_name" content="ElevenZou的博客">
-<meta property="og:description" content="数据结构之线性表 “线性表”(Linear List)是计算机科学中一种相当简单与基本的数据结构，可以说，线性表是$n$个元素的有限序列($n\geq 0$)，数组(Array)是一种典型的线性表应用。">
+<meta property="og:description" content="“线性表”(Linear List)是计算机科学中一种相当简单与基本的数据结构，可以说，线性表是$n$个元素的有限序列($n\geq 0$)，数组(Array)是一种典型的线性表应用。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="//elevenzou.github.io/assets/demo/2019011201.png">
 <meta property="og:image" content="//elevenzou.github.io/assets/demo/2019011202.png">
-<meta property="og:updated_time" content="2019-01-12T07:19:35.319Z">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019011203.png">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019011204.png">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019011205.png">
+<meta property="og:updated_time" content="2019-01-12T13:15:41.051Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ElevenZou的博客">
-<meta name="twitter:description" content="数据结构之线性表 “线性表”(Linear List)是计算机科学中一种相当简单与基本的数据结构，可以说，线性表是$n$个元素的有限序列($n\geq 0$)，数组(Array)是一种典型的线性表应用。">
+<meta name="twitter:title" content="数据结构之线性表">
+<meta name="twitter:description" content="“线性表”(Linear List)是计算机科学中一种相当简单与基本的数据结构，可以说，线性表是$n$个元素的有限序列($n\geq 0$)，数组(Array)是一种典型的线性表应用。">
 <meta name="twitter:image" content="//elevenzou.github.io/assets/demo/2019011201.png">
   
     <link rel="alternative" href="/atom.xml" title="ElevenZou的博客" type="application/atom+xml">
@@ -173,10 +176,24 @@ var _hmt = _hmt || [];
             <article id="post-数据结构之线性表" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据结构之线性表
+    </h1>
+  
+
+        
+        <a href="/2019/01/12/数据结构之线性表/" class="archive-article-date">
+  	<time datetime="2019-01-12T03:51:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-12</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>数据结构之线性表</p>
-<p>“线性表”(Linear List)是计算机科学中一种相当简单与基本的数据结构，可以说，<strong>线性表是$n$个元素的有限序列</strong>($n\geq 0$)，数组(Array)是一种典型的线性表应用。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>“线性表”(Linear List)是计算机科学中一种相当简单与基本的数据结构，可以说，<strong>线性表是$n$个元素的有限序列</strong>($n\geq 0$)，数组(Array)是一种典型的线性表应用。</p>
 <a id="more"></a>
 <h1 id="1-介绍线性表"><a href="#1-介绍线性表" class="headerlink" title="1. 介绍线性表"></a>1. 介绍线性表</h1><h2 id="1-1-定义"><a href="#1-1-定义" class="headerlink" title="1.1 定义"></a>1.1 定义</h2><p>线性表（可以简单表示为$(a_1,a_2,a_3,…,a_{n-1},a_n)$）的定义：</p>
 <p>（1）有序序列可以是空集合，或者写成$(a_1,a_2,a_3,…,a_{n-1},a_n)$。</p>
@@ -263,21 +280,139 @@ var _hmt = _hmt || [];
 <p>一个单向链表节点基本上是由两个元素（数据字段与指针）所组成的，而指针将会指向下一个元素在内存中的地址。单向链表第一个节点是“链表头指针”，指向最后一个节点的指针设为None。在单向链表中”链表头指针”相当重要，只要存在链表头指针，就可以遍历整个链表，进行插入与删除节点等操作。</p>
 <p>例程1：设计一个Python程序，可以让用户输入数据来新增学生数据节点，并建立一个单向链表。当用户输入结束后，可遍历此链表并显示内容，并求出当前链表中所有学生的数学与英语的平均成绩。此学生节点的数据结构类型如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">student</span>：</span></span><br><span class="line"><span class="class">    <span class="title">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">    	self.name = <span class="string">''</span></span><br><span class="line">    	self.Math = <span class="number">0</span></span><br><span class="line">    	self.Eng = <span class="number">0</span></span><br><span class="line">    	self.no = <span class="string">''</span></span><br><span class="line">    	self.next = <span class="keyword">None</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>参考文献：《图解数据结构：使用python》吴灿铭著 清华大学出版社</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="comment"># 初始化数据结构</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">student</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.name = <span class="string">''</span></span><br><span class="line">        self.Math = <span class="number">0</span></span><br><span class="line">        self.Eng = <span class="number">0</span></span><br><span class="line">        self.no = <span class="string">''</span></span><br><span class="line">        self.next = <span class="keyword">None</span></span><br><span class="line">head = student()       <span class="comment"># 建立链表头部</span></span><br><span class="line">head.next = <span class="keyword">None</span></span><br><span class="line">ptr = head</span><br><span class="line">Msum = Esum = num = student_no = <span class="number">0</span></span><br><span class="line">select = <span class="number">0</span></span><br><span class="line"><span class="comment"># 建立单向链表</span></span><br><span class="line"><span class="keyword">while</span> select != <span class="number">2</span>:</span><br><span class="line">    print(<span class="string">'(1)新增 (2)离开 =&gt;'</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        select = int(input(<span class="string">'请输入一个选项：'</span>))</span><br><span class="line">   	<span class="keyword">except</span> ValueError:</span><br><span class="line">        print(<span class="string">'输入错误'</span>)</span><br><span class="line">        print(<span class="string">'请重新输入\n'</span>)</span><br><span class="line">    <span class="keyword">if</span> select = <span class="number">1</span>:</span><br><span class="line">        new_data = student()  <span class="comment"># 新增下一个元素</span></span><br><span class="line">        new_data.name = input(<span class="string">'姓名：'</span>)</span><br><span class="line">        new_data.no = input(<span class="string">'学号：'</span>)</span><br><span class="line">        new_data.Math = eval(input(<span class="string">'数学成绩：'</span>))</span><br><span class="line">        new_data.Eng = eval(input(<span class="string">'英语成绩：'</span>))</span><br><span class="line">        ptr.next = new_data <span class="comment"># 存取指针设置为新元素所在的位置</span></span><br><span class="line">        new_data.next = <span class="keyword">None</span> <span class="comment"># 下一个元素的next先设置为None</span></span><br><span class="line">        ptr = ptr.next <span class="comment"># 将ptr移向下一个元素</span></span><br><span class="line">        num = num + <span class="number">1</span></span><br><span class="line">ptr = head.next</span><br><span class="line">print()</span><br><span class="line"><span class="comment"># 遍历单向链表</span></span><br><span class="line"><span class="keyword">while</span> ptr != <span class="keyword">None</span>:</span><br><span class="line">    print(<span class="string">'姓名：%s\t 学号：%s\t 数学成绩：%d\t 英语成绩：%d'</span> % (ptr.name, ptr.no, ptr.Math, ptr.Eng))</span><br><span class="line">    Msum = Msum + ptr.Math</span><br><span class="line">    Esum = Esum + ptr.Eng</span><br><span class="line">    student_no = student_no + <span class="number">1</span></span><br><span class="line">    ptr = ptr.next</span><br><span class="line">   </span><br><span class="line"><span class="keyword">if</span> student_np != <span class="number">0</span></span><br><span class="line">print(<span class="string">'本链表中学生的数学平均成绩：%.2f 英语平均成绩：%.2f'</span> % (Msum/student_no, Esum/student_no))</span><br></pre></td></tr></table></figure>
+<p>执行结果如下：</p>
+<blockquote>
+<p>(1)新增 (2)离开 =&gt;<br>请输入一个选项：1<br>姓名：ZhangSan<br>学号：01<br>数学成绩：98<br>英语成绩：78<br>(1)新增 (2)离开 =&gt;<br>请输入一个选项：1<br>姓名：LiSi<br>学号：02<br>数学成绩：89<br>英语成绩：70<br>(1)新增 (2)离开 =&gt;<br>请输入一个选项：1<br>姓名：WangWu<br>学号：03<br>数学成绩：90<br>英语成绩：69<br>(1)新增 (2)离开 =&gt;<br>请输入一个选项：2</p>
+<p>姓名：ZhangSan     学号：01     数学成绩：98     英语成绩：78<br>姓名：LiSi     学号：02     数学成绩：89     英语成绩：70<br>姓名：WangWu     学号：03     数学成绩：90     英语成绩：69<br>本链表中学生的数学平均成绩：92.33 英语平均成绩：72.33</p>
+</blockquote>
+<p>除了建立和遍历链表操作外，还有<strong>插入、删除、反转、连接</strong>接等操作。</p>
+<p><strong>插入或删除结点</strong>时都需要考虑三种情况：1.插入或删除的节点是链表的首节点；2.插入或删除的节点是链表的最后一个节点；3.插入或删除的节点在链表中间任意位置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新节点插入在第一个节点之前</span></span><br><span class="line">newnode.next = first</span><br><span class="line">first = newnode</span><br><span class="line"><span class="comment"># 新节点插入在最后一个节点之后</span></span><br><span class="line">ptr.next = newnode</span><br><span class="line">newnode.next = <span class="keyword">None</span></span><br><span class="line"><span class="comment"># 新节点插入在链表中间任意节点x之后</span></span><br><span class="line">newnode.next = x.next</span><br><span class="line">x.next = newnode</span><br><span class="line"><span class="comment"># 删除链表中的第一个节点</span></span><br><span class="line">top = head</span><br><span class="line">head = head.next</span><br><span class="line"><span class="comment"># 删除链表中的最后一个节点</span></span><br><span class="line">ptr.next = tail</span><br><span class="line">pte.next = <span class="keyword">None</span></span><br><span class="line"><span class="comment"># 删除链表内的中间节点</span></span><br><span class="line">Y = ptr.next</span><br><span class="line">ptr.next = Y.next</span><br></pre></td></tr></table></figure>
+<p>单向链表的<strong>反转</strong>比较需要技巧，单向链表中的节点特性是知道下一个节点的位置，可是却无从得知它的上一个节点位置，如果要将单向链表反转，就必须使用3个指针变量。单向链表的反转python代码实现如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>对于两个或两个以上链表的连接（也称级联），只需要将链表的首尾相连即可，下面看一个示例：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>学号</th>
+<th>姓名</th>
+<th>成绩</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>John</td>
+<td>85</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Helen</td>
+<td>95</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Dean</td>
+<td>68</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Same</td>
+<td>72</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Kelly</td>
+<td>79</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>设计一个Python程序，建立这5个学生成绩的单向链表，然后遍历每一个节点并打印学生姓名与成绩。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">student</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.num = <span class="number">0</span></span><br><span class="line">        self.name = <span class="string">''</span></span><br><span class="line">        self.score = <span class="number">0</span></span><br><span class="line">        self.next = <span class="keyword">None</span></span><br><span class="line">print(<span class="string">'请输入5个学生的数据：'</span>)</span><br><span class="line">node = student()</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">    print(<span class="string">'[Error!!内存分配失败！]'</span>)</span><br><span class="line">    sys.exit(<span class="number">0</span>)</span><br><span class="line">node.num = eval(input(<span class="string">'请输入学号：'</span>))</span><br><span class="line">node.name = input(<span class="string">'请输入姓名：'</span>)</span><br><span class="line">node.score = eval(input(<span class="string">'请输入成绩：'</span>))</span><br><span class="line">ptr = node  <span class="comment"># 保留链表头部，以ptr为当前节点指针</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">5</span>):</span><br><span class="line">    newnode = student() <span class="comment"># 建立新节点</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> newnode:</span><br><span class="line">        print(<span class="string">'[Error!!内存分配失败！]'</span>)</span><br><span class="line">        sys.exit(<span class="number">0</span>)</span><br><span class="line">    newnode.num = int(input(<span class="string">'请输入学号：'</span>))</span><br><span class="line">    newnode.name = input(<span class="string">'请输入姓名：'</span>)</span><br><span class="line">    newnode.score = int(input(<span class="string">'请输入成绩：'</span>))</span><br><span class="line">    newnode.next = <span class="keyword">None</span></span><br><span class="line">    ptr.next = newnode <span class="comment"># 把新节点加在链表后面</span></span><br><span class="line">    ptr = ptr.next <span class="comment"># 让ptr保持在链表的最后面</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">' 学  生  成  绩 '</span>)</span><br><span class="line">print(<span class="string">' 学号\t姓名\t成绩\n '</span>)</span><br><span class="line">ptr = node  <span class="comment"># 让ptr回到链表的头部</span></span><br><span class="line"><span class="keyword">while</span> ptr != <span class="keyword">None</span>:</span><br><span class="line">    print(<span class="string">'%4d\t%-s\t%4d'</span> % (ptr.num, ptr.name, ptr.score))</span><br><span class="line">    node = ptr</span><br><span class="line">    ptr = ptr.next <span class="comment"># ptr按序往后遍历链表</span></span><br></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<blockquote>
+<p>请输入5个学生的数据：<br>请输入学号：1<br>请输入姓名：John<br>请输入成绩：85<br>请输入学号：2<br>请输入姓名：Helen<br>请输入成绩：95<br>请输入学号：3<br>请输入姓名：Dean<br>请输入成绩：68<br>请输入学号：4<br>请输入姓名：Same<br>请输入成绩：72<br>请输入学号：5<br>请输入姓名：Kelly<br>请输入成绩：79<br> 学  生  成  绩<br> 学号    姓名    成绩</p>
+<p>   1    John      85<br>   2    Helen      95<br>   3    Dean      68<br>   4    Same      72<br>   5    Kelly      79</p>
+</blockquote>
+<p>*多项式链表表示法：</p>
+<p><img src="/assets/demo/2019011203.png" alt="多项式链表表示法"></p>
+<p>比如：$A(x)=4x^3+3x-6$可以用链表表示为：</p>
+<p><img src="/assets/demo/2019011204.png" alt="多项式链表表示示例"></p>
+<h2 id="3-2-环形链表"><a href="#3-2-环形链表" class="headerlink" title="3.2 环形链表"></a>3.2 环形链表</h2><p>若把链表的<strong>最后一个节点指针指向链表头部</strong>，而不是指向None，则整个链表就成为一个单方向的环形结构，如此一来每一个节点都可以是链表头部，可以从任一节点来遍历其他节点，不用再担心链表头部指针丢失问题了。环形链表通常应用于<strong>内存工作区</strong>与<strong>输入/输出缓冲区</strong>。</p>
+<p><img src="/assets/demo/2019011205.png" alt="环形链表"></p>
+<p>整理自：《图解数据结构：使用python》吴灿铭著 清华大学出版社</p>
 
       
       
 	  
       
-        <div class="declare" hidden="hidden"></div>
+        <div class="declare">
+          <strong>本文作者：</strong>
+          
+            ElevenZou
+          
+          <br>
+          <strong>本文链接：</strong>
+          https://elevenzou.github.io/2019/01/12/数据结构之线性表/
+          <br>
+          <strong>版权声明：</strong>
+          本作品采用
+          <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+          进行许可。转载请注明出处！
+          
+        </div>
       
 	  
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃辣条<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Data Structure</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -371,7 +506,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-介绍线性表"><span class="toc-number">1.</span> <span class="toc-text">1. 介绍线性表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-定义"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-运算方式"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 运算方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-分类-按内存存储方式"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 分类(按内存存储方式)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-静态数据结构"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.3.1 静态数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2-动态数据结构"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.3.2 动态数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3-比较"><span class="toc-number">1.3.3.</span> <span class="toc-text">1.3.3 比较</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-数组"><span class="toc-number">2.</span> <span class="toc-text">2. 数组</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-链表"><span class="toc-number">3.</span> <span class="toc-text">3. 链表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-单向链表"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 单向链表</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-介绍线性表"><span class="toc-number">1.</span> <span class="toc-text">1. 介绍线性表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-定义"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-运算方式"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 运算方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-分类-按内存存储方式"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 分类(按内存存储方式)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-静态数据结构"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.3.1 静态数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2-动态数据结构"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.3.2 动态数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3-比较"><span class="toc-number">1.3.3.</span> <span class="toc-text">1.3.3 比较</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-数组"><span class="toc-number">2.</span> <span class="toc-text">2. 数组</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-链表"><span class="toc-number">3.</span> <span class="toc-text">3. 链表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-单向链表"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 单向链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-环形链表"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 环形链表</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -508,15 +643,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Data Structure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">字典学习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Data Structure</a>
               </li>
              
               <li class="article-tag-list-item">
