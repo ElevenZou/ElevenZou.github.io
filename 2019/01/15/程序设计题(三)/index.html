@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//elevenzou.github.io">
-  <title>Hello World | ElevenZou的博客</title>
+  <title>程序设计题(三)：跳水名次问题 | ElevenZou的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
-<meta name="keywords" content="“python,压缩感知,程序猿,代码,机器学习”">
+  <meta name="description" content="锻炼思维能力，将具体问题抽象为逻辑关系，再利用计算机进行解答。 问题：五位跳水高手参加十米高台跳水决赛，有人让五个人根据实力预测比赛结果。  A选手说：B第二，我第三； B选手说：我第二，E第四； C选手说：我第一，D第二； D选手说：C最后，我第三； E选手说：我第四，A第一；  已知结果公布后，每个选手的预测都只说对了一半，即一对一错，且没有并列名次，请解出比赛的实际名次。">
+<meta name="keywords" content="程序设计">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="//elevenzou.github.io/2018/11/10/hello-world/index.html">
+<meta property="og:title" content="程序设计题(三)：跳水名次问题">
+<meta property="og:url" content="//elevenzou.github.io/2019/01/15/程序设计题(三)/index.html">
 <meta property="og:site_name" content="ElevenZou的博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta property="og:description" content="锻炼思维能力，将具体问题抽象为逻辑关系，再利用计算机进行解答。 问题：五位跳水高手参加十米高台跳水决赛，有人让五个人根据实力预测比赛结果。  A选手说：B第二，我第三； B选手说：我第二，E第四； C选手说：我第一，D第二； D选手说：C最后，我第三； E选手说：我第四，A第一；  已知结果公布后，每个选手的预测都只说对了一半，即一对一错，且没有并列名次，请解出比赛的实际名次。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-29T12:10:17.329Z">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019011402.png">
+<meta property="og:updated_time" content="2019-01-14T05:54:57.804Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="twitter:title" content="程序设计题(三)：跳水名次问题">
+<meta name="twitter:description" content="锻炼思维能力，将具体问题抽象为逻辑关系，再利用计算机进行解答。 问题：五位跳水高手参加十米高台跳水决赛，有人让五个人根据实力预测比赛结果。  A选手说：B第二，我第三； B选手说：我第二，E第四； C选手说：我第一，D第二； D选手说：C最后，我第三； E选手说：我第四，A第一；  已知结果公布后，每个选手的预测都只说对了一半，即一对一错，且没有并列名次，请解出比赛的实际名次。">
+<meta name="twitter:image" content="//elevenzou.github.io/assets/demo/2019011402.png">
   
     <link rel="alternative" href="/atom.xml" title="ElevenZou的博客" type="application/atom+xml">
   
@@ -167,49 +169,170 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-程序设计题(三)" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      程序设计题(三)：跳水名次问题
     </h1>
   
 
         
-        <a href="/2018/11/10/hello-world/" class="archive-article-date">
-  	<time datetime="2018-11-10T08:31:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-10</time>
+        <a href="/2019/01/15/程序设计题(三)/" class="archive-article-date">
+  	<time datetime="2019-01-15T13:22:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>锻炼思维能力，将具体问题抽象为逻辑关系，再利用计算机进行解答。</p>
+<p>问题：五位跳水高手参加十米高台跳水决赛，有人让五个人根据实力预测比赛结果。</p>
+<ul>
+<li>A选手说：B第二，我第三；</li>
+<li>B选手说：我第二，E第四；</li>
+<li>C选手说：我第一，D第二；</li>
+<li>D选手说：C最后，我第三；</li>
+<li>E选手说：我第四，A第一；</li>
+</ul>
+<p>已知结果公布后，每个选手的预测都只说对了一半，即一对一错，且没有并列名次，请解出比赛的实际名次。</p>
 <a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>解答：</p>
+<p>1.首先将五个人的预测写成逻辑表达式：</p>
+<ul>
+<li>让关系运算符<code>“==”</code>的含义为“是”</li>
+<li>让1，2，3，4，5分别表示名次第一、第二、第三、第四、第五</li>
+<li>让整型变量A、B、C、D、E分别表示每个选手的名次</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">说话人</th>
+<th style="text-align:center">说的话</th>
+<th style="text-align:center">写成关系式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">A选手</td>
+<td style="text-align:center">B第二，我第三</td>
+<td style="text-align:center">B == 2; A==3</td>
+</tr>
+<tr>
+<td style="text-align:center">B选手</td>
+<td style="text-align:center">我第二，E第四</td>
+<td style="text-align:center">B == 2; E==4</td>
+</tr>
+<tr>
+<td style="text-align:center">C选手</td>
+<td style="text-align:center">我第一，D第二</td>
+<td style="text-align:center">C == 1; D==2</td>
+</tr>
+<tr>
+<td style="text-align:center">D选手</td>
+<td style="text-align:center">C最后，我第三</td>
+<td style="text-align:center">C == 5; D==3</td>
+</tr>
+<tr>
+<td style="text-align:center">E选手</td>
+<td style="text-align:center">我第四，A第一</td>
+<td style="text-align:center">E == 4; A==1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>2.考虑到每个人说的话是一对一错，即一真一假，则</p>
+<p>ta = ((B == 2)+(A == 3)) == 1;  或  ta = ((B == 2) != (A == 3)) == 1；</p>
+<p>tb = ((B == 2)+(E == 4)) == 1;  或  tb = ((B == 2) != (E == 4)) == 1;</p>
+<p>tc = ((C == 1)+(D == 2)) == 1;  或  tc = ((C == 1) != (D == 2)) == 1;</p>
+<p>td = ((C == 5)+(D == 3)) == 1;  或  td = ((C == 5) != (D == 3)) == 1; </p>
+<p>te = ((E == 4)+(A == 1)) == 1;  或  te = ((E == 4) != (A == 1)) == 1;</p>
+<p>ta，tb，tc，td，te非1即0，五个条件指加一起：</p>
+<p>$0 \leq ta+tb+tc+td+te \leq 5$</p>
+<p>3.只有等于5时才都符合每个人所说的话，这仅只是符合题意的一个必要条件，同时还得考虑A、B、C、D、E的取值不得有相同者</p>
+<p>$A,B,C,D,E\in\{1,2,3,4,5\}$ 且 $A\neq B \neq C \neq D \neq E$</p>
+<p>可以考虑成 $A<em>B</em>C<em>D</em>E == 120$ 是一个条件</p>
+<p>4.仍然用枚举的方法，让变量A、B、C、D、E在1~5中取值，形成满足上述条件的A ~ E的集合。</p>
+<p><img src="/assets/demo/2019011402.png" alt="程序框图"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>输出结果为：</p>
+<blockquote>
+<p>A选手:第3名<br>B选手:第1名<br>C选手:第5名<br>D选手:第2名<br>E选手:第4名<br>Press any key to continue</p>
+</blockquote>
+<p>参考：清华大学吴文虎教授《计算机程序设计基础》讲义</p>
 
       
       
 	  
       
-        <div class="declare" hidden="hidden"></div>
+        <div class="declare">
+          <strong>本文作者：</strong>
+          
+            ElevenZou
+          
+          <br>
+          <strong>本文链接：</strong>
+          https://elevenzou.github.io/2019/01/15/程序设计题(三)/
+          <br>
+          <strong>版权声明：</strong>
+          本作品采用
+          <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+          进行许可。转载请注明出处！
+          
+        </div>
       
 	  
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃辣条<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">程序设计</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -260,7 +383,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://elevenzou.github.io/2018/11/10/hello-world/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://elevenzou.github.io/2019/01/15/程序设计题(三)/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -274,15 +397,11 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2018/11/10/markdown常用语法总结/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          markdown常用语法总结
-        
-      </div>
-    </a>
   
+    <a href="/2019/01/14/程序设计题(二)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">程序设计题(二)：谁是凶手？</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -307,7 +426,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
