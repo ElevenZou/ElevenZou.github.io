@@ -17,7 +17,7 @@
 <meta property="og:description" content="锻炼思维能力，将具体问题抽象为逻辑关系，再利用计算机进行解答。 问题：五位跳水高手参加十米高台跳水决赛，有人让五个人根据实力预测比赛结果。  A选手说：B第二，我第三； B选手说：我第二，E第四； C选手说：我第一，D第二； D选手说：C最后，我第三； E选手说：我第四，A第一；  已知结果公布后，每个选手的预测都只说对了一半，即一对一错，且没有并列名次，请解出比赛的实际名次。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="//elevenzou.github.io/assets/demo/2019011402.png">
-<meta property="og:updated_time" content="2019-01-14T05:54:57.804Z">
+<meta property="og:updated_time" content="2019-01-14T07:40:25.928Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="程序设计题(三)：跳水名次问题">
 <meta name="twitter:description" content="锻炼思维能力，将具体问题抽象为逻辑关系，再利用计算机进行解答。 问题：五位跳水高手参加十米高台跳水决赛，有人让五个人根据实力预测比赛结果。  A选手说：B第二，我第三； B选手说：我第二，E第四； C选手说：我第一，D第二； D选手说：C最后，我第三； E选手说：我第四，A第一；  已知结果公布后，每个选手的预测都只说对了一半，即一对一错，且没有并列名次，请解出比赛的实际名次。">
@@ -255,10 +255,12 @@ var _hmt = _hmt || [];
 <p>$0 \leq ta+tb+tc+td+te \leq 5$</p>
 <p>3.只有等于5时才都符合每个人所说的话，这仅只是符合题意的一个必要条件，同时还得考虑A、B、C、D、E的取值不得有相同者</p>
 <p>$A,B,C,D,E\in\{1,2,3,4,5\}$ 且 $A\neq B \neq C \neq D \neq E$</p>
-<p>可以考虑成 $A<em>B</em>C<em>D</em>E == 120$ 是一个条件</p>
+<p>可以考虑成 </p>
+<p>$A<em>B</em>C<em>D</em>E == 120$</p>
+<p> 是一个条件</p>
 <p>4.仍然用枚举的方法，让变量A、B、C、D、E在1~5中取值，形成满足上述条件的A ~ E的集合。</p>
 <p><img src="/assets/demo/2019011402.png" alt="程序框图"></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// *******************************************************</span></span><br><span class="line"><span class="comment">// * 跳水名次问题                                         </span></span><br><span class="line"><span class="comment">// * A选手说：B第二，我第三；</span></span><br><span class="line"><span class="comment">// * B选手说：我第二，E第四；</span></span><br><span class="line"><span class="comment">// * C选手说：我第一，D第二；</span></span><br><span class="line"><span class="comment">// * D选手说：C最后，我第三；</span></span><br><span class="line"><span class="comment">// * E选手说：我第四，A第一；  </span></span><br><span class="line"><span class="comment">// * 每个选手的预测都只说对了一半，即一对一错，且没有并列名次</span></span><br><span class="line"><span class="comment">// * author: Eleven                                     </span></span><br><span class="line"><span class="comment">// * date:2019/1/14</span></span><br><span class="line"><span class="comment">// * version: 1.0</span></span><br><span class="line"><span class="comment">// ********************************************************</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ta,tb,tc,td,te;  <span class="comment">// 定义5个变量，分别表示5句话</span></span><br><span class="line">	<span class="keyword">int</span> A,B,C,D,E,t;              <span class="comment">// 定义6个变量，分别代表6个人</span></span><br><span class="line">	<span class="keyword">for</span>(A=<span class="number">1</span>;A&lt;=<span class="number">5</span>;A++)                       <span class="comment">// 枚举A</span></span><br><span class="line">		<span class="keyword">for</span>(B=<span class="number">1</span>;B&lt;=<span class="number">5</span>;B++)                   <span class="comment">// 枚举B</span></span><br><span class="line">			<span class="keyword">for</span>(C=<span class="number">1</span>;C&lt;=<span class="number">5</span>;C++)               <span class="comment">// 枚举C</span></span><br><span class="line">				<span class="keyword">for</span>(D=<span class="number">1</span>;D&lt;=<span class="number">5</span>;D++)           <span class="comment">// 枚举D</span></span><br><span class="line">				&#123;</span><br><span class="line">					E = <span class="number">15</span>-(A+B+C+D);</span><br><span class="line">					<span class="keyword">if</span>(A*B*C*D*E == <span class="number">120</span>)   <span class="comment">// 没有并列名次</span></span><br><span class="line">					&#123;</span><br><span class="line">						ta=((B==<span class="number">2</span>)+(A==<span class="number">3</span>))==<span class="number">1</span>; </span><br><span class="line">						tb=((B==<span class="number">2</span>)+(E==<span class="number">4</span>))==<span class="number">1</span>;</span><br><span class="line">						tc=((C==<span class="number">1</span>)+(D==<span class="number">2</span>))==<span class="number">1</span>;</span><br><span class="line">						td=((C==<span class="number">5</span>)+(D==<span class="number">3</span>))==<span class="number">1</span>;</span><br><span class="line">						te=((E==<span class="number">4</span>)+(A==<span class="number">1</span>))==<span class="number">1</span>;</span><br><span class="line">						t=ta+tb+tc+td+te;</span><br><span class="line">						<span class="keyword">if</span>(t==<span class="number">5</span>)</span><br><span class="line">						&#123;</span><br><span class="line">							<span class="built_in">cout</span> &lt;&lt; <span class="string">"A选手:第"</span> &lt;&lt; A &lt;&lt; <span class="string">"名"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">							<span class="built_in">cout</span> &lt;&lt; <span class="string">"B选手:第"</span> &lt;&lt; B &lt;&lt; <span class="string">"名"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">							<span class="built_in">cout</span> &lt;&lt; <span class="string">"C选手:第"</span> &lt;&lt; C &lt;&lt; <span class="string">"名"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">							<span class="built_in">cout</span> &lt;&lt; <span class="string">"D选手:第"</span> &lt;&lt; D &lt;&lt; <span class="string">"名"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">							<span class="built_in">cout</span> &lt;&lt; <span class="string">"E选手:第"</span> &lt;&lt; E &lt;&lt; <span class="string">"名"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出结果为：</p>
 <blockquote>
 <p>A选手:第3名<br>B选手:第1名<br>C选手:第5名<br>D选手:第2名<br>E选手:第4名<br>Press any key to continue</p>
@@ -559,6 +561,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
@@ -576,10 +582,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">程序设计</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">typora</a>
               </li>
              
               <li class="article-tag-list-item">
