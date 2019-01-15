@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="ElevenZou的博客">
 <meta property="og:description" content="数据结构（Data Structure）是一门和计算机硬件与软件密切相关的学科，研究重点是在计算机的程序设计领域中探讨如何在计算机中组织和存储数据并进行高效率的运用，涉及的内容包括算法、数据存储结构、排序、查找、程序设计概念与哈希函数。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-12T02:20:32.364Z">
+<meta property="og:updated_time" content="2019-01-14T09:09:58.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构导论">
 <meta name="twitter:description" content="数据结构（Data Structure）是一门和计算机硬件与软件密切相关的学科，研究重点是在计算机的程序设计领域中探讨如何在计算机中组织和存储数据并进行高效率的运用，涉及的内容包括算法、数据存储结构、排序、查找、程序设计概念与哈希函数。">
@@ -190,7 +190,7 @@ var _hmt = _hmt || [];
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>数据结构（Data Structure）是一门和计算机硬件与软件密切相关的学科，研究重点是在计算机的程序设计领域中探讨如何在计算机中组织和存储数据并进行高效率的运用，涉及的内容包括算法、数据存储结构、排序、查找、程序设计概念与哈希函数。</p>
 <a id="more"></a>
 <h1 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h1><p><strong>数据结构</strong>是一种程序设计优化的方法论，它不仅讨论到存储的数据，同时也考虑到彼此间的关系与运算，目的是加快程序的执行速度、减少内存占用的空间。简单来说，数据结构就是对数据与算法的研究。</p>
-<h1 id="2-类型"><a href="#2-类型" class="headerlink" title="2. 类型"></a>2. 类型</h1><p>数据（Data）指一种未经处理的原始文字、数字、符号或图像等，它所表达出来的只是一种评估价值的基本元素或表目。当数据经过处理后（以特定的方式系统地整理、归纳甚至进行分析），就成为信息了。</p>
+<h1 id="2-类型"><a href="#2-类型" class="headerlink" title="2. 类型"></a>2. 类型</h1><p><strong>数据</strong>（Data）指一种未经处理的原始文字、数字、符号或图像等，它所表达出来的只是一种评估价值的基本元素或表目。当数据经过处理后（以特定的方式系统地整理、归纳甚至进行分析），就成为信息了。</p>
 <p>若按照数据在计算机程序设计语言中的存在层次来划分，则可分为：</p>
 <ul>
 <li><strong>基本类型数据</strong>：不能以其他类型来定义的基本数据类型，或称标量数据类型，几乎所有的程序设计语言都会为标量数据类型提供一组基本数据类型。例如Python语言中基本数据类型就包括整型、浮点型、布尔类型和字符类型。</li>
@@ -244,6 +244,7 @@ var _hmt = _hmt || [];
 <li>伪语言</li>
 <li>表格或图形</li>
 <li>流程图</li>
+<li>程序框图</li>
 <li>程序设计语言：C、C++、Java、Python</li>
 </ul>
 <h1 id="5-程序"><a href="#5-程序" class="headerlink" title="5. 程序"></a>5. 程序</h1><p><strong>程序开发流程</strong>：1.需求———&gt;2.设计规划———&gt;3.分析讨论———&gt;4.编写程序———&gt;5.测试检验</p>
@@ -255,7 +256,7 @@ var _hmt = _hmt || [];
 <li>可编写性高：针对需求所编写出来的程序相对容易。</li>
 </ul>
 <p>结构化程序设计的<strong>核心精神</strong>是：”<strong>由上而下设计</strong>“与”<strong>模块化设计</strong>“</p>
-<p>结构化程序设计通常具有3种控制流程：顺序结构、选择结构、重复结构</p>
+<p>结构化程序设计通常具有3种控制流程：<strong>顺序结构、选择结构、重复结构</strong></p>
 <p>面向对象程序设计的重点是强调程序的可读性、重复使用性、扩展性，本身还具备封装性、继承性、多态性。</p>
 <p>算法性能分析：空间复杂度(程序运行临时占用内存大小)、时间复杂度（程序运行时间）</p>
 <h1 id="6-大O表示法（Big-Oh）"><a href="#6-大O表示法（Big-Oh）" class="headerlink" title="6. 大O表示法（Big-Oh）"></a>6. 大O表示法（Big-Oh）</h1><p><strong>时间复杂度</strong>通常用大O法来表示，是当操作数增加时，以运行时间的增量来衡量的</p>
@@ -302,7 +303,7 @@ var _hmt = _hmt || [];
 </table>
 </div>
 <p>*除此之外，时间复杂度还有 $\Omega$ 表示法和 $\theta$ 表示法</p>
-<p>参考文献：《图解数据结构：使用python》吴灿铭著 清华大学出版社</p>
+<p>整理自：《图解数据结构：使用python》吴灿铭著 清华大学出版社</p>
 
       
       
@@ -611,15 +612,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">字典学习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Data Structure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
