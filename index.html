@@ -168,6 +168,867 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Linux常用命令" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/27/Linux常用命令/">Linux常用指令</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/27/Linux常用命令/" class="archive-article-date">
+  	<time datetime="2019-01-27T14:15:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="1-软件操作命令"><a href="#1-软件操作命令" class="headerlink" title="1. 软件操作命令"></a>1. 软件操作命令</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">功能</th>
+<th style="text-align:left">指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">软件包管理器</td>
+<td style="text-align:left">yum</td>
+</tr>
+<tr>
+<td style="text-align:center">安装软件</td>
+<td style="text-align:left">yum install xxx</td>
+</tr>
+<tr>
+<td style="text-align:center">卸载软件</td>
+<td style="text-align:left">yum remove xxx</td>
+</tr>
+<tr>
+<td style="text-align:center">搜索软件</td>
+<td style="text-align:left">yum search xxx</td>
+</tr>
+<tr>
+<td style="text-align:center">清理缓存</td>
+<td style="text-align:left">yum clean packages</td>
+</tr>
+<tr>
+<td style="text-align:center">列出已安装</td>
+<td style="text-align:left">yum list</td>
+</tr>
+<tr>
+<td style="text-align:center">软件包信息</td>
+<td style="text-align:left">yum info xxx</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="2-服务器硬件资源和磁盘操作"><a href="#2-服务器硬件资源和磁盘操作" class="headerlink" title="2. 服务器硬件资源和磁盘操作"></a>2. 服务器硬件资源和磁盘操作</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">功能</th>
+<th>指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">查看内存</td>
+<td>free -m</td>
+</tr>
+<tr>
+<td style="text-align:center">查看硬盘</td>
+<td>df -h</td>
+</tr>
+<tr>
+<td style="text-align:center">查看负载</td>
+<td>w或top</td>
+</tr>
+<tr>
+<td style="text-align:center">查看cpu</td>
+<td>cat /proc/cpuinfo</td>
+</tr>
+<tr>
+<td style="text-align:center">格式化磁盘</td>
+<td>fdisk</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="3-文件与文件夹操作命令"><a href="#3-文件与文件夹操作命令" class="headerlink" title="3. 文件与文件夹操作命令"></a>3. 文件与文件夹操作命令</h1><h2 id="3-1-Linux文件的目录结构"><a href="#3-1-Linux文件的目录结构" class="headerlink" title="3.1 Linux文件的目录结构"></a>3.1 Linux文件的目录结构</h2><ul>
+<li>根目录 /</li>
+<li>家目录 /home</li>
+<li>临时目录 /tmp</li>
+<li>配置目录 /etc</li>
+<li>用户程序目录 /usr</li>
+</ul>
+<p><img src="/assets/demo/2019012601.png" alt="linux文件目录结构"></p>
+<h2 id="3-2-文件操作基本命令"><a href="#3-2-文件操作基本命令" class="headerlink" title="3.2 文件操作基本命令"></a>3.2 文件操作基本命令</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">功能</th>
+<th>指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">查看目录下的文件</td>
+<td>ls 或 ll</td>
+</tr>
+<tr>
+<td style="text-align:center">新建文件</td>
+<td>touch xxx</td>
+</tr>
+<tr>
+<td style="text-align:center">新建文件夹</td>
+<td>mkdir xxx</td>
+</tr>
+<tr>
+<td style="text-align:center">新建多层文件夹</td>
+<td>mkdir -p xxx/xxx/xxx</td>
+</tr>
+<tr>
+<td style="text-align:center">进入目录</td>
+<td>cd /xxx</td>
+</tr>
+<tr>
+<td style="text-align:center">删除文件</td>
+<td>rm xxx</td>
+</tr>
+<tr>
+<td style="text-align:center">删除文件夹</td>
+<td>rm -rf xxx/ 或 rm -r xxx/</td>
+</tr>
+<tr>
+<td style="text-align:center">复制</td>
+<td>cp ./xxx ~/xxx</td>
+</tr>
+<tr>
+<td style="text-align:center">移动</td>
+<td>mv ./xxx ~/xxx</td>
+</tr>
+<tr>
+<td style="text-align:center">显示当前路径</td>
+<td>pwd</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="4-Linux本文编辑神器：Vim"><a href="#4-Linux本文编辑神器：Vim" class="headerlink" title="4. Linux本文编辑神器：Vim"></a>4. Linux本文编辑神器：Vim</h1><ul>
+<li>在服务器上我们是没有类Windows的操作界面的，所有的GUI界面无法使用；</li>
+<li>Vim是最出名的Linux文本编辑器，可以对文件修改操作；</li>
+<li><p>Vim安装指令：<code>yum install vim</code></p>
+</li>
+<li><p>推荐教程：<a href="http://www.runoob.com/linux/linux-vim.html" target="_blank" rel="noopener">http://www.runoob.com/linux/linux-vim.html</a></p>
+</li>
+</ul>
+<h2 id="4-1-基本指令"><a href="#4-1-基本指令" class="headerlink" title="4.1 基本指令"></a>4.1 基本指令</h2><p>使用<code>touch</code>指令创建文件，或者使用<code>vim</code>创建并编辑文件，按<code>i</code>进入编辑模式，按<code>Esc</code>退出编辑模式，键入<code>:wq</code>保存并退出文件。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">功能</th>
+<th>文本编辑指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">插入模式</td>
+<td>i</td>
+</tr>
+<tr>
+<td style="text-align:center">退出模式</td>
+<td>Esc</td>
+</tr>
+<tr>
+<td style="text-align:center">保存并退出文件</td>
+<td>:wq</td>
+</tr>
+<tr>
+<td style="text-align:center">跳到行首</td>
+<td>gg</td>
+</tr>
+<tr>
+<td style="text-align:center">跳到行尾</td>
+<td>G</td>
+</tr>
+<tr>
+<td style="text-align:center">删除光标所在行</td>
+<td>dd</td>
+</tr>
+<tr>
+<td style="text-align:center">撤销上一步操作</td>
+<td>u</td>
+</tr>
+<tr>
+<td style="text-align:center">复制与粘贴</td>
+<td>yy+p</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="/assets/demo/vi-vim-cheat-sheet-sch.gif" alt="vi/vim键盘"></p>
+<p>在文档中<strong>搜索关键字</strong>步骤：</p>
+<p>1、进入vim中，先按下”ESC”跳转成命令输入模式</p>
+<p>2、输入斜杠“/”，这时屏幕会跳转到底部，输入栏出现”/“</p>
+<p>3、输入你需要查找的关键字，回车</p>
+<p>4、如果要继续查找关键字，输入n</p>
+<p>5、向前查找，输入N（大写）</p>
+<p>vim中<strong>保存和退出文件</strong>的指令汇总：</p>
+<blockquote>
+<p>:w   保存文件但不退出vi   </p>
+<p>:w file   将修改另外保存到file中，不退出vi   </p>
+<p>:w!   强制保存，不推出vi   </p>
+<p>:wq   保存文件并退出vi   </p>
+<p>:wq!   强制保存文件，并退出vi   </p>
+<p>:q   不保存文件，退出vi   </p>
+<p>:q!   不保存文件，强制退出vi   </p>
+<p>:e!   放弃所有修改，从上次保存文件开始再编辑命令历史</p>
+</blockquote>
+<h2 id="4-2-文件权限4-2-1"><a href="#4-2-文件权限4-2-1" class="headerlink" title="4.2 文件权限4-2-1"></a>4.2 文件权限4-2-1</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">权限</th>
+<th style="text-align:center">数字</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">r</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">w</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">x</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="4-3-文件搜索，查找，读取"><a href="#4-3-文件搜索，查找，读取" class="headerlink" title="4.3 文件搜索，查找，读取"></a>4.3 文件搜索，查找，读取</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">功能</th>
+<th>指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">从文件尾部开始读</td>
+<td>tail</td>
+</tr>
+<tr>
+<td style="text-align:center">从文件头部读</td>
+<td>head</td>
+</tr>
+<tr>
+<td style="text-align:center">读取整个文件</td>
+<td>cat</td>
+</tr>
+<tr>
+<td style="text-align:center">分页读取</td>
+<td>more</td>
+</tr>
+<tr>
+<td style="text-align:center">可控分页</td>
+<td>less</td>
+</tr>
+<tr>
+<td style="text-align:center">搜索关键字</td>
+<td>grep</td>
+</tr>
+<tr>
+<td style="text-align:center">查找文件</td>
+<td>find</td>
+</tr>
+<tr>
+<td style="text-align:center">统计个数</td>
+<td>wc</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="4-4-文件压缩与解压缩"><a href="#4-4-文件压缩与解压缩" class="headerlink" title="4.4 文件压缩与解压缩"></a>4.4 文件压缩与解压缩</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>使用xxx文件创建一个xxx.tar压缩文件</td>
+<td>tar -cf xxx.tar xxx</td>
+</tr>
+<tr>
+<td>使用xxx文件创建一个xxx.tar.gz压缩文件</td>
+<td>tar -czvf xxx.tar.gz xxx</td>
+</tr>
+<tr>
+<td>列出xxx.tar压缩文件中所有文件的信息</td>
+<td>tar -tvf xxx.tar</td>
+</tr>
+<tr>
+<td>列出xxx.tar.gz压缩文件中所有文件的信息</td>
+<td>tar -tzvf xxx.tar.gz</td>
+</tr>
+<tr>
+<td>解压缩xxx.tar文件</td>
+<td>tar -xf xxx.tar</td>
+</tr>
+<tr>
+<td>解压缩xxx.tar.gz文件</td>
+<td>tar -xzvf xxx.tar.gz</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="5-系统用户操作命令"><a href="#5-系统用户操作命令" class="headerlink" title="5. 系统用户操作命令"></a>5. 系统用户操作命令</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">功能</th>
+<th>指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">添加用户</td>
+<td>useradd xxx</td>
+</tr>
+<tr>
+<td style="text-align:center">添加用户</td>
+<td>adduser xxx</td>
+</tr>
+<tr>
+<td style="text-align:center">删除用户</td>
+<td>userdel -r xxx</td>
+</tr>
+<tr>
+<td style="text-align:center">设置密码</td>
+<td>passwd xxx</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="6-防火墙相关设置"><a href="#6-防火墙相关设置" class="headerlink" title="6. 防火墙相关设置"></a>6. 防火墙相关设置</h1><p>防火墙的作用：保护服务器安全</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">功能</th>
+<th>指令</th>
+<th style="text-align:center">功能</th>
+<th>指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">安装防火墙</td>
+<td>sudo yum install firewalld</td>
+<td style="text-align:center">列出所有区域配置</td>
+<td>firewall-cmd —list-all-zone</td>
+</tr>
+<tr>
+<td style="text-align:center">启动防火墙</td>
+<td>service firewalld start</td>
+<td style="text-align:center">查看所有打开的端口</td>
+<td>firewall-cmd —zone=public —list-ports</td>
+</tr>
+<tr>
+<td style="text-align:center">查看防火墙状态</td>
+<td>service firewalld status</td>
+<td style="text-align:center">查看规则</td>
+<td>iptables -L -n</td>
+</tr>
+<tr>
+<td style="text-align:center">关闭或禁用防火墙</td>
+<td>service firewalld stop/disable</td>
+<td style="text-align:center">更新防火墙规则</td>
+<td>firewall-cmd -reload</td>
+</tr>
+<tr>
+<td style="text-align:center">查看版本</td>
+<td>firewall-cmd —version</td>
+<td style="text-align:center">查看区域信息</td>
+<td>firewall-cmd —get-active-zones</td>
+</tr>
+<tr>
+<td style="text-align:center">查看帮助</td>
+<td>firewall-cmd —help</td>
+<td style="text-align:center">查看指定接口所属区域</td>
+<td>firewall-cmd —get-zone-of-interface=eth0</td>
+</tr>
+<tr>
+<td style="text-align:center">显示状态</td>
+<td>firewall-cmd —state</td>
+<td style="text-align:center">添加服务</td>
+<td>firewall-cmd —add-service=ssh</td>
+</tr>
+<tr>
+<td style="text-align:center">列出所有的区域</td>
+<td>firewall-cmd —get-zones</td>
+<td style="text-align:center">查询服务</td>
+<td>firewall-cmd —query-service=ssh</td>
+</tr>
+<tr>
+<td style="text-align:center">列出默认区域</td>
+<td>firewall-cmd —get-default-zone</td>
+<td style="text-align:center">移除服务</td>
+<td>firewall-cmd —remove-service=ssh</td>
+</tr>
+<tr>
+<td style="text-align:center">添加端口</td>
+<td>firewall-cmd —zone=public —add-port=80/tcp</td>
+<td style="text-align:center">重新载入端口</td>
+<td>firewall-cmd —reload</td>
+</tr>
+<tr>
+<td style="text-align:center">查看端口</td>
+<td>firewall-cmd —zone=public —query-port=80/tcp</td>
+<td style="text-align:center">删除端口</td>
+<td>firewall-cmd —zone=public —remove-port=80/tcp</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="7-提权和文件传输操作"><a href="#7-提权和文件传输操作" class="headerlink" title="7.  提权和文件传输操作"></a>7.  提权和文件传输操作</h1><h2 id="7-1-提权"><a href="#7-1-提权" class="headerlink" title="7.1 提权"></a>7.1 提权</h2><p>在<strong>root</strong>账号下，键入<code>visudo</code>进入文件，如下图所示，加入白色的那行(‘将elevenzou’ 改成你想提权的普通用户名)，保存并退出。</p>
+<p>在你的<strong>普通用户</strong>账号下，指令前添加<code>sudo</code>就可以取得大部分权限。使用普通用户账号操作是为了不泄露root账号，从而维护服务器的安全。</p>
+<h2 id="7-2-文件传输操作"><a href="#7-2-文件传输操作" class="headerlink" title="7.2 文件传输操作"></a>7.2 文件传输操作</h2><h3 id="7-2-1-linux系统与服务器交互"><a href="#7-2-1-linux系统与服务器交互" class="headerlink" title="7.2.1 linux系统与服务器交互"></a>7.2.1 linux系统与服务器交互</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">功能</th>
+<th>指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">文件下载</td>
+<td>wget xxx</td>
+</tr>
+<tr>
+<td style="text-align:center">文件下载</td>
+<td>curl -o [文件名] xxx</td>
+</tr>
+<tr>
+<td style="text-align:center">本地文件上传</td>
+<td>scp [文件名] elevenzou@192.168.43.103:/tmp/</td>
+</tr>
+<tr>
+<td style="text-align:center">文件下载到本地</td>
+<td>scp elevenzou@192.168.43.103:/tmp/[文件名] ./</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="7-2-2-windows系统与服务器交互"><a href="#7-2-2-windows系统与服务器交互" class="headerlink" title="7.2.2 windows系统与服务器交互"></a>7.2.2 windows系统与服务器交互</h3><p>可以借助Xshell工具来完成，首先你的Linux服务器上需要安装安装lrzsz工具包，键入<code>sudo yum install lrzsz</code>即可安装。<strong>rz，sz</strong>是便是Linux/Unix同Windows进行ZModem文件传输的命令行工具，所以要在Xshell连接属性中的设置上传协议为Zmodem和接受的文件路径等，如下图所示：</p>
+<p><img src="/assets/demo/2019012603.png" alt="Xshell设置"></p>
+<p>运行命令<code>rz</code>，即是接收文件（上传到Linux服务器上），Xshell就会弹出文件选择对话框，选好文件之后关闭对话框，文件就会上传到linux里的当前目录。也可以直接把要上传的文件拖到xshell上完成上传。如下图所示：</p>
+<p><img src="/assets/demo/2019012604.png" alt="Xshell上传文件展示"></p>
+<p>运行命令<code>sz [文件名]</code> 就是发文件到windows上（保存的目录是可以配置）。如下图所示：</p>
+<p><img src="/assets/demo/2019012605.png" alt="Xshell接收文件展示"></p>
+
+      
+      
+	  
+      
+        <div class="declare" hidden="hidden"></div>
+      
+	  
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/27/Linux常用命令/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-远程连接SSH" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/25/远程连接SSH/">远程服务器管理工具SSH</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/25/远程连接SSH/" class="archive-article-date">
+  	<time datetime="2019-01-25T14:15:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本篇简单记录一下学习Linux操作系统典型应用之“远程SSH连接”的笔记，为方便以后查阅。主要内容有介绍SSH，记录服务器和客户端分别安装与远程连接SSH的方法，SSH中config的用法，免密码登录SSH的方法。</p>
+<p>操作环境：VMWare虚拟机中的CentOS 7，Windows10的Xshell 5工具</p>
+<p>目的：利用SSH服务创建一个相对安全可靠的连接，在本地控制和管理远程服务器。</p>
+        
+      
+      
+	  
+      
+        <div class="declare" hidden="hidden"></div>
+      
+	  
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/25/远程连接SSH/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Python语句与语法" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/16/Python语句与语法/">Python语句与语法</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/16/Python语句与语法/" class="archive-article-date">
+  	<time datetime="2019-01-16T01:05:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="1-语句"><a href="#1-语句" class="headerlink" title="1. 语句"></a>1. 语句</h1><h2 id="1-1-赋值语句"><a href="#1-1-赋值语句" class="headerlink" title="1.1 赋值语句"></a>1.1 赋值语句</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>运算</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spam = ‘Spam’</td>
+<td>基本形式</td>
+</tr>
+<tr>
+<td>spam, ham = ‘yum’, ‘YUM’</td>
+<td>元组赋值运算（位置性）</td>
+</tr>
+<tr>
+<td>[spam, ham] = [‘yum’, ‘YUM’]</td>
+<td>列表赋值运算（位置性）</td>
+</tr>
+<tr>
+<td>a, b, c, d = ‘spam’</td>
+<td>序列赋值运算（通用性）</td>
+</tr>
+<tr>
+<td>a, *b = ‘spam’</td>
+<td>扩展的序列解包</td>
+</tr>
+<tr>
+<td>spam = ham = ‘lunch’</td>
+<td>多目标赋值运算</td>
+</tr>
+<tr>
+<td>spams += 42</td>
+<td>增强赋值运算（相当于spams = spams + 42）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>*python3中保留字</p>
+<blockquote>
+<p>False、class、finally、is、return、None、continue、for、lambda、try、True、def、from、nonlocal、while、and、del、global、not、with、as、elif、if、or、yield、assert、else、import、pass、break、except、in、raise</p>
+</blockquote>
+<h2 id="1-2-增强赋值语句"><a href="#1-2-增强赋值语句" class="headerlink" title="1.2 增强赋值语句"></a>1.2 增强赋值语句</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">X += Y</th>
+<th style="text-align:center">X &amp;= Y</th>
+<th style="text-align:center">X -= Y</th>
+<th style="text-align:center">X \</th>
+<th>= Y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">X *= Y</td>
+<td style="text-align:center">X ^= Y</td>
+<td style="text-align:center">X /= Y</td>
+<td style="text-align:center">X &gt;&gt;= Y</td>
+</tr>
+<tr>
+<td style="text-align:center">X %= Y</td>
+<td style="text-align:center">X &lt;&lt;= Y</td>
+<td style="text-align:center">X **= Y</td>
+<td style="text-align:center">X //= Y</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="1-3-常见python表达式语句"><a href="#1-3-常见python表达式语句" class="headerlink" title="1.3 常见python表达式语句"></a>1.3 常见python表达式语句</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>运算</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spam(eggs, ham)</td>
+<td>函数调用</td>
+</tr>
+<tr>
+<td>spam.ham(eggs)</td>
+<td>方法调用</td>
+</tr>
+<tr>
+<td>spam</td>
+<td>在交互模式解释器内打印变量</td>
+</tr>
+<tr>
+<td>print(a, b, c, sep=’’)</td>
+<td>python3.0 的打印操作</td>
+</tr>
+<tr>
+<td>yield x ** 2</td>
+<td>产生表达式</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="2-语法"><a href="#2-语法" class="headerlink" title="2. 语法"></a>2. 语法</h1><h2 id="2-1-语法规则"><a href="#2-1-语法规则" class="headerlink" title="2.1 语法规则"></a>2.1 语法规则</h2><ul>
+<li>语句是逐个运行的，除非不这样编写</li>
+<li>块和语句的边界会自动检测</li>
+<li>复合语句=首行+“：”+缩进语句</li>
+<li>空白行、空格、注释一般都会忽略</li>
+<li>文档字符串会忽略，但会保存并由工具显示</li>
+</ul>
+<h2 id="2-2-if语句"><a href="#2-2-if语句" class="headerlink" title="2.2 if语句"></a>2.2 if语句</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通用格式</span></span><br><span class="line"><span class="keyword">if</span> &lt;test1&gt;:</span><br><span class="line">	&lt;statements1&gt;</span><br><span class="line"><span class="keyword">elif</span> &lt;test2&gt;:</span><br><span class="line">	&lt;statements2&gt;</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	&lt;statements3&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="2-3-while语句"><a href="#2-3-while语句" class="headerlink" title="2.3 while语句"></a>2.3 while语句</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 一般格式</span></span><br><span class="line"><span class="keyword">while</span> &lt;test&gt;:</span><br><span class="line">	&lt;statements1&gt;</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	&lt;statements2&gt;</span><br><span class="line"><span class="comment"># 一般循环格式</span></span><br><span class="line"><span class="keyword">while</span> &lt;test1&gt;:</span><br><span class="line">    &lt;statements1&gt;</span><br><span class="line">    <span class="keyword">if</span> &lt;test2&gt;: <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> &lt;test3&gt;: <span class="keyword">continue</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    &lt;statements2&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="2-4-for语句"><a href="#2-4-for语句" class="headerlink" title="2.4 for语句"></a>2.4 for语句</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 一般格式</span></span><br><span class="line"><span class="keyword">for</span> &lt;target&gt; <span class="keyword">in</span> &lt;object&gt;</span><br><span class="line">	&lt;statements&gt;</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	&lt;statements&gt;</span><br><span class="line"><span class="comment"># 一般循环格式</span></span><br><span class="line"><span class="keyword">for</span> &lt;target&gt; <span class="keyword">in</span> &lt;object&gt;</span><br><span class="line">	&lt;statements&gt;</span><br><span class="line">    <span class="keyword">if</span> &lt;test&gt;: <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> &lt;test&gt;: <span class="keyword">continue</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    &lt;statements&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="2-5-列表解析"><a href="#2-5-列表解析" class="headerlink" title="2.5 列表解析"></a>2.5 列表解析</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">L = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">L = [x+<span class="number">10</span> <span class="keyword">for</span> x <span class="keyword">in</span> L]</span><br><span class="line">&gt;&gt; L = [<span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[x+y <span class="keyword">for</span> x <span class="keyword">in</span> <span class="string">'abc'</span> <span class="keyword">for</span> y <span class="keyword">in</span> <span class="string">'lmn'</span>]</span><br><span class="line">&gt;&gt; [<span class="string">'al'</span>, <span class="string">'am'</span>, <span class="string">'an'</span>, <span class="string">'bl'</span>, <span class="string">'bm'</span>, <span class="string">'bn'</span>, <span class="string">'cl'</span>, <span class="string">'cm'</span>, <span class="string">'cn'</span>]</span><br></pre></td></tr></table></figure>
+<h1 id="3-文档"><a href="#3-文档" class="headerlink" title="3. 文档"></a>3. 文档</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>形式</th>
+<th>角色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#注释</td>
+<td>文件中的文档</td>
+</tr>
+<tr>
+<td>dir函数</td>
+<td>对象中可用属性的列表</td>
+</tr>
+<tr>
+<td>文档字符串：__doc__（module.class.method.__doc__)</td>
+<td>附加在对象上的文件中的文档</td>
+</tr>
+<tr>
+<td>PyDoc：help函数</td>
+<td>对象的交互帮助</td>
+</tr>
+<tr>
+<td>PyDoc：HTML报表</td>
+<td>浏览器中的模板文档</td>
+</tr>
+<tr>
+<td>标准手册</td>
+<td>正式的语言和库的说明</td>
+</tr>
+<tr>
+<td>网站资源</td>
+<td>在线教程、例子</td>
+</tr>
+<tr>
+<td>出版的书籍</td>
+<td>商业参考书籍</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="4-常见编码陷阱"><a href="#4-常见编码陷阱" class="headerlink" title="4. 常见编码陷阱"></a>4. 常见编码陷阱</h1><ul>
+<li>别忘了冒号</li>
+<li>从第1行开始</li>
+<li>空白行在交互模式提示符下很重要</li>
+<li>缩进要一致</li>
+<li>不要在python中写C代码</li>
+<li>使用简单for循环，而不是while或range</li>
+<li>要注意赋值语句中的可变对象</li>
+<li>不要期待在原处修改对象的函数会返回结果</li>
+<li>一定要使用括号调用函数</li>
+<li>不要在导入重载中使用扩展名或路径</li>
+</ul>
+<p>摘自：《Python学习手册第4版》，持续补充中。。。</p>
+
+      
+      
+	  
+      
+        <div class="declare" hidden="hidden"></div>
+      
+	  
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/16/Python语句与语法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-程序设计题(三)" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -748,243 +1609,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Python之归并排序" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/04/Python之归并排序/">Python之归并排序</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/04/Python之归并排序/" class="archive-article-date">
-  	<time datetime="2019-01-04T06:15:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>归并排序(Merge sort)是建立在归并操作上的一种有效排序算法，该算法是采用<strong>分治法</strong>(Divide and Conquer)的一个非常典型的应用。</p>
-        
-      
-      
-	  
-      
-        <div class="declare" hidden="hidden"></div>
-      
-	  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/04/Python之归并排序/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python之堆排序" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/03/Python之堆排序/">Python之堆排序</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/03/Python之堆排序/" class="archive-article-date">
-  	<time datetime="2019-01-03T06:15:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>堆排序(Heapsort)是指利用堆这种数据结构所设计的一种排序算法。堆是一个近似完全二叉树的结构，并同时满足堆积的性质：即子结点的键值或索引总是小于（或者大于）它的父节点。</p>
-        
-      
-      
-	  
-      
-        <div class="declare" hidden="hidden"></div>
-      
-	  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/03/Python之堆排序/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-基于MOD算法的字典学习" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/03/基于MOD算法的字典学习/">基于MOD算法的字典学习</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/03/基于MOD算法的字典学习/" class="archive-article-date">
-  	<time datetime="2019-01-03T03:59:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>MOD(Method of Optimal Directions)是字典学习和稀疏编码的一种方法，相当于KSVD的简化版，因为KSVD在MOD的基础上做了顺序更新列的优化。本文主要给出MOD的基本思想及实现代码。</p>
-        
-      
-      
-	  
-      
-        <div class="declare" hidden="hidden"></div>
-      
-	  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">字典学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/03/基于MOD算法的字典学习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1103,7 +1727,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">字典学习</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">typora</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1111,7 +1739,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">typora</a>
+                <a href="javascript:void(0)" class="js-tag color5">字典学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">程序设计</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1120,10 +1752,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">paper writing</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">程序设计</a>
               </li>
              
               <li class="article-tag-list-item">
