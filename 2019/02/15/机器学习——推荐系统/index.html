@@ -6,19 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//elevenzou.github.io">
-  <title>ElevenZou的博客</title>
+  <title>推荐系统学习笔记 | ElevenZou的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="中国矿业大学(北京)17级研究生，擅长python，深入研究压缩感知，游戏爱好者。">
-<meta name="keywords" content="“python,压缩感知,程序猿,代码,机器学习”">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ElevenZou的博客">
-<meta property="og:url" content="//elevenzou.github.io/index.html">
+  <meta name="description" content="本文主要记录笔者学习推荐系统的笔记，并动手搭建了基于python扩展库surprise的推荐系统和使用Tensorflow构造隐语义模型。">
+<meta name="keywords" content="Machine Learning,推荐系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推荐系统学习笔记">
+<meta property="og:url" content="//elevenzou.github.io/2019/02/15/机器学习——推荐系统/index.html">
 <meta property="og:site_name" content="ElevenZou的博客">
-<meta property="og:description" content="中国矿业大学(北京)17级研究生，擅长python，深入研究压缩感知，游戏爱好者。">
+<meta property="og:description" content="本文主要记录笔者学习推荐系统的笔记，并动手搭建了基于python扩展库surprise的推荐系统和使用Tensorflow构造隐语义模型。">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019021501.png">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019021502.png">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019021503.png">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019021504.png">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019021504.png">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019021506.png">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019021507.png">
+<meta property="og:updated_time" content="2019-02-15T09:21:08.562Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ElevenZou的博客">
-<meta name="twitter:description" content="中国矿业大学(北京)17级研究生，擅长python，深入研究压缩感知，游戏爱好者。">
+<meta name="twitter:title" content="推荐系统学习笔记">
+<meta name="twitter:description" content="本文主要记录笔者学习推荐系统的笔记，并动手搭建了基于python扩展库surprise的推荐系统和使用Tensorflow构造隐语义模型。">
+<meta name="twitter:image" content="//elevenzou.github.io/assets/demo/2019021501.png">
   
     <link rel="alternative" href="/atom.xml" title="ElevenZou的博客" type="application/atom+xml">
   
@@ -166,16 +175,14 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-机器学习——推荐系统" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+            <article id="post-机器学习——推荐系统" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/15/机器学习——推荐系统/">推荐系统学习笔记</a>
+    <h1 class="article-title" itemprop="name">
+      推荐系统学习笔记
     </h1>
   
 
@@ -188,15 +195,106 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文主要记录笔者学习推荐系统的笔记，并动手搭建了基于python扩展库surprise的推荐系统和使用Tensorflow构造隐语义模型。</p>
-        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>本文主要记录笔者学习推荐系统的笔记，并动手搭建了基于python扩展库surprise的推荐系统和使用Tensorflow构造隐语义模型。</p>
+<a id="more"></a>
+<h1 id="1-推荐系统简介"><a href="#1-推荐系统简介" class="headerlink" title="1. 推荐系统简介"></a>1. 推荐系统简介</h1><p>推荐系统（Recommender system）是帮助用户发现内容，克服信息过载的重要工具。它通过分析用户行为，对用户兴趣建模，从而预测用户的兴趣并给用户做推荐。</p>
+<p>一位研究互联网对社会和经济影响的美国作家Clay Shirky （克莱·舍基）曾说过一句话：<strong>“人类面临的问题并非信息泛滥，而是信息过滤失效</strong>”。于用户而言，推荐系统犹如“智能”过滤器，帮助他们快速找到心仪之物。于企业而言，推荐系统以内容为驱动，为企业创收。</p>
+<p>淘宝、亚马逊、网易云音乐、Instagram和各大视频网站等都利用推荐系统给用户推荐他们可能感兴趣的各种产品——书籍、电影、音乐、电子产品等。推荐系统通过分析个体用户的行为，向用户推荐对他们可能有用的产品，从而创造用户价值。</p>
+<h1 id="2-协同过滤"><a href="#2-协同过滤" class="headerlink" title="2. 协同过滤"></a>2. 协同过滤</h1><p>要实现协同过滤，需要的<strong>步骤</strong>：</p>
+<ol>
+<li>收集用户偏好</li>
+<li>找到相似的用户或物品</li>
+<li>计算推荐</li>
+</ol>
+<p><strong>相似度</strong>可通过计算<strong>欧式距离</strong>、<strong>皮尔逊相关系数</strong>、<strong>Cosine相似度</strong>来衡量:</p>
+<ul>
+<li>欧几里德距离（Euclidean Distance）</li>
+</ul>
+<script type="math/tex; mode=display">
+d(x,y)=\sqrt {(\sum(x_i-y_i)^2))}</script><script type="math/tex; mode=display">
+ssim(x,y)=\frac{1}{1+d(x,y)}</script><ul>
+<li>皮尔逊相关系数（Pearson Correlation Coefficient）</li>
+</ul>
+<script type="math/tex; mode=display">
+p(x,y)=\frac{\sum{x_iy_i-n\bar{x}\bar{y}}}{(n-1)S_xS_y}=\frac{n\sum{x_iy_i}-\sum{x_i}\sum{y_i}}{\sqrt{n\sum{x^2_i}-(\sum{x_i})^2}\sqrt{n\sum{y^2_i}-(\sum{y_i})^2}}</script><ul>
+<li>Cosine相似度（Cosine Similarity）</li>
+</ul>
+<script type="math/tex; mode=display">
+T(x,y)=\frac{x\cdot y}{\|x\|^2\times\|y\|^2}=\frac{\sum{x_iy_i}}{\sqrt{\sum{x^2_i}}\sqrt{\sum{y^2_i}}}</script><p>计算出相似度后，可有通过<strong>固定数量的邻居</strong>或<strong>基于相似度门槛的邻居</strong>来进行近邻决策。</p>
+<p>基于协同过滤的推荐算法可分为<strong>基于用户的协同分类</strong>（UserCF）和<strong>基于物品的协同分类</strong>(ItemCF)，两者的比较如下表：</p>
+<p><img src="/assets/demo/2019021501.png" alt="基于用户的协同分类和基于物品的协同分类的比较"></p>
+<h1 id="3-隐语义模型"><a href="#3-隐语义模型" class="headerlink" title="3. 隐语义模型"></a>3. 隐语义模型</h1><ul>
+<li>从数据出发，进行个性化推荐</li>
+<li>用户和物品之间有隐含的联系</li>
+<li>隐含因子让计算机能理解就好</li>
+<li>将用户和物品通过中介隐含因子联系起来</li>
+</ul>
+<p>如下所示：</p>
+<p><img src="/assets/demo/2019021502.png" alt="例子"></p>
+<p><img src="/assets/demo/2019021503.png" alt="隐语义模型"></p>
+<p><img src="/assets/demo/2019021504.png" alt="隐语义模型求解"></p>
+<p>隐语义模型负样本选择：</p>
+<ul>
+<li>对每个用户，要保证正负样本的平衡（数目相似）</li>
+<li>选取那些很人们，而用户却没有行为的物品</li>
+<li>对与用户—物品集$K\{(u,i)\}$，其中如果$(u,i)$是正样本，则有$r_{ui}=1$，负样本在$r_{ui}=0$</li>
+</ul>
+<p><img src="/assets/demo/2019021504.png" alt="隐语义模型求解"></p>
+<h1 id="4-推荐系统模型评估指标"><a href="#4-推荐系统模型评估指标" class="headerlink" title="4. 推荐系统模型评估指标"></a>4. 推荐系统模型评估指标</h1><p><img src="/assets/demo/2019021506.png" alt="评估指标1"></p>
+<p><img src="/assets/demo/2019021507.png" alt="评估指标2"></p>
+<h1 id="5-推荐系统的实现"><a href="#5-推荐系统的实现" class="headerlink" title="5. 推荐系统的实现"></a>5. 推荐系统的实现</h1>
       
       
 	  
       
-        <div class="declare" hidden="hidden"></div>
+        <div class="declare">
+          <strong>本文作者：</strong>
+          
+            ElevenZou
+          
+          <br>
+          <strong>本文链接：</strong>
+          https://elevenzou.github.io/2019/02/15/机器学习——推荐系统/
+          <br>
+          <strong>版权声明：</strong>
+          本作品采用
+          <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+          进行许可。转载请注明出处！
+          
+        </div>
       
 	  
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃辣条<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -220,112 +318,75 @@ var _hmt = _hmt || [];
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/02/15/机器学习——推荐系统/">展开全文 >></a>
-        </p>
-      
 
       
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
         
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Git的安装与使用" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Git的安装与使用</p>
-<p>Git：版本管理工具</p>
-<p>github是一种基于git工具的开源代码的托管社区网站。</p>
-<p>+安装：yum install git</p>
-<p>+git命令自动补全设置</p>
-<p>+git常用指令</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>功能</th>
-<th>指令</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>git config</td>
-<td>基本配置</td>
-<td>git init</td>
-<td>初始化</td>
-</tr>
-<tr>
-<td>git clone</td>
-<td>复制远程代码</td>
-<td>git remote</td>
-<td>远程源设置</td>
-</tr>
-<tr>
-<td>git fetch</td>
-<td>远程更新同步到本地</td>
-<td>git commit</td>
-<td>版本备注信息</td>
-</tr>
-<tr>
-<td>git rebase</td>
-<td>合并本地分支</td>
-<td>git push</td>
-<td>本地更新同步到远程</td>
-</tr>
-</tbody>
-</table>
+      </div>
+    </span>
+  </div>
 </div>
 
-      
-      
-	  
-      
-        <div class="declare" hidden="hidden"></div>
-      
-	  
-      
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://elevenzou.github.io/2019/02/15/机器学习——推荐系统/" alt="微信分享二维码">
     </div>
-    <div class="article-info article-info-index">
-      
-      
-      
+</div>
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/31/Git的安装与使用/">展开全文 >></a>
-        </p>
-      
-
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/31/Git的安装与使用/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -340,678 +401,32 @@ var _hmt = _hmt || [];
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Linux常用命令" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/27/Linux常用命令/">Linux常用指令</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/27/Linux常用命令/" class="archive-article-date">
-  	<time datetime="2019-01-27T14:15:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本篇记录<strong>linux系统常用指令</strong>，为方便以后查阅。主要内容有软件操作指令、服务器硬件资源和磁盘操作指令、文件与文件夹操作指令、文本编辑器Vim常用指令、系统用户操作指令、防火墙设置指令、提权和文件传输操作指令等，本篇内容持续更新中。。。</p>
-        
-      
-      
-	  
-      
-        <div class="declare" hidden="hidden"></div>
-      
-	  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/27/Linux常用命令/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-推荐系统简介"><span class="toc-number">1.</span> <span class="toc-text">1. 推荐系统简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-协同过滤"><span class="toc-number">2.</span> <span class="toc-text">2. 协同过滤</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-隐语义模型"><span class="toc-number">3.</span> <span class="toc-text">3. 隐语义模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-推荐系统模型评估指标"><span class="toc-number">4.</span> <span class="toc-text">4. 推荐系统模型评估指标</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-推荐系统的实现"><span class="toc-number">5.</span> <span class="toc-text">5. 推荐系统的实现</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
-  
-    <article id="post-远程连接SSH" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/25/远程连接SSH/">远程服务器管理工具SSH</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/25/远程连接SSH/" class="archive-article-date">
-  	<time datetime="2019-01-25T14:15:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本篇简单记录一下学习Linux操作系统典型应用之“远程SSH连接”的笔记，为方便以后查阅。主要内容有介绍SSH，记录服务器和客户端分别安装与远程连接SSH的方法，SSH中config的用法，免密码登录SSH的方法。</p>
-<p>操作环境：VMWare虚拟机中的CentOS 7，Windows10的Xshell 5工具</p>
-<p>目的：利用SSH服务创建一个相对安全可靠的连接，在本地控制和管理远程服务器。</p>
-        
-      
-      
-	  
-      
-        <div class="declare" hidden="hidden"></div>
-      
-	  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/25/远程连接SSH/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python语句与语法" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/16/Python语句与语法/">Python语句与语法</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/16/Python语句与语法/" class="archive-article-date">
-  	<time datetime="2019-01-16T01:05:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本篇内容为阅读《python学习手册第4版》的学习笔记，为方便以后查阅和复习使用。<br>
-        
-      
-      
-	  
-      
-        <div class="declare" hidden="hidden"></div>
-      
-	  
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/16/Python语句与语法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-程序设计题(三)" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/15/程序设计题(三)/">程序设计题(三)：跳水名次问题</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/15/程序设计题(三)/" class="archive-article-date">
-  	<time datetime="2019-01-15T13:22:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>锻炼思维能力，将具体问题抽象为逻辑关系，再利用计算机进行解答。</p>
-<p>问题：五位跳水高手参加十米高台跳水决赛，有人让五个人根据实力预测比赛结果。</p>
-<ul>
-<li>A选手说：B第二，我第三；</li>
-<li>B选手说：我第二，E第四；</li>
-<li>C选手说：我第一，D第二；</li>
-<li>D选手说：C最后，我第三；</li>
-<li>E选手说：我第四，A第一；</li>
-</ul>
-<p>已知结果公布后，每个选手的预测都只说对了一半，即一对一错，且没有并列名次，请解出比赛的实际名次。</p>
-        
-      
-      
-	  
-      
-        <div class="declare" hidden="hidden"></div>
-      
-	  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">程序设计</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/15/程序设计题(三)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-程序设计题(二)" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/14/程序设计题(二)/">程序设计题(二)：谁是凶手？</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/14/程序设计题(二)/" class="archive-article-date">
-  	<time datetime="2019-01-14T13:22:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>锻炼思维能力，将具体问题抽象为逻辑关系，再利用计算机进行解答。</p>
-<p>问题：某地发生了一起谋杀案，刑侦大队抓到了6个犯罪嫌疑人，并根据审查结果做出以下分析：</p>
-<ul>
-<li>A、B至少有一人作案；</li>
-<li>A、D不可能是同案犯；</li>
-<li>A、E、F三人中至少有两人参与作案；</li>
-<li>B、C或同时作案，或与本案无关；</li>
-<li>C、D中有且仅有只有一人作案，</li>
-<li>如果D没有参与作案，则E也不可能参与作案。</li>
-</ul>
-<p>请将凶手找出来。</p>
-        
-      
-      
-	  
-      
-        <div class="declare" hidden="hidden"></div>
-      
-	  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">程序设计</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/14/程序设计题(二)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-程序设计题(一)" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/13/程序设计题(一)/">程序设计题(一)：谁是小偷？</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/13/程序设计题(一)/" class="archive-article-date">
-  	<time datetime="2019-01-13T13:22:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>锻炼思维能力，将具体问题抽象为逻辑关系，再利用计算机进行解答。</p>
-<p>问题：某地发生了一起盗窃案，警察抓到了4个犯罪嫌疑人，罪犯为其中一人，拷问时：</p>
-<ul>
-<li>A说：不是我</li>
-<li>B说：是C</li>
-<li>C说：是D</li>
-<li>D说：不是我</li>
-</ul>
-<p>已知3个人说的是真话，1个人说的是假话，现在根据这些信息，找出罪犯。</p>
-        
-      
-      
-	  
-      
-        <div class="declare" hidden="hidden"></div>
-      
-	  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">程序设计</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/13/程序设计题(一)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据结构之线性表" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/12/数据结构之线性表/">数据结构之线性表</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/12/数据结构之线性表/" class="archive-article-date">
-  	<time datetime="2019-01-12T03:51:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>“线性表”(Linear List)是计算机科学中一种相当简单与基本的数据结构，可以说，<strong>线性表是$n$个元素的有限序列</strong>($n\geq 0$)，数组(Array)是一种典型的线性表应用。</p>
-        
-      
-      
-	  
-      
-        <div class="declare" hidden="hidden"></div>
-      
-	  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Data Structure</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/12/数据结构之线性表/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据结构导论" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/10/数据结构导论/">数据结构导论</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/10/数据结构导论/" class="archive-article-date">
-  	<time datetime="2019-01-10T13:51:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>数据结构（Data Structure）是一门和计算机硬件与软件密切相关的学科，研究重点是在计算机的程序设计领域中探讨如何在计算机中组织和存储数据并进行高效率的运用，涉及的内容包括算法、数据存储结构、排序、查找、程序设计概念与哈希函数。</p>
-        
-      
-      
-	  
-      
-        <div class="declare" hidden="hidden"></div>
-      
-	  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Data Structure</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/10/数据结构导论/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -1034,8 +449,8 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
