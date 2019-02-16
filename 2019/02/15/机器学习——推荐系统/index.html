@@ -8,26 +8,30 @@
   <link rel="dns-prefetch" href="//elevenzou.github.io">
   <title>推荐系统学习笔记 | ElevenZou的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文主要记录笔者学习推荐系统的笔记，并动手搭建了基于python扩展库surprise的推荐系统和使用Tensorflow构造隐语义模型。">
+  <meta name="description" content="本文是笔者学习推荐系统的笔记，在本文中笔者动手搭建了基于python扩展库surprise的推荐系统和基于Tensorflow的隐语义模型。">
 <meta name="keywords" content="Machine Learning,推荐系统">
 <meta property="og:type" content="article">
 <meta property="og:title" content="推荐系统学习笔记">
 <meta property="og:url" content="//elevenzou.github.io/2019/02/15/机器学习——推荐系统/index.html">
 <meta property="og:site_name" content="ElevenZou的博客">
-<meta property="og:description" content="本文主要记录笔者学习推荐系统的笔记，并动手搭建了基于python扩展库surprise的推荐系统和使用Tensorflow构造隐语义模型。">
+<meta property="og:description" content="本文是笔者学习推荐系统的笔记，在本文中笔者动手搭建了基于python扩展库surprise的推荐系统和基于Tensorflow的隐语义模型。">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019021500_1.png">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019021500_2.png">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/RS-CF.gif">
 <meta property="og:image" content="//elevenzou.github.io/assets/demo/2019021501.png">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019021508.png">
 <meta property="og:image" content="//elevenzou.github.io/assets/demo/2019021502.png">
 <meta property="og:image" content="//elevenzou.github.io/assets/demo/2019021503.png">
 <meta property="og:image" content="//elevenzou.github.io/assets/demo/2019021504.png">
-<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019021504.png">
+<meta property="og:image" content="//elevenzou.github.io/assets/demo/2019021505.png">
 <meta property="og:image" content="//elevenzou.github.io/assets/demo/2019021506.png">
 <meta property="og:image" content="//elevenzou.github.io/assets/demo/2019021507.png">
-<meta property="og:updated_time" content="2019-02-15T09:21:08.562Z">
+<meta property="og:updated_time" content="2019-02-16T05:23:41.801Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统学习笔记">
-<meta name="twitter:description" content="本文主要记录笔者学习推荐系统的笔记，并动手搭建了基于python扩展库surprise的推荐系统和使用Tensorflow构造隐语义模型。">
-<meta name="twitter:image" content="//elevenzou.github.io/assets/demo/2019021501.png">
+<meta name="twitter:description" content="本文是笔者学习推荐系统的笔记，在本文中笔者动手搭建了基于python扩展库surprise的推荐系统和基于Tensorflow的隐语义模型。">
+<meta name="twitter:image" content="//elevenzou.github.io/assets/demo/2019021500_1.png">
   
     <link rel="alternative" href="/atom.xml" title="ElevenZou的博客" type="application/atom+xml">
   
@@ -195,18 +199,132 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>本文主要记录笔者学习推荐系统的笔记，并动手搭建了基于python扩展库surprise的推荐系统和使用Tensorflow构造隐语义模型。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>本文是笔者学习推荐系统的笔记，在本文中笔者动手搭建了基于python扩展库surprise的推荐系统和基于Tensorflow的隐语义模型。</p>
 <a id="more"></a>
-<h1 id="1-推荐系统简介"><a href="#1-推荐系统简介" class="headerlink" title="1. 推荐系统简介"></a>1. 推荐系统简介</h1><p>推荐系统（Recommender system）是帮助用户发现内容，克服信息过载的重要工具。它通过分析用户行为，对用户兴趣建模，从而预测用户的兴趣并给用户做推荐。</p>
-<p>一位研究互联网对社会和经济影响的美国作家Clay Shirky （克莱·舍基）曾说过一句话：<strong>“人类面临的问题并非信息泛滥，而是信息过滤失效</strong>”。于用户而言，推荐系统犹如“智能”过滤器，帮助他们快速找到心仪之物。于企业而言，推荐系统以内容为驱动，为企业创收。</p>
-<p>淘宝、亚马逊、网易云音乐、Instagram和各大视频网站等都利用推荐系统给用户推荐他们可能感兴趣的各种产品——书籍、电影、音乐、电子产品等。推荐系统通过分析个体用户的行为，向用户推荐对他们可能有用的产品，从而创造用户价值。</p>
-<h1 id="2-协同过滤"><a href="#2-协同过滤" class="headerlink" title="2. 协同过滤"></a>2. 协同过滤</h1><p>要实现协同过滤，需要的<strong>步骤</strong>：</p>
+<h1 id="1-推荐系统简介"><a href="#1-推荐系统简介" class="headerlink" title="1. 推荐系统简介"></a>1. 推荐系统简介</h1><p><strong>推荐系统</strong>（Recommender system）是帮助用户<strong>发现内容</strong>，<strong>克服信息过载</strong>的重要工具。它通过<strong>分析</strong>用户行为，对用户兴趣<strong>建模</strong>，从而<strong>预测</strong>用户的兴趣并给用户做<strong>推荐</strong>。</p>
+<p><img src="/assets/demo/2019021500_1.png" alt="推荐系统"></p>
+<p><img src="/assets/demo/2019021500_2.png" alt="推荐系统结构示意图"></p>
+<p>一位研究互联网对社会和经济影响的美国作家Clay Shirky （克莱·舍基）曾说过一句话：<strong>“人类面临的问题并非信息泛滥，而是信息过滤失效</strong>”。淘宝、亚马逊、网易云音乐、Instagram和各大视频网站等都利用推荐系统给用户推荐他们可能感兴趣的各种产品——书籍、电影、音乐、电子产品等。于用户而言，推荐系统犹如“智能”过滤器，帮助他们快速找到心仪之物。于企业而言，推荐系统以内容为驱动，为企业创收。</p>
+<p>推荐系统按推荐方法可分为：</p>
+<ul>
+<li>基于内容推荐</li>
+<li><strong>协同过滤推荐</strong></li>
+<li><strong>基于关联规则推荐</strong></li>
+<li>基于效用推荐</li>
+<li>基于知识推荐</li>
+<li>组合推荐</li>
+</ul>
+<p>下面主要介绍基于协同过滤推荐的协同过滤原理和基于关联规则推荐的隐语义模型：</p>
+<h1 id="2-协同过滤"><a href="#2-协同过滤" class="headerlink" title="2. 协同过滤"></a>2. 协同过滤</h1><p><strong>协同过滤</strong>(collaborative filtering)通过利用某兴趣相投、拥有共同经验之群体的喜好来推荐用户感兴趣的信息。比如说，你和你的某个好友都喜欢听音乐，而你们所喜欢的曲风都差不多，你的好友对于某一首歌曲的评价很高，而这首歌你还没有听过。那么，我是不是就能将这首歌推荐给你呢？</p>
+<p>要实现协同过滤，需要以下3个<strong>步骤</strong>：</p>
 <ol>
 <li>收集用户偏好</li>
 <li>找到相似的用户或物品</li>
 <li>计算推荐</li>
 </ol>
-<p><strong>相似度</strong>可通过计算<strong>欧式距离</strong>、<strong>皮尔逊相关系数</strong>、<strong>Cosine相似度</strong>来衡量:</p>
+<p>协同过滤在使用过程中可能会遇到样本量太少导致的两个<strong>常见问题</strong>是：</p>
+<ol>
+<li><strong>稀疏性问题</strong>——因用户做出评价过少，导致算出的相关系数不准确</li>
+<li><strong>冷启动问题</strong>——因物品获得评价过少，导致无“权”进入推荐列表中</li>
+</ol>
+<p>因此在对于新用户和新物品进行推荐时，使用一些更一般性的方法效果可能会更好。比如：</p>
+<ul>
+<li>给新用户推荐更多平均得分超高的电影；</li>
+<li>把新电影推荐给喜欢类似电影（如具有相同导演或演员）的人。</li>
+</ul>
+<p>后面这种做法需要维护一个物品分类表，这个表既可以是基于物品元信息划分的，也可是通过聚类得到的。</p>
+<h2 id="2-1-收集用户偏好"><a href="#2-1-收集用户偏好" class="headerlink" title="2.1 收集用户偏好"></a>2.1 收集用户偏好</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">用户行为</th>
+<th>类型</th>
+<th>特征</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">评分</td>
+<td>显式</td>
+<td>整数量化值[0,n]</td>
+<td>可以得到精确偏好</td>
+</tr>
+<tr>
+<td style="text-align:left">投票</td>
+<td>显式</td>
+<td>布尔量化值[0,1]</td>
+<td>可以得到精确偏好</td>
+</tr>
+<tr>
+<td style="text-align:left">转发</td>
+<td>显式</td>
+<td>布尔量化值[0,1]</td>
+<td>可以得到精确偏好</td>
+</tr>
+<tr>
+<td style="text-align:left">保存书签</td>
+<td>显式</td>
+<td>布尔量化值[0,1]</td>
+<td>可以得到精确偏好</td>
+</tr>
+<tr>
+<td style="text-align:left">标记标签</td>
+<td>显式</td>
+<td>一些单词</td>
+<td>需要进一步分析得到偏好</td>
+</tr>
+<tr>
+<td style="text-align:left">评论</td>
+<td>显式</td>
+<td>一些文字</td>
+<td>需要进一步分析得到偏好</td>
+</tr>
+<tr>
+<td style="text-align:left">点击流</td>
+<td>隐式</td>
+<td>一组点击记录</td>
+<td>需要进一步分析得到偏好</td>
+</tr>
+<tr>
+<td style="text-align:left">页面停留时间</td>
+<td>隐式</td>
+<td>一组时间信息</td>
+<td>噪声偏大，不好利用</td>
+</tr>
+<tr>
+<td style="text-align:left">购买</td>
+<td>隐式</td>
+<td>布尔量化值[0,1]</td>
+<td>可以得到精确偏好</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>收集到原始用户偏好数据后进行预处理：</p>
+<ul>
+<li>用户行为识别/组合</li>
+</ul>
+<p>在一般应用中，我们提取的用户行为一般都多于一种，关于如何组合这些不同的用户行为，比如，可以将用户行为分为“查看”和“购买”等等，然后基于不同的行为，计算不同的用户 / 物品相似度。</p>
+<p>类似于当当网或者京东给出的“购买了该图书的人还购买了 …”，“查看了图书的人还查看了 …”</p>
+<ul>
+<li>喜好程度加权</li>
+</ul>
+<p>根据不同行为反映用户喜好的程度将它们进行加权，得到用户对于物品的总体喜好。</p>
+<p>一般来说，显式的用户反馈比隐式的权值大，但比较稀疏，毕竟进行显示反馈的用户是少数；同时相对于“查看”，“购买”行为反映用户喜好的程度更大，但这也因应用而异。</p>
+<ul>
+<li>数据减噪和归一化。</li>
+</ul>
+<ol>
+<li>减噪：用户行为数据是用户在使用应用过程中产生的，它可能存在大量的噪音和用户的误操作，我们可以通过经典的数据挖掘算法过滤掉行为数据中的噪音，这样可以使我们的分析更加精确。</li>
+<li>归一化：如前面讲到的，在计算用户对物品的喜好程度时，可能需要对不同的行为数据进行加权。但可以想象，不同行为的数据取值可能相差很大，比如，用户的查看数据必然比购买数据大的多，如何将各个行为的数据统一在一个相同的取值范围中，从而使得加权求和得到的总体喜好更加精确，就需要我们进行归一化处理。最简单的归一化处理，就是将各类数据除以此类中的最大值，以保证归一化后的数据取值在 [0,1] 范围中。</li>
+</ol>
+<ul>
+<li>形成用户偏好矩阵</li>
+</ul>
+<p>一般是二维矩阵，一维是用户列表，另一维是物品列表，值是用户对物品的偏好，一般是 [0,1] 或者 [-1, 1] 的浮点数值。</p>
+<h2 id="2-2-找到相似的用户或物品"><a href="#2-2-找到相似的用户或物品" class="headerlink" title="2.2 找到相似的用户或物品"></a>2.2 找到相似的用户或物品</h2><p>找到相似的用户或物品：计算用户或物品的相似度，找到相似邻居。</p>
+<p><strong>相似度</strong>可通过计算<strong>欧式距离</strong>、<strong>皮尔逊相关系数</strong>、<strong>Cosine相似度</strong>、<strong>Tanimoto相关系数</strong>来衡量:</p>
 <ul>
 <li>欧几里德距离（Euclidean Distance）</li>
 </ul>
@@ -220,9 +338,92 @@ p(x,y)=\frac{\sum{x_iy_i-n\bar{x}\bar{y}}}{(n-1)S_xS_y}=\frac{n\sum{x_iy_i}-\sum
 <li>Cosine相似度（Cosine Similarity）</li>
 </ul>
 <script type="math/tex; mode=display">
-T(x,y)=\frac{x\cdot y}{\|x\|^2\times\|y\|^2}=\frac{\sum{x_iy_i}}{\sqrt{\sum{x^2_i}}\sqrt{\sum{y^2_i}}}</script><p>计算出相似度后，可有通过<strong>固定数量的邻居</strong>或<strong>基于相似度门槛的邻居</strong>来进行近邻决策。</p>
-<p>基于协同过滤的推荐算法可分为<strong>基于用户的协同分类</strong>（UserCF）和<strong>基于物品的协同分类</strong>(ItemCF)，两者的比较如下表：</p>
-<p><img src="/assets/demo/2019021501.png" alt="基于用户的协同分类和基于物品的协同分类的比较"></p>
+T(x,y)=\frac{x\cdot y}{\|x\|^2\times\|y\|^2}=\frac{\sum{x_iy_i}}{\sqrt{\sum{x^2_i}}\sqrt{\sum{y^2_i}}}</script><ul>
+<li>Tanimoto系数（Tanimoto Coefficient）</li>
+</ul>
+<script type="math/tex; mode=display">
+T(x,y)=\frac{x\cdot y}{\|x\|^2+\|y\|^2-x\cdot y}=\frac{\sum{x_iy_i}}{\sqrt{\sum{x^2_i}}+\sqrt{\sum{y^2_i}}-\sum{x_iy_i}}</script><p>计算出相似度后，可通过<strong>固定数量的邻居</strong>或<strong>基于相似度门槛的邻居</strong>来进行相似邻居的选定。</p>
+<p><img src="/assets/demo/RS-CF.gif" alt="相似邻居的选定"></p>
+<p>根据计算相似度的主体不同，可将基于协同过滤的推荐算法分为<strong>基于用户的协同过滤</strong>（UserCF）和<strong>基于物品的协同过滤</strong>(ItemCF)，两者的比较如下表：</p>
+<p><img src="/assets/demo/2019021501.png" alt="基于用户的协同过滤和基于物品的协同过滤的比较"></p>
+<p>基于<strong>用户</strong>的协同过滤举例：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">用户/物品</th>
+<th style="text-align:center">物品1</th>
+<th style="text-align:center">物品2</th>
+<th style="text-align:center">物品3</th>
+<th style="text-align:center">物品4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">用户A</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">推荐</td>
+</tr>
+<tr>
+<td style="text-align:center">用户B</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">用户C</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>用户A和用户C都喜欢物品1和物品3，基于用户的协同过滤算法认为用户A和用户C喜好相似，故将用户C喜欢的物品4推荐给用户A。</p>
+<p>基于<strong>物品</strong>的协同过滤举例：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">用户/物品</th>
+<th style="text-align:center">物品1</th>
+<th style="text-align:center">物品2</th>
+<th style="text-align:center">物品3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">用户A</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center">用户B</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center">用户C</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">推荐</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>物品1和物品3都被用户A和用户B喜欢，基于物品的协同过滤算法认为物品1和物品3类型相似，因用户C喜欢物品1，则将物品3推荐给用户C。</p>
+<h2 id="2-3-计算推荐"><a href="#2-3-计算推荐" class="headerlink" title="2.3 计算推荐"></a>2.3 计算推荐</h2><h3 id="2-3-1-基于用户相似度的推荐"><a href="#2-3-1-基于用户相似度的推荐" class="headerlink" title="2.3.1 基于用户相似度的推荐"></a>2.3.1 基于用户相似度的推荐</h3><p>其实就是<a href="https://elevenzou.github.io/2018/12/04/机器学习——KNN算法/" target="_blank" rel="noopener">KNN算法</a>的计算过程。</p>
+<p>相似度计算最好使用皮尔逊相关系数和基于相似度门槛的邻居来进行相似用户的选定。</p>
+<h3 id="2-3-2-基于物品相似度的推荐"><a href="#2-3-2-基于物品相似度的推荐" class="headerlink" title="2.3.2 基于物品相似度的推荐"></a>2.3.2 基于物品相似度的推荐</h3><p>如下例所示：</p>
+<p><img src="/assets/demo/2019021508.png" alt="基于物品相似度的计算推荐举例"></p>
+<p>如上表为用户对电影的评分表，若我想预测用户5对电影1的评分，从而进行推荐决策。(评分大于3.5才推荐)我们可以这样做：</p>
+<p>分别计算电影1与电影2、电影3等其他电影的相似度（必要时对评分进行预处理，消除数据差异），记为$sim(1,m)$，取两个相似度：最大的和第二大的，分别为$0.59,0.41$，这就是相似的邻居，然后通过加权计算预测出用户5对电影1的评分为2.6，推荐决策为：不推荐。</p>
 <h1 id="3-隐语义模型"><a href="#3-隐语义模型" class="headerlink" title="3. 隐语义模型"></a>3. 隐语义模型</h1><ul>
 <li>从数据出发，进行个性化推荐</li>
 <li>用户和物品之间有隐含的联系</li>
@@ -239,7 +440,7 @@ T(x,y)=\frac{x\cdot y}{\|x\|^2\times\|y\|^2}=\frac{\sum{x_iy_i}}{\sqrt{\sum{x^2_
 <li>选取那些很人们，而用户却没有行为的物品</li>
 <li>对与用户—物品集$K\{(u,i)\}$，其中如果$(u,i)$是正样本，则有$r_{ui}=1$，负样本在$r_{ui}=0$</li>
 </ul>
-<p><img src="/assets/demo/2019021504.png" alt="隐语义模型求解"></p>
+<p><img src="/assets/demo/2019021505.png" alt="隐语义模型求解"></p>
 <h1 id="4-推荐系统模型评估指标"><a href="#4-推荐系统模型评估指标" class="headerlink" title="4. 推荐系统模型评估指标"></a>4. 推荐系统模型评估指标</h1><p><img src="/assets/demo/2019021506.png" alt="评估指标1"></p>
 <p><img src="/assets/demo/2019021507.png" alt="评估指标2"></p>
 <h1 id="5-推荐系统的实现"><a href="#5-推荐系统的实现" class="headerlink" title="5. 推荐系统的实现"></a>5. 推荐系统的实现</h1>
@@ -379,6 +580,15 @@ T(x,y)=\frac{x\cdot y}{\|x\|^2\times\|y\|^2}=\frac{\sum{x_iy_i}}{\sqrt{\sum{x^2_
   
 <nav id="article-nav">
   
+    <a href="/2019/02/16/Surprise库基础用法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Surprise库基础用法
+        
+      </div>
+    </a>
+  
   
     <a href="/2019/01/31/Git的安装与使用/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title"></div>
@@ -408,7 +618,7 @@ T(x,y)=\frac{x\cdot y}{\|x\|^2\times\|y\|^2}=\frac{\sum{x_iy_i}}{\sqrt{\sum{x^2_
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-推荐系统简介"><span class="toc-number">1.</span> <span class="toc-text">1. 推荐系统简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-协同过滤"><span class="toc-number">2.</span> <span class="toc-text">2. 协同过滤</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-隐语义模型"><span class="toc-number">3.</span> <span class="toc-text">3. 隐语义模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-推荐系统模型评估指标"><span class="toc-number">4.</span> <span class="toc-text">4. 推荐系统模型评估指标</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-推荐系统的实现"><span class="toc-number">5.</span> <span class="toc-text">5. 推荐系统的实现</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-推荐系统简介"><span class="toc-number">1.</span> <span class="toc-text">1. 推荐系统简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-协同过滤"><span class="toc-number">2.</span> <span class="toc-text">2. 协同过滤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-收集用户偏好"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 收集用户偏好</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-找到相似的用户或物品"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 找到相似的用户或物品</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-计算推荐"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 计算推荐</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-基于用户相似度的推荐"><span class="toc-number">2.3.1.</span> <span class="toc-text">2.3.1 基于用户相似度的推荐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-基于物品相似度的推荐"><span class="toc-number">2.3.2.</span> <span class="toc-text">2.3.2 基于物品相似度的推荐</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-隐语义模型"><span class="toc-number">3.</span> <span class="toc-text">3. 隐语义模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-推荐系统模型评估指标"><span class="toc-number">4.</span> <span class="toc-text">4. 推荐系统模型评估指标</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-推荐系统的实现"><span class="toc-number">5.</span> <span class="toc-text">5. 推荐系统的实现</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -541,6 +751,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
@@ -550,14 +764,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">typora</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -574,6 +780,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Surprise</a>
               </li>
             
             <div class="clearfix"></div>
@@ -698,5 +912,21 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":100,"height":120},"mobile":{"show":false}});</script></body>
 </html>

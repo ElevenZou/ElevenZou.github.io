@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//elevenzou.github.io">
-  <title>Tag: typora | ElevenZou的博客</title>
+  <title>Surprise库基础用法 | ElevenZou的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="中国矿业大学(北京)17级研究生，擅长python，深入研究压缩感知，游戏爱好者。">
-<meta name="keywords" content="“python,压缩感知,程序猿,代码,机器学习”">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ElevenZou的博客">
-<meta property="og:url" content="//elevenzou.github.io/tags/typora/index.html">
+  <meta name="description" content="本文为python的推荐系统搭建工具库Surprise之Surprise基础用法的官方文档自译版，所有代码都实际编译通过，仅供参考交流。">
+<meta name="keywords" content="推荐系统,Surprise">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Surprise库基础用法">
+<meta property="og:url" content="//elevenzou.github.io/2019/02/16/Surprise库基础用法/index.html">
 <meta property="og:site_name" content="ElevenZou的博客">
-<meta property="og:description" content="中国矿业大学(北京)17级研究生，擅长python，深入研究压缩感知，游戏爱好者。">
+<meta property="og:description" content="本文为python的推荐系统搭建工具库Surprise之Surprise基础用法的官方文档自译版，所有代码都实际编译通过，仅供参考交流。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-16T05:18:03.762Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ElevenZou的博客">
-<meta name="twitter:description" content="中国矿业大学(北京)17级研究生，擅长python，深入研究压缩感知，游戏爱好者。">
+<meta name="twitter:title" content="Surprise库基础用法">
+<meta name="twitter:description" content="本文为python的推荐系统搭建工具库Surprise之Surprise基础用法的官方文档自译版，所有代码都实际编译通过，仅供参考交流。">
   
     <link rel="alternative" href="/atom.xml" title="ElevenZou的博客" type="application/atom+xml">
   
@@ -166,60 +167,273 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Surprise库基础用法" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/11/Typora的简易教程/" class="archive-article-date">
-  	<time datetime="2018-11-11T12:20:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-11</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/11/Typora的简易教程/">Typora的简易教程</a>
+    <h1 class="article-title" itemprop="name">
+      Surprise库基础用法
     </h1>
   
 
-        <div class="article-info info-on-right">
+        
+        <a href="/2019/02/16/Surprise库基础用法/" class="archive-article-date">
+  	<time datetime="2019-02-16T01:51:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>本文为python的推荐系统搭建工具库Surprise之<strong>Surprise基础用法</strong>的官方文档自译版，所有代码都实际编译通过，仅供参考交流。</p>
+<a id="more"></a>
+<h1 id="1-自动交叉验证"><a href="#1-自动交叉验证" class="headerlink" title="1. 自动交叉验证"></a>1. 自动交叉验证</h1><p><strong>Surprise</strong>工具库拥有一系列内置函数和数据集供你使用，它强大到你只需要简单地写几行代码就能使用交叉验证法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> SVD</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> Dataset</span><br><span class="line"><span class="keyword">from</span> surprise.model_selection <span class="keyword">import</span> cross_validate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 载入movielens-100k数据集（如果不存在，则会自动下载）</span></span><br><span class="line">data = Dataset.load_builtin(<span class="string">'ml-100k'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将使用SVD算法</span></span><br><span class="line">algo = SVD()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行5折交叉验证并打印出结果，评价指标为RMSE———均方根误差、MAE———平均绝对误差</span></span><br><span class="line">cross_validate(algo, data, measures=[<span class="string">'RMSE'</span>, <span class="string">'MAE'</span>], cv=<span class="number">5</span>, verbose=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Evaluating RMSE, MAE of algorithm SVD on 5 split(s).</span><br><span class="line"></span><br><span class="line"><span class="code">                  Fold 1  Fold 2  Fold 3  Fold 4  Fold 5  Mean    Std     </span></span><br><span class="line">RMSE (testset)    0.9322  0.9398  0.9348  0.9363  0.9357  0.9357  0.0025  </span><br><span class="line">MAE (testset)     0.7378  0.7388  0.7357  0.7367  0.7393  0.7377  0.0013  </span><br><span class="line">Fit time          4.98    4.87    4.83    5.16    4.99    4.97    0.12    </span><br><span class="line">Test time         0.16    0.14    0.15    0.19    0.16    0.16    0.02</span><br></pre></td></tr></table></figure>
+<p>如果数据集movielens-100k不存在，函数<code>load_builtin()</code>会自动下载数据集(需联网)，并将其保存在你的用户根目录的<code>.surprise_data</code>文件夹下。（你也可以指定别的保存目录）。</p>
+<p>除了著名的<code>SVD</code>算法，你还能使用其他的算法，如<code>KNN</code>、<code>NMF</code>、<code>CoClustering</code>等。</p>
+<p><code>cross_validate()</code>函数实现<code>cv</code>折交叉验证功能，并计算一些<strong>精度评价指标</strong>，<code>verbose=True</code>表示打印出结果。上面使用5折交叉验证，你也可以使用更高级的交叉验证迭代器（p次k折交叉验证法）。</p>
+<h1 id="2-训练集-测试集划分和拟合函数fit"><a href="#2-训练集-测试集划分和拟合函数fit" class="headerlink" title="2. 训练集-测试集划分和拟合函数fit()"></a>2. 训练集-测试集划分和拟合函数fit()</h1><p>如果不想进行交叉验证法，也可以使用<code>train_test_split()</code>将测试集与训练集划按你给定大小进行划分，并使用选定的<strong>精度评价指标</strong>。<code>fit()</code>函数将在训练集上使用算法，<code>test()</code>函数返回在测试集中的预测：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> SVD</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> Dataset</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> accuracy</span><br><span class="line"><span class="keyword">from</span> surprise.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line"><span class="comment"># 载入movielens-100k数据集（如果不存在，则会自动下载）</span></span><br><span class="line">data = Dataset.load_builtin(<span class="string">'ml-100k'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 随机抽取训练集和测试集，测试集占总数据集的25%</span></span><br><span class="line">trainset, testset = train_test_split(data, test_size=<span class="number">.25</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将使用SVD算法</span></span><br><span class="line">algo = SVD()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 用训练集训练模型，用测试集来得到评级结果</span></span><br><span class="line">algo.fit(trainset)</span><br><span class="line">predictions = algo.test(testset)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算均方根误差RMSE</span></span><br><span class="line">accuracy.rmse(predictions)</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RMSE: 0.9436</span><br></pre></td></tr></table></figure>
+<p>也可以使用一行代码来实现训练和测试算法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">predictions = algo.fit(trainset).test(testset)</span><br></pre></td></tr></table></figure>
+<h1 id="3-训练整个数据集和predict-预测函数"><a href="#3-训练整个数据集和predict-预测函数" class="headerlink" title="3. 训练整个数据集和predict()预测函数"></a>3. 训练整个数据集和predict()预测函数</h1><p>显然，我们也可以简单地将算法拟合到整个数据集。使用<code>build_full_trainset()</code>方法来实现，然后通过直接调用<code>predict()</code>方法来预测正确率，假如使用：“user id:196, item id:302，电影评级:4”来验证(确保训练集中包含这个)。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> KNNBasic</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> Dataset</span><br><span class="line"></span><br><span class="line"><span class="comment"># 载入movielens-100k数据集（如果不存在，则会自动下载）</span></span><br><span class="line">data = Dataset.load_builtin(<span class="string">'ml-100k'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 取回训练集</span></span><br><span class="line">trainset = data.build_full_trainset()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建算法并训练</span></span><br><span class="line">algo = KNNBasic()</span><br><span class="line">algo.fit(trainset)</span><br><span class="line"></span><br><span class="line">uid = str(<span class="number">196</span>)</span><br><span class="line">iid = str(<span class="number">302</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取指定用户和电影的评级结果</span></span><br><span class="line">pred = algo.predict(uid, iid, r_ui=<span class="number">4</span>, verbose=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Computing the msd similarity matrix...</span><br><span class="line">Done computing similarity matrix.</span><br><span class="line">user: 196        item: 302        r<span class="emphasis">_ui = 4.00   est = 4.06   &#123;'actual_</span>k': 40, 'was_impossible': False&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：<code>predict()</code>使用原始id（原id和内部id的区别以后再详细说明）。 由于使用的数据集是从文件中读取，因此原始ID是字符串（即使它们代表数字）。</p>
+<h1 id="4-自定义数据集"><a href="#4-自定义数据集" class="headerlink" title="4. 自定义数据集"></a>4. 自定义数据集</h1><p><strong>Surprise</strong>工具库拥有有一系列内置数据集，但是你也可以使用<strong>自定义</strong>数据集。</p>
+<p>目前为止介绍的都是内置的数据集，也可以使用自定义数据集，你可以从<strong>文件</strong>（例如csv文件）或从<strong>pandas数据帧</strong>中加载评级数据集。无论哪种方式，您都需要为Surprise<strong>定义一个Reader对象</strong>，以便能够解析文件或数据帧。</p>
+<p>为了从文件（例如csv文件）中加载数据集，你需要使用<code>load_from_file()</code>方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> BaselineOnly</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> Dataset</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> Reader</span><br><span class="line"><span class="keyword">from</span> surprise.model_selection <span class="keyword">import</span> cross_validate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据集文件路径</span></span><br><span class="line">file_path = os.path.expanduser(<span class="string">'~/.surprise_data/ml-100k/ml-100k/u.data'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 我们需要定义一个reader来加载自定义数据集。在movielens-100k数据集中，每行是如下形式：</span></span><br><span class="line"><span class="comment"># 'user' 'item' 'rating' 'timestamp', 用'\ t'字符分隔</span></span><br><span class="line">reader = Reader(line_format=<span class="string">'user item rating timestamp'</span>, sep=<span class="string">'\t'</span>)</span><br><span class="line">data = Dataset.load_from_file(file_path, reader=reader)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 我们现在可以随意使用此数据集，例如 调用cross_validate：</span></span><br><span class="line">cross_validate(BaselineOnly(), data, verbose=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Estimating biases using als...</span><br><span class="line">Estimating biases using als...</span><br><span class="line">Estimating biases using als...</span><br><span class="line">Estimating biases using als...</span><br><span class="line">Estimating biases using als...</span><br><span class="line">Evaluating RMSE, MAE of algorithm BaselineOnly on 5 split(s).</span><br><span class="line"></span><br><span class="line"><span class="code">                  Fold 1  Fold 2  Fold 3  Fold 4  Fold 5  Mean    Std     </span></span><br><span class="line">RMSE (testset)    0.9498  0.9505  0.9392  0.9433  0.9375  0.9440  0.0053  </span><br><span class="line">MAE (testset)     0.7521  0.7535  0.7449  0.7479  0.7444  0.7485  0.0037  </span><br><span class="line">Fit time          0.17    0.20    0.24    0.19    0.20    0.20    0.02    </span><br><span class="line">Test time         0.14    0.11    0.11    0.11    0.11    0.12    0.01</span><br></pre></td></tr></table></figure>
+<p>正如您在上一节中已经知道的那样，movielens-100k数据集是内置的，因此加载数据集的更快的方法是执行<code>data = Dataset.load_builtin(&#39;ml-100k&#39;)</code>。 在此处请忽略这一点。</p>
+<p>为了从pandas数据帧中加载数据集，你需要使用<code>load_frim_df()</code>方法，也要使用<code>Reader</code>类，但是只有<code>rating_scale</code>参数必须指定。数据帧必须有三列，对应于用户（原始）ID，项目（原始）ID以及此顺序中的评级。因此，每行对应于给定的评级。 因为您可以轻松地重新排序数据帧的列。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> NormalPredictor</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> Dataset</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> Reader</span><br><span class="line"><span class="keyword">from</span> surprise.model_selection <span class="keyword">import</span> cross_validate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建数据帧，字典原子无序，所以列名无关紧要</span></span><br><span class="line">ratings_dict = &#123;<span class="string">'itemID'</span>: [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>],</span><br><span class="line">                <span class="string">'userID'</span>: [<span class="number">9</span>, <span class="number">32</span>, <span class="number">2</span>, <span class="number">45</span>, <span class="string">'user_foo'</span>],</span><br><span class="line">                <span class="string">'rating'</span>: [<span class="number">3</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">1</span>]&#125;</span><br><span class="line">df = pd.DataFrame(ratings_dict)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只有rating_scale(评分范围1~5分)参数被指定时才需要用到reader</span></span><br><span class="line">reader = Reader(rating_scale=(<span class="number">1</span>, <span class="number">5</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列必须对应于用户ID，项目ID和评级（按此顺序）</span></span><br><span class="line">data = Dataset.load_from_df(df[[<span class="string">'userID'</span>, <span class="string">'itemID'</span>, <span class="string">'rating'</span>]], reader)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 我们现在可以随意使用此数据集，例如 调用cross_validate</span></span><br><span class="line">cross_validate(NormalPredictor(), data, cv=<span class="number">2</span>, verbose=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Evaluating RMSE, MAE of algorithm NormalPredictor on 2 split(s).</span><br><span class="line"></span><br><span class="line"><span class="code">                  Fold 1  Fold 2  Mean    Std     </span></span><br><span class="line">RMSE (testset)    1.1808  1.5973  1.3890  0.2083  </span><br><span class="line">MAE (testset)     1.1364  1.5737  1.3551  0.2186  </span><br><span class="line">Fit time          0.00    0.00    0.00    0.00    </span><br><span class="line">Test time         0.00    0.00    0.00    0.00</span><br></pre></td></tr></table></figure>
+<p>数据帧最初看起来像这样：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">      itemID  rating    userID</span></span><br><span class="line">0       1       3         9</span><br><span class="line">1       1       2        32</span><br><span class="line">2       1       4         2</span><br><span class="line">3       2       3        45</span><br><span class="line">4       2       1  user_foo</span><br></pre></td></tr></table></figure>
+<h1 id="5-使用交叉验证法迭代器"><a href="#5-使用交叉验证法迭代器" class="headerlink" title="5. 使用交叉验证法迭代器"></a>5. 使用交叉验证法迭代器</h1><p>为了更好的评估模型，我们还可以实现交叉验证迭代器（p次k折交叉验证）。对<code>split()</code>方法划分的每个迭代器都使用<code>test()</code>方法进行预测。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> SVD</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> Dataset</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> accuracy</span><br><span class="line"><span class="keyword">from</span> surprise.model_selection <span class="keyword">import</span> KFold</span><br><span class="line"></span><br><span class="line"><span class="comment"># 载入movielens-100k数据集（如果不存在，则会自动下载）</span></span><br><span class="line">data = Dataset.load_builtin(<span class="string">'ml-100k'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义几次几折交叉验证迭代</span></span><br><span class="line">kf = KFold(n_splits=<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">algo = SVD()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> trainset, testset <span class="keyword">in</span> kf.split(data):</span><br><span class="line">    <span class="comment"># 训练和测试算法</span></span><br><span class="line">    algo.fit(trainset)</span><br><span class="line">    predictions = algo.test(testset)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 计算和打印均方根误差</span></span><br><span class="line">    accuracy.rmse(predictions, verbose=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">RMSE:</span> <span class="number">0.9421</span></span><br><span class="line"><span class="symbol">RMSE:</span> <span class="number">0.9504</span></span><br><span class="line"><span class="symbol">RMSE:</span> <span class="number">0.9447</span></span><br></pre></td></tr></table></figure>
+<p>其他的交叉验证法如LeaveOneOut（留一法）和 ShuffleSplit（打散组合法）将样本集合随机“打散”后划分为训练集、测试集）也能使用。Surprise的交叉验证工具的设计灵感来自优秀的scikit-learn API。</p>
+<p>训练集和测试集分别预定义成文件的情况是交叉验证的一个特例。 例如movielens-100K数据集已经提供了5个训练文件和5个测试文件(u1.base,u1.test,…,u5.base,u5.test)。可以使用<code>surprise.mode_selection.split.PredefinedKFold</code>对象来解决这种情况：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> SVD</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> Dataset</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> Reader</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> accuracy</span><br><span class="line"><span class="keyword">from</span> surprise.model_selection <span class="keyword">import</span> PredefinedKFold</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据集文件夹位置</span></span><br><span class="line">files_dir = os.path.expanduser(<span class="string">'~/.surprise_data/ml-100k/ml-100k/'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这次，使用内置函数Reader读取数据</span></span><br><span class="line">reader = Reader(<span class="string">'ml-100k'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义folds_files为包含文件路径的元组列表：</span></span><br><span class="line"><span class="comment"># [(u1.base, u1.test), (u2.base, u2.test),...(u5.base, u5.test)]</span></span><br><span class="line">train_file = files_dir + <span class="string">'u%d.base'</span></span><br><span class="line">test_file = files_dir + <span class="string">'u%d.test'</span></span><br><span class="line">folds_files = [(train_file % i, test_file % i) <span class="keyword">for</span> i <span class="keyword">in</span> (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 分别载入数据集</span></span><br><span class="line">data = Dataset.load_from_folds(folds_files, reader=reader)</span><br><span class="line">pkf = PredefinedKFold()</span><br><span class="line"></span><br><span class="line">algo = SVD()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> trainset, testset <span class="keyword">in</span> pkf.split(data):</span><br><span class="line">    <span class="comment"># 训练和测试</span></span><br><span class="line">    algo.fit(trainset)</span><br><span class="line">    predictions = algo.test(testset)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 计算和打印均方根误差</span></span><br><span class="line">    accuracy.rmse(predictions, verbose=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">RMSE: 0.9494</span><br><span class="line">RMSE: 0.9390</span><br><span class="line">RMSE: 0.9332</span><br><span class="line">RMSE: 0.9319</span><br><span class="line">RMSE: 0.9303</span><br></pre></td></tr></table></figure>
+<p>当然，您也可以只加载单个文件进行训练和加载单个文件进行测试。 但是，<code>folds_files</code>参数仍然需要是一个列表的形式。</p>
+<h1 id="6-使用GridSearchCV调参"><a href="#6-使用GridSearchCV调参" class="headerlink" title="6. 使用GridSearchCV调参"></a>6. 使用GridSearchCV调参</h1><p><code>cross_validate()</code>函数输出给定参数集的交叉验证过程的准确度度量。如果您想知道哪个参数组合产生最佳结果，可以使用<code>GridSearchCV</code>类。给定拥有一些参数的字典，该类将详尽地尝试所有参数组合并报告任何精度测量的最佳参数（在不同的分割上取平均值）。</p>
+<p>下面为我们为<code>SVD</code>算法的参数<strong>n_epochs</strong>，<strong>lr_all</strong>和<strong>reg_all</strong>调参的例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> SVD</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> Dataset</span><br><span class="line"><span class="keyword">from</span> surprise.model_selection <span class="keyword">import</span> GridSearchCV</span><br><span class="line"></span><br><span class="line"><span class="comment"># 载入movielens-100k数据集（如果不存在，则会自动下载）</span></span><br><span class="line">data = Dataset.load_builtin(<span class="string">'ml-100k'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定参数选择范围</span></span><br><span class="line">param_grid = &#123;<span class="string">'n_epochs'</span>: [<span class="number">5</span>, <span class="number">10</span>], <span class="string">'lr_all'</span>: [<span class="number">0.002</span>, <span class="number">0.005</span>],</span><br><span class="line">              <span class="string">'reg_all'</span>: [<span class="number">0.4</span>, <span class="number">0.6</span>]&#125;</span><br><span class="line"></span><br><span class="line">gs = GridSearchCV(SVD, param_grid, measures=[<span class="string">'rmse'</span>, <span class="string">'mae'</span>], cv=<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">gs.fit(data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印最好的均方根误差RMSE</span></span><br><span class="line">print(gs.best_score[<span class="string">'rmse'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印取得最好RMSE的参数集合</span></span><br><span class="line">print(gs.best_params[<span class="string">'rmse'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 现在可以使用产生最佳RMSE的算法</span></span><br><span class="line">algo = gs.best_estimator[<span class="string">'rmse'</span>]</span><br><span class="line">algo.fit(data.build_full_trainset())</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.9641039203035255</span></span><br><span class="line">&#123;<span class="string">'n_epochs'</span>: <span class="number">10</span>, <span class="string">'lr_all'</span>: <span class="number">0.005</span>, <span class="string">'reg_all'</span>: <span class="number">0.4</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>一旦调用了<code>fit()</code>，<strong>best_estimator</strong>属性就会为我们提供一个具有最佳参数集的算法实例。在此使用3折交叉验证法评估平均RMSE和MAE，也可以使用任何交叉验证迭代器。</p>
+<p><strong>注意</strong>：字典参数（例如<code>bsl_options</code>和<code>sim_options</code>）需要特殊处理。 见下面的用法示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">param_grid = &#123;<span class="string">'k'</span>: [<span class="number">10</span>, <span class="number">20</span>],</span><br><span class="line">              <span class="string">'sim_options'</span>: &#123;<span class="string">'name'</span>: [<span class="string">'msd'</span>, <span class="string">'cosine'</span>],</span><br><span class="line">                              <span class="string">'min_support'</span>: [<span class="number">1</span>, <span class="number">5</span>],</span><br><span class="line">                              <span class="string">'user_based'</span>: [<span class="keyword">False</span>]&#125;</span><br><span class="line">              &#125;</span><br></pre></td></tr></table></figure>
+<p>当然，两者可以组合，例如在<code>KNNBaseline</code>算法中：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">param_grid = &#123;<span class="string">'bsl_options'</span>: &#123;<span class="string">'method'</span>: [<span class="string">'als'</span>, <span class="string">'sgd'</span>],</span><br><span class="line">                              <span class="string">'reg'</span>: [<span class="number">1</span>, <span class="number">2</span>]&#125;,</span><br><span class="line">              <span class="string">'k'</span>: [<span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">              <span class="string">'sim_options'</span>: &#123;<span class="string">'name'</span>: [<span class="string">'msd'</span>, <span class="string">'cosine'</span>],</span><br><span class="line">                              <span class="string">'min_support'</span>: [<span class="number">1</span>, <span class="number">5</span>],</span><br><span class="line">                              <span class="string">'user_based'</span>: [<span class="keyword">False</span>]&#125;</span><br><span class="line">              &#125;</span><br></pre></td></tr></table></figure>
+<p>进一步分析，<code>cv_results</code>属性所有的信息可以导出为pandas数据帧，并保存为.csv文件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">results_df = pd.DataFrame.from_dict(gs.cv_results)</span><br><span class="line">results_df.to_csv(<span class="string">'cv_result.csv'</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="7-命令行使用方法"><a href="#7-命令行使用方法" class="headerlink" title="7. 命令行使用方法"></a>7. 命令行使用方法</h1><p><strong>Surprise</strong>也可以在<strong>终端命令行</strong>(Terminal command line)中使用，如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">surprise -algo SVD -params <span class="string">"&#123;'n_epochs': 5, 'verbose': True&#125;"</span> -load-builtin ml-100k -n-folds 3</span></span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Processing epoch <span class="number">0</span></span><br><span class="line">Processing epoch <span class="number">1</span></span><br><span class="line">Processing epoch <span class="number">2</span></span><br><span class="line">Processing epoch <span class="number">3</span></span><br><span class="line">Processing epoch <span class="number">4</span></span><br><span class="line">Processing epoch <span class="number">0</span></span><br><span class="line">Processing epoch <span class="number">1</span></span><br><span class="line">Processing epoch <span class="number">2</span></span><br><span class="line">Processing epoch <span class="number">3</span></span><br><span class="line">Processing epoch <span class="number">4</span></span><br><span class="line">Processing epoch <span class="number">0</span></span><br><span class="line">Processing epoch <span class="number">1</span></span><br><span class="line">Processing epoch <span class="number">2</span></span><br><span class="line">Processing epoch <span class="number">3</span></span><br><span class="line">Processing epoch <span class="number">4</span></span><br><span class="line">Evaluating RMSE, MAE of algorithm SVD on <span class="number">3</span> split(s).</span><br><span class="line"></span><br><span class="line">                  Fold <span class="number">1</span>  Fold <span class="number">2</span>  Fold <span class="number">3</span>  Mean    Std</span><br><span class="line">RMSE (testset)    <span class="number">0.9663</span>  <span class="number">0.9657</span>  <span class="number">0.9580</span>  <span class="number">0.9633</span>  <span class="number">0.0038</span></span><br><span class="line">MAE (testset)     <span class="number">0.7668</span>  <span class="number">0.7665</span>  <span class="number">0.7636</span>  <span class="number">0.7656</span>  <span class="number">0.0014</span></span><br><span class="line">Fit time          <span class="number">1.04</span>    <span class="number">1.06</span>    <span class="number">1.07</span>    <span class="number">1.06</span>    <span class="number">0.01</span></span><br><span class="line">Test time         <span class="number">0.26</span>    <span class="number">0.25</span>    <span class="number">0.25</span>    <span class="number">0.25</span>    <span class="number">0.00</span></span><br></pre></td></tr></table></figure>
+<p>更多细节通过输入<code>surprise -h</code>指令得到:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">surprise -h</span></span><br><span class="line">usage: surprise [-h] [-algo &lt;prediction algorithm&gt;]</span><br><span class="line">                [-params &lt;algorithm parameters&gt;]</span><br><span class="line">                [-load-builtin &lt;dataset name&gt;] [-load-custom &lt;file path&gt;]</span><br><span class="line">                [-folds-files &lt;train1 test1 train2 test2... &gt;]</span><br><span class="line">                [-reader &lt;reader&gt;] [-n-folds &lt;number of folds&gt;]</span><br><span class="line">                [-seed &lt;random seed&gt;] [--with-dump] [-dump-dir &lt;dir&gt;]</span><br><span class="line">                [--clean] [-v]</span><br><span class="line"></span><br><span class="line">Evaluate the performance of a rating prediction algorithm on a given dataset</span><br><span class="line">using cross validation. You can use a built-in or a custom dataset, and you</span><br><span class="line">can choose to automatically split the dataset into folds, or manually specify</span><br><span class="line">train and test files. Please refer to the documentation page</span><br><span class="line">(http://surprise.readthedocs.io/) for more details.</span><br><span class="line"></span><br><span class="line">optional arguments:</span><br><span class="line">  -h, --help            show this help message and exit</span><br><span class="line">  -algo &lt;prediction algorithm&gt;</span><br><span class="line">                        The prediction algorithm to use. Allowed values are</span><br><span class="line">                        NormalPredictor, BaselineOnly, KNNBasic, KNNBaseline,</span><br><span class="line">                        KNNWithMeans, SVD, SVDpp, NMF, SlopeOne, CoClustering.</span><br><span class="line">  -params &lt;algorithm parameters&gt;</span><br><span class="line">                        A kwargs dictionary that contains all the algorithm</span><br><span class="line">                        parameters.Example: "&#123;'n_epochs': 10&#125;".</span><br><span class="line">  -load-builtin &lt;dataset name&gt;</span><br><span class="line">                        The name of the built-in dataset to use.Allowed values</span><br><span class="line">                        are ml-100k, ml-1m, jester. Default is ml-100k.</span><br><span class="line">  -load-custom &lt;file path&gt;</span><br><span class="line">                        A file path to custom dataset to use. Ignored if</span><br><span class="line">                        -loadbuiltin is set. The -reader parameter needs to be</span><br><span class="line">                        set.</span><br><span class="line">  -folds-files &lt;train1 test1 train2 test2... &gt;</span><br><span class="line">                        A list of custom train and test files. Ignored if</span><br><span class="line">                        -load-builtin or -load-custom is set. The -reader</span><br><span class="line">                        parameter needs to be set.</span><br><span class="line">  -reader &lt;reader&gt;      A Reader to read the custom dataset. Example:</span><br><span class="line">                        "Reader(line_format='user item rating timestamp',</span><br><span class="line">                        sep='\t')"</span><br><span class="line">  -n-folds &lt;number of folds&gt;</span><br><span class="line">                        The number of folds for cross-validation. Default is</span><br><span class="line">                        5.</span><br><span class="line">  -seed &lt;random seed&gt;   The seed to use for RNG. Default is the current system</span><br><span class="line">                        time.</span><br><span class="line">  --with-dump           Dump the algorithm results in a file (one file per</span><br><span class="line">                        fold). Default is False.</span><br><span class="line">  -dump-dir &lt;dir&gt;       Where to dump the files. Ignored if with-dump is not</span><br><span class="line">                        set. Default is</span><br><span class="line">                        C:\Users\Eleven_Zou/.surprise_data/dumps/</span><br><span class="line">  --clean               Remove the C:\Users\Eleven_Zou/.surprise_data/</span><br><span class="line">                        directory and exit.</span><br><span class="line">  -v, --version         show program's version number and exit</span><br><span class="line"></span><br><span class="line">Example: surprise -algo SVD -params "&#123;'n_epochs': 5, 'verbose': True&#125;" -load-</span><br><span class="line">builtin ml-100k -n-folds 3</span><br></pre></td></tr></table></figure>
+
+      
+      
+	  
+      
+        <div class="declare">
+          <strong>本文作者：</strong>
           
+            ElevenZou
+          
+          <br>
+          <strong>本文链接：</strong>
+          https://elevenzou.github.io/2019/02/16/Surprise库基础用法/
+          <br>
+          <strong>版权声明：</strong>
+          本作品采用
+          <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+          进行许可。转载请注明出处！
+          
+        </div>
+      
+	  
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃辣条<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">typora</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">推荐系统</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Surprise</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://elevenzou.github.io/2019/02/16/Surprise库基础用法/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/02/15/机器学习——推荐系统/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">推荐系统学习笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-自动交叉验证"><span class="toc-number">1.</span> <span class="toc-text">1. 自动交叉验证</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-训练集-测试集划分和拟合函数fit"><span class="toc-number">2.</span> <span class="toc-text">2. 训练集-测试集划分和拟合函数fit()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-训练整个数据集和predict-预测函数"><span class="toc-number">3.</span> <span class="toc-text">3. 训练整个数据集和predict()预测函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-自定义数据集"><span class="toc-number">4.</span> <span class="toc-text">4. 自定义数据集</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-使用交叉验证法迭代器"><span class="toc-number">5.</span> <span class="toc-text">5. 使用交叉验证法迭代器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-使用GridSearchCV调参"><span class="toc-number">6.</span> <span class="toc-text">6. 使用GridSearchCV调参</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-命令行使用方法"><span class="toc-number">7.</span> <span class="toc-text">7. 命令行使用方法</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -242,9 +456,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
