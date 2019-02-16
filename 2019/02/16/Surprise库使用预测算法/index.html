@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="ElevenZou的博客">
 <meta property="og:description" content="本文为python的推荐系统搭建工具库Surprise之使用预测算法的官方文档自译版，所有代码都实际编译通过，仅供参考交流。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-16T05:35:12.553Z">
+<meta property="og:updated_time" content="2019-02-16T08:48:32.114Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Surprise库使用预测算法">
 <meta name="twitter:description" content="本文为python的推荐系统搭建工具库Surprise之使用预测算法的官方文档自译版，所有代码都实际编译通过，仅供参考交流。">
@@ -180,7 +180,7 @@ var _hmt = _hmt || [];
 
         
         <a href="/2019/02/16/Surprise库使用预测算法/" class="archive-article-date">
-  	<time datetime="2019-02-16T01:51:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-16</time>
+  	<time datetime="2019-02-16T06:51:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-16</time>
 </a>
         
       </header>
@@ -189,7 +189,59 @@ var _hmt = _hmt || [];
       
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>本文为python的推荐系统搭建工具库Surprise之<strong>使用预测算法</strong>的官方文档自译版，所有代码都实际编译通过，仅供参考交流。</p>
 <a id="more"></a>
-<h1 id=""><a href="#" class="headerlink" title=" "></a> </h1>
+<h1 id="1-使用预测算法"><a href="#1-使用预测算法" class="headerlink" title="1. 使用预测算法"></a>1. 使用预测算法</h1><p>Surprise库提供一堆内置算法，所有算法都来自<code>AlgoBase</code>基类，其中实现了一些关键方法（例如predict，fit和test）。可以在<code>prediction_algorithms</code>包文档中找到可用预测算法的列表和详细信息。</p>
+<p>每个算法都是全局Surprise命名空间的一部分，因此您只需要从Surprise包中导入它们的名称，例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> KNNBasic</span><br><span class="line">algo = KNNBasic()</span><br></pre></td></tr></table></figure>
+<p>这些算法中的一些使用<strong>基线估计</strong>，一些使用<strong>相似性度量</strong>。</p>
+<h1 id="2-基线估计配置"><a href="#2-基线估计配置" class="headerlink" title="2. 基线估计配置"></a>2. 基线估计配置</h1><p><strong>注意</strong>：本节仅适用于尝试最小化以下正则化平方误差（或等效）的算法（或相似性度量）：</p>
+<script type="math/tex; mode=display">
+\sum_{r_{ui}\in R_{train}}(r_{ui}-(\mu+b_u+b_i))^2+\lambda(b_u^2+b_i^2)</script><p>对于使用基线估计的其他目标函数（例如SVD算法），基线估计配置在特定的每个算法中都不同。 请参阅他们自己的文档。</p>
+<p>若您觉得配置计算基线估计太麻烦，也可以使用默认参数。</p>
+<p>基线估计可以使用两种不同的方式估算基线：</p>
+<ul>
+<li>使用交替最小二乘法（ALS）。</li>
+<li>使用随机梯度下降（SGD）。</li>
+</ul>
+<p>可以使用<code>bsl_options</code> 在创建算法时传递的参数来配置基线的计算方式。此参数是一个字典，其中的键<code>&#39;method&#39;</code>指示要使用的方法。可接受的值是<code>&#39;als&#39;</code>（默认）和<code>&#39;sgd&#39;</code>。根据设定的值，其他可设置的选项为：</p>
+<p>对与<strong>ALS</strong>：</p>
+<ul>
+<li><p><code>reg_i</code>:item的正则化参数。默认为<strong>10</strong>.</p>
+</li>
+<li><p><code>reg_u</code>:user的正则化参数。默认为<strong>15</strong>.</p>
+</li>
+<li><p><code>n_epochs</code>:ALS过程的迭代次数。默认为<strong>10</strong>.</p>
+</li>
+</ul>
+<p>对于<strong>SGD</strong>:</p>
+<ul>
+<li><p><code>reg</code>:优化的成本函数的正则化参数。默认为<strong>0.02</strong>.</p>
+</li>
+<li><p><code>learning_rate:</code>SGD的学习率。默认为<strong>0.005</strong>. </p>
+</li>
+<li><p><code>n_epochs</code>:SGD过程的迭代次数。默认为<strong>20</strong>.</p>
+<p><strong>注意</strong>：不论SGD还是ALS，用户和物品($b_u$,$b_i$)的损失量都默认为<strong>0</strong>.</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'Using ALS'</span>)</span><br><span class="line">bsl_options = &#123;<span class="string">'method'</span>: <span class="string">'als'</span>,</span><br><span class="line">               <span class="string">'n_epoches'</span>: <span class="number">5</span>,</span><br><span class="line">               <span class="string">'reg_u'</span>: <span class="number">12</span>,</span><br><span class="line">               <span class="string">'reg_i'</span>: <span class="number">5</span></span><br><span class="line">               &#125;</span><br><span class="line">algo = BaselineOnly(bsl_options=bsl_options)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'Using SGD'</span>)</span><br><span class="line">bsl_options = &#123;<span class="string">'method'</span>: <span class="string">'sgd'</span>,</span><br><span class="line">               <span class="string">'learning_rate'</span>: <span class="number">.00005</span>,</span><br><span class="line">               &#125;</span><br><span class="line">algo = BaselineOnly(bsl_options=bsl_options)</span><br></pre></td></tr></table></figure>
+<p>请注意，某些相似性度量可能会使用基线，例如 <code>pearson_baseline</code>相似性。无论基线是否用于实际预测r，配置的工作方式都相同:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bsl_options  =  &#123; <span class="string">'method'</span> ： <span class="string">'als'</span> ，</span><br><span class="line">               <span class="string">'n_epochs'</span> ： <span class="number">20</span> ，</span><br><span class="line">               &#125; </span><br><span class="line">sim_options  =  &#123; <span class="string">'name'</span> ： <span class="string">'pearson_baseline'</span> &#125; </span><br><span class="line">algo  =  KNNBasic （bsl_options = bsl_options ， sim_options = sim_options ）</span><br></pre></td></tr></table></figure>
+<h1 id="3-相似度配置"><a href="#3-相似度配置" class="headerlink" title="3. 相似度配置"></a>3. 相似度配置</h1><p>许多算法使用相似性度量来估计评分。它们的配置方式与基线评级类似：您只需<code>sim_options</code>在创建算法时传递参数即可。此参数是包含以下(所有可选)键的字典： </p>
+<ul>
+<li><p><code>name</code>:要使用的相似性的名称，如<code>similarities</code>模块中所定义 。默认是<strong>‘MSD’</strong>。</p>
+</li>
+<li><p><code>user_based</code>:是否在用户之间或项目之间计算相似性。这对预测算法的性能有很大影响。默认是<strong>True</strong>。</p>
+</li>
+<li><p><code>min_support</code>:如果$|I_{uv}|&lt;min_support$，$sim(u,v)=0$，对物品也一样。</p>
+</li>
+<li><p><code>shrinkage</code>:要应用的收缩参数（仅与<code>pearson_baseline</code>相似性相关 ）。默认值为<strong>100</strong>。</p>
+</li>
+</ul>
+<p>如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sim_options = &#123;<span class="string">'name'</span>: <span class="string">'cosine'</span>,</span><br><span class="line">               <span class="string">'user_based'</span>: <span class="keyword">False</span>  <span class="comment"># 计算物品之间的相似性</span></span><br><span class="line">               &#125;</span><br><span class="line">algo = KNNBasic(sim_options=sim_options)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sim_options = &#123;<span class="string">'name'</span>: <span class="string">'pearson_baseline'</span>,</span><br><span class="line">               <span class="string">'shrinkage'</span>: <span class="number">0</span>  <span class="comment"># 不收缩</span></span><br><span class="line">               &#125;</span><br><span class="line">algo = KNNBasic(sim_options=sim_options)</span><br></pre></td></tr></table></figure>
+<p>注意：Surprise库提供四种相似度计算方式：分别为<strong>cosine</strong>、<strong>msd</strong>、<strong>pearson</strong>和<strong>pearsin_baseline</strong>.</p>
+
       
       
 	  
@@ -326,18 +378,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2019/02/16/Surprise库基础用法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Surprise库基础用法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/02/15/机器学习——推荐系统/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">推荐系统学习笔记</div>
+    <a href="/2019/02/16/Surprise库基础用法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Surprise库基础用法</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -364,7 +407,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#"><span class="toc-number">1.</span> <span class="toc-text"> </span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-使用预测算法"><span class="toc-number">1.</span> <span class="toc-text">1. 使用预测算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-基线估计配置"><span class="toc-number">2.</span> <span class="toc-text">2. 基线估计配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-相似度配置"><span class="toc-number">3.</span> <span class="toc-text">3. 相似度配置</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -509,10 +552,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
@@ -534,6 +573,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">paper writing</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
             
             <div class="clearfix"></div>
