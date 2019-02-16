@@ -9,7 +9,7 @@
   <title>推荐系统学习笔记 | ElevenZou的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="本文是笔者学习推荐系统的笔记，在本文中笔者动手搭建了基于python扩展库surprise的推荐系统和基于Tensorflow的隐语义模型。">
-<meta name="keywords" content="Machine Learning,推荐系统">
+<meta name="keywords" content="推荐系统,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="推荐系统学习笔记">
 <meta property="og:url" content="//elevenzou.github.io/2019/02/15/机器学习——推荐系统/index.html">
@@ -76,7 +76,7 @@ var _hmt = _hmt || [];
 		  <h1 class="header-author"><a href="">ElevenZou</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">鱼跃此时海，花开彼岸天</p>
+		<p class="header-subtitle">不只是知识的搬运工</p>
 		
 
 		<nav class="header-menu">
@@ -106,7 +106,7 @@ var _hmt = _hmt || [];
 				
 					<a class="github" target="_blank" href="https://github.com/ElevenZou/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="mail" target="_blank" href="mailto:1092709330@qq.com" title="mail"><i class="icon-mail"></i></a>
+					<a class="mail" target="_blank" href="mailto:elevenzou_gt@163.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="bilibili" target="_blank" href="https://space.bilibili.com/5770343?from=search&seid=2033176199237225590" title="bilibili"><i class="icon-bilibili"></i></a>
 		        
@@ -134,7 +134,7 @@ var _hmt = _hmt || [];
 			  <h1 class="header-author js-header-author">ElevenZou</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>鱼跃此时海，花开彼岸天<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>不只是知识的搬运工<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -149,7 +149,7 @@ var _hmt = _hmt || [];
 					
 						<a class="github" target="_blank" href="https://github.com/ElevenZou/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="mail" target="_blank" href="mailto:1092709330@qq.com" title="mail"><i class="icon-mail"></i></a>
+						<a class="mail" target="_blank" href="mailto:elevenzou_gt@163.com" title="mail"><i class="icon-mail"></i></a>
 			        
 						<a class="bilibili" target="_blank" href="https://space.bilibili.com/5770343?from=search&seid=2033176199237225590" title="bilibili"><i class="icon-bilibili"></i></a>
 			        
@@ -506,11 +506,11 @@ T(x,y)=\frac{x\cdot y}{\|x\|^2+\|y\|^2-x\cdot y}=\frac{\sum{x_iy_i}}{\sqrt{\sum{
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">推荐系统</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">推荐系统</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
         		</li>
       		
 		</ul>
@@ -580,11 +580,11 @@ T(x,y)=\frac{x\cdot y}{\|x\|^2+\|y\|^2-x\cdot y}=\frac{\sum{x_iy_i}}{\sqrt{\sum{
   
 <nav id="article-nav">
   
-    <a href="/2019/02/16/Surprise库基础用法/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/02/16/Surprise库使用预测算法/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Surprise库基础用法
+          Surprise库使用预测算法
         
       </div>
     </a>
@@ -664,7 +664,7 @@ T(x,y)=\frac{x\cdot y}{\|x\|^2+\|y\|^2-x\cdot y}=\frac{\sum{x_iy_i}}{\sqrt{\sum{
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: false,
+		open_in_new: true,
 		toc_hide_index: true,
 		root: "/",
 		innerArchive: true,
@@ -751,7 +751,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Surprise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -760,6 +772,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">字典学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Data Structure</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -772,22 +788,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">paper writing</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Data Structure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Surprise</a>
               </li>
             
             <div class="clearfix"></div>
@@ -838,7 +838,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">ElevenZou，&lt;br&gt;一名就读于中国矿业大学（北京）的研究僧，&lt;br&gt;目标是高薪程序猿，&lt;br&gt;性格开朗，容易相处，&lt;br&gt;单身狗一枚。 &lt;br&gt;ps:评论功能还在施工中，可以随时邮箱联系。</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">ElevenZou，&lt;br&gt;一枚中国矿业大学（北京）的研究生，&lt;br&gt;目标是掌握各种感兴趣的科技知识，&lt;br&gt;性格开朗，容易相处，&lt;br&gt;可撩。 &lt;br&gt;ps:评论功能施工中...可以随时邮箱联系。</div>
   	  	
     	</section>
     
