@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//elevenzou.github.io">
-  <title>Surprise库使用预测算法 | ElevenZou的博客</title>
+  <title>Surprise库自定义预测算法 | ElevenZou的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文为python的推荐系统搭建工具库Surprise之使用预测算法的官方文档自译版，所有代码都实际编译通过，仅供参考交流。">
+  <meta name="description" content="本文为python的推荐系统搭建工具库Surprise之自定义预测算法的官方文档自译版，所有代码都实际编译通过，仅供参考交流。">
 <meta name="keywords" content="Surprise,推荐系统">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Surprise库使用预测算法">
-<meta property="og:url" content="//elevenzou.github.io/2019/02/16/Surprise库使用预测算法/index.html">
+<meta property="og:title" content="Surprise库自定义预测算法">
+<meta property="og:url" content="//elevenzou.github.io/2019/02/18/Surprise库自定义预测算法/index.html">
 <meta property="og:site_name" content="ElevenZou的博客">
-<meta property="og:description" content="本文为python的推荐系统搭建工具库Surprise之使用预测算法的官方文档自译版，所有代码都实际编译通过，仅供参考交流。">
+<meta property="og:description" content="本文为python的推荐系统搭建工具库Surprise之自定义预测算法的官方文档自译版，所有代码都实际编译通过，仅供参考交流。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-16T08:48:32.114Z">
+<meta property="og:updated_time" content="2019-02-18T15:41:36.110Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Surprise库使用预测算法">
-<meta name="twitter:description" content="本文为python的推荐系统搭建工具库Surprise之使用预测算法的官方文档自译版，所有代码都实际编译通过，仅供参考交流。">
+<meta name="twitter:title" content="Surprise库自定义预测算法">
+<meta name="twitter:description" content="本文为python的推荐系统搭建工具库Surprise之自定义预测算法的官方文档自译版，所有代码都实际编译通过，仅供参考交流。">
   
     <link rel="alternative" href="/atom.xml" title="ElevenZou的博客" type="application/atom+xml">
   
@@ -167,80 +167,47 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Surprise库使用预测算法" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Surprise库自定义预测算法" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Surprise库使用预测算法
+      Surprise库自定义预测算法
     </h1>
   
 
         
-        <a href="/2019/02/16/Surprise库使用预测算法/" class="archive-article-date">
-  	<time datetime="2019-02-16T06:51:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-16</time>
+        <a href="/2019/02/18/Surprise库自定义预测算法/" class="archive-article-date">
+  	<time datetime="2019-02-18T13:51:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>本文为python的推荐系统搭建工具库Surprise之<strong>使用预测算法</strong>的官方文档自译版，所有代码都实际编译通过，仅供参考交流。</p>
-<a id="more"></a>
-<h1 id="1-使用预测算法"><a href="#1-使用预测算法" class="headerlink" title="1. 使用预测算法"></a>1. 使用预测算法</h1><p>Surprise库提供一堆内置算法，所有算法都来自<code>AlgoBase</code>基类，其中实现了一些关键方法（例如predict，fit和test）。可以在<code>prediction_algorithms</code>包文档中找到可用预测算法的列表和详细信息。</p>
-<p>每个算法都是全局Surprise命名空间的一部分，因此您只需要从Surprise包中导入它们的名称，例如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> KNNBasic</span><br><span class="line">algo = KNNBasic()</span><br></pre></td></tr></table></figure>
-<p>这些算法中的一些使用<strong>基线估计</strong>，一些使用<strong>相似性度量</strong>。</p>
-<h1 id="2-基线估计配置"><a href="#2-基线估计配置" class="headerlink" title="2. 基线估计配置"></a>2. 基线估计配置</h1><p><strong>注意</strong>：本节仅适用于尝试最小化以下正则化平方误差（或等效）的算法（或相似性度量）：</p>
-<script type="math/tex; mode=display">
-\sum_{r_{ui}\in R_{train}}(r_{ui}-(\mu+b_u+b_i))^2+\lambda(b_u^2+b_i^2)</script><p>对于使用基线估计的其他目标函数（例如SVD算法），基线估计配置在特定的每个算法中都不同。 请参阅他们自己的文档。</p>
-<p>若您觉得配置计算基线估计太麻烦，也可以使用默认参数。</p>
-<p>基线估计可以使用两种不同的方式估算基线：</p>
-<ul>
-<li>使用交替最小二乘法（ALS）。</li>
-<li>使用随机梯度下降（SGD）。</li>
-</ul>
-<p>可以使用<code>bsl_options</code> 在创建算法时传递的参数来配置基线的计算方式。此参数是一个字典，其中的键<code>&#39;method&#39;</code>指示要使用的方法。可接受的值是<code>&#39;als&#39;</code>（默认）和<code>&#39;sgd&#39;</code>。根据设定的值，其他可设置的选项为：</p>
-<p>对与<strong>ALS</strong>：</p>
-<ul>
-<li><p><code>reg_i</code>:item的正则化参数。默认为<strong>10</strong>.</p>
-</li>
-<li><p><code>reg_u</code>:user的正则化参数。默认为<strong>15</strong>.</p>
-</li>
-<li><p><code>n_epochs</code>:ALS过程的迭代次数。默认为<strong>10</strong>.</p>
-</li>
-</ul>
-<p>对于<strong>SGD</strong>:</p>
-<ul>
-<li><p><code>reg</code>:优化的成本函数的正则化参数。默认为<strong>0.02</strong>.</p>
-</li>
-<li><p><code>learning_rate:</code>SGD的学习率。默认为<strong>0.005</strong>. </p>
-</li>
-<li><p><code>n_epochs</code>:SGD过程的迭代次数。默认为<strong>20</strong>.</p>
-<p><strong>注意</strong>：不论SGD还是ALS，用户和物品($b_u$,$b_i$)的损失量都默认为<strong>0</strong>.</p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'Using ALS'</span>)</span><br><span class="line">bsl_options = &#123;<span class="string">'method'</span>: <span class="string">'als'</span>,</span><br><span class="line">               <span class="string">'n_epoches'</span>: <span class="number">5</span>,</span><br><span class="line">               <span class="string">'reg_u'</span>: <span class="number">12</span>,</span><br><span class="line">               <span class="string">'reg_i'</span>: <span class="number">5</span></span><br><span class="line">               &#125;</span><br><span class="line">algo = BaselineOnly(bsl_options=bsl_options)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'Using SGD'</span>)</span><br><span class="line">bsl_options = &#123;<span class="string">'method'</span>: <span class="string">'sgd'</span>,</span><br><span class="line">               <span class="string">'learning_rate'</span>: <span class="number">.00005</span>,</span><br><span class="line">               &#125;</span><br><span class="line">algo = BaselineOnly(bsl_options=bsl_options)</span><br></pre></td></tr></table></figure>
-<p>请注意，某些相似性度量可能会使用基线，例如 <code>pearson_baseline</code>相似性。无论基线是否用于实际预测r，配置的工作方式都相同:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bsl_options  =  &#123; <span class="string">'method'</span> ： <span class="string">'als'</span> ，</span><br><span class="line">               <span class="string">'n_epochs'</span> ： <span class="number">20</span> ，</span><br><span class="line">               &#125; </span><br><span class="line">sim_options  =  &#123; <span class="string">'name'</span> ： <span class="string">'pearson_baseline'</span> &#125; </span><br><span class="line">algo  =  KNNBasic （bsl_options = bsl_options ， sim_options = sim_options ）</span><br></pre></td></tr></table></figure>
-<h1 id="3-相似度配置"><a href="#3-相似度配置" class="headerlink" title="3. 相似度配置"></a>3. 相似度配置</h1><p>许多算法使用相似性度量来估计评分。它们的配置方式与基线评级类似：您只需<code>sim_options</code>在创建算法时传递参数即可。此参数是包含以下(所有可选)键的字典： </p>
-<ul>
-<li><p><code>name</code>:要使用的相似性的名称，如<code>similarities</code>模块中所定义 。默认是<strong>‘MSD’</strong>。</p>
-</li>
-<li><p><code>user_based</code>:是否在用户之间或项目之间计算相似性。这对预测算法的性能有很大影响。默认是<strong>True</strong>。</p>
-</li>
-<li><p><code>min_support</code>:如果$|I_{uv}|&lt;min_support$，$sim(u,v)=0$，对物品也一样。</p>
-</li>
-<li><p><code>shrinkage</code>:要应用的收缩参数（仅与<code>pearson_baseline</code>相似性相关 ）。默认值为<strong>100</strong>。</p>
-</li>
-</ul>
-<p>如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sim_options = &#123;<span class="string">'name'</span>: <span class="string">'cosine'</span>,</span><br><span class="line">               <span class="string">'user_based'</span>: <span class="keyword">False</span>  <span class="comment"># 计算物品之间的相似性</span></span><br><span class="line">               &#125;</span><br><span class="line">algo = KNNBasic(sim_options=sim_options)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sim_options = &#123;<span class="string">'name'</span>: <span class="string">'pearson_baseline'</span>,</span><br><span class="line">               <span class="string">'shrinkage'</span>: <span class="number">0</span>  <span class="comment"># 不收缩</span></span><br><span class="line">               &#125;</span><br><span class="line">algo = KNNBasic(sim_options=sim_options)</span><br></pre></td></tr></table></figure>
-<p>注意：Surprise库提供四种相似度计算方式：分别为<strong>cosine</strong>、<strong>msd</strong>、<strong>pearson</strong>和<strong>pearsin_baseline</strong>.</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>本文为python的推荐系统搭建工具库Surprise之<strong>自定义预测算法</strong>的官方文档自译版，所有代码都实际编译通过，仅供参考交流。<br><a id="more"></a></p>
+<h1 id="1-基础"><a href="#1-基础" class="headerlink" title="1. 基础"></a>1. 基础</h1><p>自定义预测算法非常简单，算法只不过是一个派生自<code>AlgoBase</code>具有<code>estimate</code>方法的类。这是<code>predict()</code>方法调用的方法。它接收内部用户ID，内部项ID，并返回估计评级$\hat{r}_{ui}$:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> AlgoBase</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> Dataset</span><br><span class="line"><span class="keyword">from</span> surprise.model_selection <span class="keyword">import</span> cross_validate</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyOwnAlgorithm</span><span class="params">(AlgoBase)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># 在做任何事之前总是调用基类定义</span></span><br><span class="line">        AlgoBase.__init__(self)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">estimate</span><span class="params">(self, u, i)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">3</span></span><br><span class="line"></span><br><span class="line">data = Dataset.load_builtin(<span class="string">'ml-100k'</span>)</span><br><span class="line">algo = MyOwnAlgorithm()</span><br><span class="line">cross_validate(algo, data, verbose=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<p>以上代码实现了一个最简单的自定义预测方法:总是预测评级为3，无论用户和项目如何。</p>
+<p>如果要存储有关预测的其他信息，还可以返回包含给定详细信息的字典，并可用于以后的分析：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">estimate</span><span class="params">(self, u, i)</span>:</span></span><br><span class="line">    details = &#123;<span class="string">'info1'</span> : <span class="string">'That was'</span>,</span><br><span class="line">               <span class="string">'info2'</span> : <span class="string">'easy stuff :)'</span>&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">3</span>, details</span><br></pre></td></tr></table></figure>
+<h1 id="2-fit-方法"><a href="#2-fit-方法" class="headerlink" title="2. fit()方法"></a>2. fit()方法</h1><p>现在，让我们制作一个更方便的算法来预测训练集的所有评级的平均值。 由于这是一个不依赖于当前用户或项目的常量值，计算一次足以。 这可以通过定义<code>fit()</code>方法来完成：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> AlgoBase</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> Dataset</span><br><span class="line"><span class="keyword">from</span> surprise.model_selection <span class="keyword">import</span> cross_validate</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyOwnAlgorithm</span><span class="params">(AlgoBase)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># 在做任何事之前总是调用基类定义</span></span><br><span class="line">        AlgoBase.__init__(self)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, trainset)</span>:</span></span><br><span class="line">        <span class="comment"># 再调用一次基类定义</span></span><br><span class="line">        AlgoBase.fit(self, trainset)</span><br><span class="line">        <span class="comment"># 计算平均评分。 我们不妨使用 trainset.global_mean 属性 ;)</span></span><br><span class="line">        self.the_mean = np.mean([r <span class="keyword">for</span> (_, _, r) <span class="keyword">in</span> self.trainset.all_ratings()])</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">estimate</span><span class="params">(self, u, i)</span>:</span></span><br><span class="line">        details = &#123;<span class="string">'info1'</span> : <span class="string">'That was'</span>,</span><br><span class="line">                   <span class="string">'info2'</span> : <span class="string">'easy stuff :)'</span>&#125;</span><br><span class="line">        <span class="keyword">return</span> self.the_mean, details</span><br><span class="line"></span><br><span class="line">data = Dataset.load_builtin(<span class="string">'ml-100k'</span>)</span><br><span class="line">algo = MyOwnAlgorithm()</span><br><span class="line"></span><br><span class="line">cross_validate(algo, data, verbose=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<p>在做任何事情之前，你应该调用基类<code>fit()</code>方法：例如在<code>cross_validate</code>交叉验证过程的每折处的函数都调用了<code>fit</code>方法。</p>
+<p>注意:<code>fit()</code>返回<code>self</code>。这允许使用表达式<code>algo.fit(trainset).test(testset)</code>。</p>
+<h1 id="3-trainset训练集属性"><a href="#3-trainset训练集属性" class="headerlink" title="3. trainset训练集属性"></a>3. trainset训练集属性</h1><p>基类方法<code>fit()</code>返回后，您需要的有关当前训练集的所有信息（评级值等）都存储在<code>self.trainset</code>属性中。这是一个具有许多的预测属性和方法的<code>trainset</code>对象。</p>
+<p>为了说明它的用法，让我们制作一个算法来预测所有评级的平均值，用户的平均评分和项目的平均评级之间的平均值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">estimate</span><span class="params">(self, u, i)</span>:</span></span><br><span class="line">    sum_means = self.trainset.global_mean</span><br><span class="line">    div = <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> self.trainset.knows_user(u):</span><br><span class="line">        sum_means += np.mean([r <span class="keyword">for</span> (_, r) <span class="keyword">in</span> self.trainset.ur[u]])</span><br><span class="line">        div += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> self.trainset.knows_items(i):</span><br><span class="line">        sum_means += np.mean([r <span class="keyword">for</span> (_, r) <span class="keyword">in</span> self.trainset.ir[i]])</span><br><span class="line">        div += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> sum_means / div</span><br></pre></td></tr></table></figure>
+<p>请注意，在<code>fit</code>方法中计算所有用户均值更好,可以避免多次相同的计算。</p>
+<h1 id="4-预测异常处理"><a href="#4-预测异常处理" class="headerlink" title="4. 预测异常处理"></a>4. 预测异常处理</h1><p>由算法决定是否能够产生预测。 如果预测出现异常，可以提出<code>PredictionImpossible</code>异常。 使用前需要先导入它：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> PredictionImpossible</span><br></pre></td></tr></table></figure>
+<p><code>predict()</code>方法将捕获此异常,<code>default_prediction()</code>方法将设置估计预测评级$\hat{r}_{ui}$。 默认情况下，它返回训练集中所有评级的平均值。</p>
+<h1 id="5-使用相似性度量和基线估计"><a href="#5-使用相似性度量和基线估计" class="headerlink" title="5. 使用相似性度量和基线估计"></a>5. 使用相似性度量和基线估计</h1><p>如果算法使用相似性度量或基线估计，您将需要接受<code>bsl_options</code>和<code>sim_options</code>作为<code>__init__</code>方法的参数 ，并将它们传递给Base类。如何使用这两个对象参考前上一篇文章 <a href="https://elevenzou.github.io/2019/02/16/Surprise库使用预测算法/" target="_blank" rel="noopener">Surprise库使用预测算法</a>。</p>
+<p>方法<code>compute_baselines()</code>和<code>compute_similarities()</code>可以在<code>fit</code>方法（或其他任何地方）中调用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> AlgoBase</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> Dataset</span><br><span class="line"><span class="keyword">from</span> surprise.model_selection <span class="keyword">import</span> cross_validate</span><br><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> PredictionImpossible</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyOwnAlgorithm</span><span class="params">(AlgoBase)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, sim_options=&#123;&#125;, bsl_options=&#123;&#125;)</span>:</span></span><br><span class="line">        AlgoBase.__init__(self, sim_options=sim_options, bsl_options=bsl_options)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, trainset)</span>:</span></span><br><span class="line">        AlgoBase.fit(self, trainset)</span><br><span class="line">        <span class="comment"># 计算基线和相似性</span></span><br><span class="line">        self.bu, self.bi = self.compute_baselines()</span><br><span class="line">        self.sim = self.compute_similarities()</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">estimate</span><span class="params">(self, u, i)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> (self.trainset.knows_user(u) <span class="keyword">and</span> self.trainset.knows_items(i)):</span><br><span class="line">            <span class="keyword">raise</span> PredictionImpossible(<span class="string">"User and/or item is unkown."</span>)</span><br><span class="line">        <span class="comment"># 计算u和v之间的相似性，其中v描述已评定项目i的所有其他用户。</span></span><br><span class="line">        neighbors = [(v, self.sim[u, v ]) <span class="keyword">for</span> (v, r) <span class="keyword">in</span> self.trainset.ir[i]]</span><br><span class="line">        <span class="comment"># 按相似性对这些邻居排序</span></span><br><span class="line">        neighbors = sorted(neighbors, key=<span class="keyword">lambda</span> x: x[i], reverse=<span class="keyword">True</span>)</span><br><span class="line">        print(<span class="string">'The 3 nearest neighbors of user'</span>, str(u), <span class="string">'are:'</span>)</span><br><span class="line">        <span class="keyword">for</span> v, sim_uv <span class="keyword">in</span> neighbors[:<span class="number">3</span>]:</span><br><span class="line">            print(<span class="string">'user &#123;0:&#125; with sim &#123;1:1.2f&#125;'</span>.format(v, sim_uv))</span><br><span class="line">        <span class="comment"># 无论如何记得返回基线估计</span></span><br><span class="line">        </span><br><span class="line">data = Dataset.load_builtin(<span class="string">'ml-100k'</span>)</span><br><span class="line">algo = MyOwnAlgorithm()</span><br><span class="line">cross_validate(algo, data, verbose=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<p>随意浏览<code>prediction_algorithms</code>包源，以了解可以做什么。</p>
 
       
       
@@ -253,7 +220,7 @@ var _hmt = _hmt || [];
           
           <br>
           <strong>本文链接：</strong>
-          https://elevenzou.github.io/2019/02/16/Surprise库使用预测算法/
+          https://elevenzou.github.io/2019/02/18/Surprise库自定义预测算法/
           <br>
           <strong>版权声明：</strong>
           本作品采用
@@ -364,7 +331,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://elevenzou.github.io/2019/02/16/Surprise库使用预测算法/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://elevenzou.github.io/2019/02/18/Surprise库自定义预测算法/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -378,18 +345,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2019/02/18/Surprise库自定义预测算法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Surprise库自定义预测算法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/02/16/Surprise库基础用法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Surprise库基础用法</div>
+    <a href="/2019/02/16/Surprise库使用预测算法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Surprise库使用预测算法</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -416,7 +374,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-使用预测算法"><span class="toc-number">1.</span> <span class="toc-text">1. 使用预测算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-基线估计配置"><span class="toc-number">2.</span> <span class="toc-text">2. 基线估计配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-相似度配置"><span class="toc-number">3.</span> <span class="toc-text">3. 相似度配置</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-基础"><span class="toc-number">1.</span> <span class="toc-text">1. 基础</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-fit-方法"><span class="toc-number">2.</span> <span class="toc-text">2. fit()方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-trainset训练集属性"><span class="toc-number">3.</span> <span class="toc-text">3. trainset训练集属性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-预测异常处理"><span class="toc-number">4.</span> <span class="toc-text">4. 预测异常处理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-使用相似性度量和基线估计"><span class="toc-number">5.</span> <span class="toc-text">5. 使用相似性度量和基线估计</span></a></li></ol>
                     </div>
                 </span>
             </div>

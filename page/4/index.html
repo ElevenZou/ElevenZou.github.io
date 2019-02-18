@@ -6,20 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//elevenzou.github.io">
-  <title>Surprise库使用预测算法 | ElevenZou的博客</title>
+  <title>ElevenZou的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文为python的推荐系统搭建工具库Surprise之使用预测算法的官方文档自译版，所有代码都实际编译通过，仅供参考交流。">
-<meta name="keywords" content="Surprise,推荐系统">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Surprise库使用预测算法">
-<meta property="og:url" content="//elevenzou.github.io/2019/02/16/Surprise库使用预测算法/index.html">
+  <meta name="description" content="中国矿业大学(北京)17级研究生，擅长python，C++。深入研究压缩感知，游戏爱好者。">
+<meta name="keywords" content="“python,C++,压缩感知,程序猿,代码,机器学习”">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ElevenZou的博客">
+<meta property="og:url" content="//elevenzou.github.io/page/4/index.html">
 <meta property="og:site_name" content="ElevenZou的博客">
-<meta property="og:description" content="本文为python的推荐系统搭建工具库Surprise之使用预测算法的官方文档自译版，所有代码都实际编译通过，仅供参考交流。">
+<meta property="og:description" content="中国矿业大学(北京)17级研究生，擅长python，C++。深入研究压缩感知，游戏爱好者。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-16T08:48:32.114Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Surprise库使用预测算法">
-<meta name="twitter:description" content="本文为python的推荐系统搭建工具库Surprise之使用预测算法的官方文档自译版，所有代码都实际编译通过，仅供参考交流。">
+<meta name="twitter:title" content="ElevenZou的博客">
+<meta name="twitter:description" content="中国矿业大学(北京)17级研究生，擅长python，C++。深入研究压缩感知，游戏爱好者。">
   
     <link rel="alternative" href="/atom.xml" title="ElevenZou的博客" type="application/atom+xml">
   
@@ -167,234 +166,55 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Surprise库使用预测算法" class="article article-type-post " itemscope="" itemprop="blogPost">
+            
+  
+    <article id="post-hello-world" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      Surprise库使用预测算法
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/10/hello-world/">Hello World</a>
     </h1>
   
 
         
-        <a href="/2019/02/16/Surprise库使用预测算法/" class="archive-article-date">
-  	<time datetime="2019-02-16T06:51:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-16</time>
+        <a href="/2018/11/10/hello-world/" class="archive-article-date">
+  	<time datetime="2018-11-10T08:31:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>本文为python的推荐系统搭建工具库Surprise之<strong>使用预测算法</strong>的官方文档自译版，所有代码都实际编译通过，仅供参考交流。</p>
-<a id="more"></a>
-<h1 id="1-使用预测算法"><a href="#1-使用预测算法" class="headerlink" title="1. 使用预测算法"></a>1. 使用预测算法</h1><p>Surprise库提供一堆内置算法，所有算法都来自<code>AlgoBase</code>基类，其中实现了一些关键方法（例如predict，fit和test）。可以在<code>prediction_algorithms</code>包文档中找到可用预测算法的列表和详细信息。</p>
-<p>每个算法都是全局Surprise命名空间的一部分，因此您只需要从Surprise包中导入它们的名称，例如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> surprise <span class="keyword">import</span> KNNBasic</span><br><span class="line">algo = KNNBasic()</span><br></pre></td></tr></table></figure>
-<p>这些算法中的一些使用<strong>基线估计</strong>，一些使用<strong>相似性度量</strong>。</p>
-<h1 id="2-基线估计配置"><a href="#2-基线估计配置" class="headerlink" title="2. 基线估计配置"></a>2. 基线估计配置</h1><p><strong>注意</strong>：本节仅适用于尝试最小化以下正则化平方误差（或等效）的算法（或相似性度量）：</p>
-<script type="math/tex; mode=display">
-\sum_{r_{ui}\in R_{train}}(r_{ui}-(\mu+b_u+b_i))^2+\lambda(b_u^2+b_i^2)</script><p>对于使用基线估计的其他目标函数（例如SVD算法），基线估计配置在特定的每个算法中都不同。 请参阅他们自己的文档。</p>
-<p>若您觉得配置计算基线估计太麻烦，也可以使用默认参数。</p>
-<p>基线估计可以使用两种不同的方式估算基线：</p>
-<ul>
-<li>使用交替最小二乘法（ALS）。</li>
-<li>使用随机梯度下降（SGD）。</li>
-</ul>
-<p>可以使用<code>bsl_options</code> 在创建算法时传递的参数来配置基线的计算方式。此参数是一个字典，其中的键<code>&#39;method&#39;</code>指示要使用的方法。可接受的值是<code>&#39;als&#39;</code>（默认）和<code>&#39;sgd&#39;</code>。根据设定的值，其他可设置的选项为：</p>
-<p>对与<strong>ALS</strong>：</p>
-<ul>
-<li><p><code>reg_i</code>:item的正则化参数。默认为<strong>10</strong>.</p>
-</li>
-<li><p><code>reg_u</code>:user的正则化参数。默认为<strong>15</strong>.</p>
-</li>
-<li><p><code>n_epochs</code>:ALS过程的迭代次数。默认为<strong>10</strong>.</p>
-</li>
-</ul>
-<p>对于<strong>SGD</strong>:</p>
-<ul>
-<li><p><code>reg</code>:优化的成本函数的正则化参数。默认为<strong>0.02</strong>.</p>
-</li>
-<li><p><code>learning_rate:</code>SGD的学习率。默认为<strong>0.005</strong>. </p>
-</li>
-<li><p><code>n_epochs</code>:SGD过程的迭代次数。默认为<strong>20</strong>.</p>
-<p><strong>注意</strong>：不论SGD还是ALS，用户和物品($b_u$,$b_i$)的损失量都默认为<strong>0</strong>.</p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'Using ALS'</span>)</span><br><span class="line">bsl_options = &#123;<span class="string">'method'</span>: <span class="string">'als'</span>,</span><br><span class="line">               <span class="string">'n_epoches'</span>: <span class="number">5</span>,</span><br><span class="line">               <span class="string">'reg_u'</span>: <span class="number">12</span>,</span><br><span class="line">               <span class="string">'reg_i'</span>: <span class="number">5</span></span><br><span class="line">               &#125;</span><br><span class="line">algo = BaselineOnly(bsl_options=bsl_options)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'Using SGD'</span>)</span><br><span class="line">bsl_options = &#123;<span class="string">'method'</span>: <span class="string">'sgd'</span>,</span><br><span class="line">               <span class="string">'learning_rate'</span>: <span class="number">.00005</span>,</span><br><span class="line">               &#125;</span><br><span class="line">algo = BaselineOnly(bsl_options=bsl_options)</span><br></pre></td></tr></table></figure>
-<p>请注意，某些相似性度量可能会使用基线，例如 <code>pearson_baseline</code>相似性。无论基线是否用于实际预测r，配置的工作方式都相同:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bsl_options  =  &#123; <span class="string">'method'</span> ： <span class="string">'als'</span> ，</span><br><span class="line">               <span class="string">'n_epochs'</span> ： <span class="number">20</span> ，</span><br><span class="line">               &#125; </span><br><span class="line">sim_options  =  &#123; <span class="string">'name'</span> ： <span class="string">'pearson_baseline'</span> &#125; </span><br><span class="line">algo  =  KNNBasic （bsl_options = bsl_options ， sim_options = sim_options ）</span><br></pre></td></tr></table></figure>
-<h1 id="3-相似度配置"><a href="#3-相似度配置" class="headerlink" title="3. 相似度配置"></a>3. 相似度配置</h1><p>许多算法使用相似性度量来估计评分。它们的配置方式与基线评级类似：您只需<code>sim_options</code>在创建算法时传递参数即可。此参数是包含以下(所有可选)键的字典： </p>
-<ul>
-<li><p><code>name</code>:要使用的相似性的名称，如<code>similarities</code>模块中所定义 。默认是<strong>‘MSD’</strong>。</p>
-</li>
-<li><p><code>user_based</code>:是否在用户之间或项目之间计算相似性。这对预测算法的性能有很大影响。默认是<strong>True</strong>。</p>
-</li>
-<li><p><code>min_support</code>:如果$|I_{uv}|&lt;min_support$，$sim(u,v)=0$，对物品也一样。</p>
-</li>
-<li><p><code>shrinkage</code>:要应用的收缩参数（仅与<code>pearson_baseline</code>相似性相关 ）。默认值为<strong>100</strong>。</p>
-</li>
-</ul>
-<p>如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sim_options = &#123;<span class="string">'name'</span>: <span class="string">'cosine'</span>,</span><br><span class="line">               <span class="string">'user_based'</span>: <span class="keyword">False</span>  <span class="comment"># 计算物品之间的相似性</span></span><br><span class="line">               &#125;</span><br><span class="line">algo = KNNBasic(sim_options=sim_options)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sim_options = &#123;<span class="string">'name'</span>: <span class="string">'pearson_baseline'</span>,</span><br><span class="line">               <span class="string">'shrinkage'</span>: <span class="number">0</span>  <span class="comment"># 不收缩</span></span><br><span class="line">               &#125;</span><br><span class="line">algo = KNNBasic(sim_options=sim_options)</span><br></pre></td></tr></table></figure>
-<p>注意：Surprise库提供四种相似度计算方式：分别为<strong>cosine</strong>、<strong>msd</strong>、<strong>pearson</strong>和<strong>pearsin_baseline</strong>.</p>
-
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+        
       
       
 	  
       
-        <div class="declare">
-          <strong>本文作者：</strong>
-          
-            ElevenZou
-          
-          <br>
-          <strong>本文链接：</strong>
-          https://elevenzou.github.io/2019/02/16/Surprise库使用预测算法/
-          <br>
-          <strong>版权声明：</strong>
-          本作品采用
-          <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
-          进行许可。转载请注明出处！
-          
-        </div>
+        <div class="declare" hidden="hidden"></div>
       
 	  
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃辣条<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/alipay.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/weixin.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
       
     </div>
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Surprise</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">推荐系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
-
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/10/hello-world/">展开全文 >></a>
+        </p>
       
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://elevenzou.github.io/2019/02/16/Surprise库使用预测算法/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/02/18/Surprise库自定义预测算法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Surprise库自定义预测算法
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2019/02/16/Surprise库基础用法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Surprise库基础用法</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -409,32 +229,17 @@ var _hmt = _hmt || [];
         </div>
         
         
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-使用预测算法"><span class="toc-number">1.</span> <span class="toc-text">1. 使用预测算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-基线估计配置"><span class="toc-number">2.</span> <span class="toc-text">2. 基线估计配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-相似度配置"><span class="toc-number">3.</span> <span class="toc-text">3. 相似度配置</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
     </div>
 </aside>
 
 
 
-  
-  
-  
 
   
-
   
-
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    </nav>
   
 
 
@@ -457,8 +262,8 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
