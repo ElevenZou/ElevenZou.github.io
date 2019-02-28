@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="ElevenZou的博客">
 <meta property="og:description" content="Python的基本类型包括数字、字符串、列表、字典、元组、文件及其他等。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-17T00:40:26.148Z">
+<meta property="og:updated_time" content="2019-02-21T06:22:18.755Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python基本类型">
 <meta name="twitter:description" content="Python的基本类型包括数字、字符串、列表、字典、元组、文件及其他等。">
@@ -1225,6 +1225,159 @@ var _hmt = _hmt || [];
 </tbody>
 </table>
 </div>
+<h2 id="7-3-常见运算符重载方法"><a href="#7-3-常见运算符重载方法" class="headerlink" title="7.3 常见运算符重载方法"></a>7.3 常见运算符重载方法</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>重载</th>
+<th>调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>__init__</td>
+<td>构造函数</td>
+<td>对象建立：X = Class(args)</td>
+</tr>
+<tr>
+<td>__del__</td>
+<td>析构函数</td>
+<td>X对象收回</td>
+</tr>
+<tr>
+<td>__add__</td>
+<td>运算符+</td>
+<td>如果没有_iadd_, X + Y, X += Y</td>
+</tr>
+<tr>
+<td>__or__</td>
+<td>运算符\</td>
+<td>(位OR）</td>
+<td>如果没有_ior_, X \</td>
+<td>Y, X \</td>
+<td>= Y</td>
+</tr>
+<tr>
+<td>__repr__,__str__</td>
+<td>打印、转换</td>
+<td>print(X)、repr(X)、str(X)</td>
+</tr>
+<tr>
+<td>__call__</td>
+<td>函数调用</td>
+<td>X(<em>args, *</em>kargs)</td>
+</tr>
+<tr>
+<td>__getattr__</td>
+<td>点号运算</td>
+<td>X.undefiend</td>
+</tr>
+<tr>
+<td>__setattr__</td>
+<td>属性赋值语句</td>
+<td>X.any = value</td>
+</tr>
+<tr>
+<td>__delattr__</td>
+<td>属性删除</td>
+<td>del X.any</td>
+</tr>
+<tr>
+<td>__getattribute__</td>
+<td>属性获取</td>
+<td>X.any</td>
+</tr>
+<tr>
+<td>__getitem__</td>
+<td>索引运算</td>
+<td>X[key],X[i:j], 没__iter__上for循环和其他迭代器</td>
+</tr>
+<tr>
+<td>__setitem__</td>
+<td>索引赋值语句</td>
+<td>X[key] = value, X[i:j] = sequence</td>
+</tr>
+<tr>
+<td>__delitem__</td>
+<td>索引和分配删除</td>
+<td>del X[key], del X[i:j]</td>
+</tr>
+<tr>
+<td>__len__</td>
+<td>长度</td>
+<td>len(X), 如果没有__bool__, 真值测试</td>
+</tr>
+<tr>
+<td>__bool__</td>
+<td>布尔测试</td>
+<td>bool(X), 真测试</td>
+</tr>
+<tr>
+<td>__lt__,__gt__</td>
+<td>特定的比较</td>
+<td>X &lt; Y, X &gt; Y</td>
+</tr>
+<tr>
+<td>__le__,__ge__</td>
+<td></td>
+<td>X &lt;= Y, X &gt;= Y</td>
+</tr>
+<tr>
+<td>__eq__,__ne__</td>
+<td></td>
+<td>X == Y, X  != Y</td>
+</tr>
+<tr>
+<td>__radd__</td>
+<td>右侧加法</td>
+<td>Other + X</td>
+</tr>
+<tr>
+<td>__iadd__</td>
+<td>实地（增强的）加法</td>
+<td>X += Y (or else __add__)</td>
+</tr>
+<tr>
+<td>__lter__,__next__</td>
+<td>迭代环境</td>
+<td>I = iter(X), next(I); for loops, in if no __notains__, all comoprehensuins, map(F, X), 其他</td>
+</tr>
+<tr>
+<td>__contains__</td>
+<td>成员关系测试</td>
+<td>item in X （任何可迭代的）</td>
+</tr>
+<tr>
+<td>__index__</td>
+<td>整数值</td>
+<td>hen(X), bin(X), oct(X), O[X], O[X:]</td>
+</tr>
+<tr>
+<td>__enter__,__exit__</td>
+<td>环境管理器</td>
+<td>with obj as var:</td>
+</tr>
+<tr>
+<td>__get__,__set__</td>
+<td>描述符属性</td>
+<td>X.attr, X.attr = value, del X.attr</td>
+</tr>
+<tr>
+<td>__delete__</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>__new__</td>
+<td>创建</td>
+<td>在__init__之前创建对象</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Number</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, start)</span>:</span></span><br><span class="line">		self.data = start</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__sub__</span><span class="params">(self, other)</span>:</span></span><br><span class="line">		<span class="keyword">return</span> Number(self.data - other)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> number <span class="keyword">import</span> Number</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>X = Number(<span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Y.data</span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
 <p>摘自：《Python学习手册第4版》，持续补充中。。。</p>
 
       
@@ -1397,7 +1550,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-数字"><span class="toc-number">1.</span> <span class="toc-text">1. 数字</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-基本数字常量"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 基本数字常量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-Python表达式操作符及程序"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 Python表达式操作符及程序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-字符串"><span class="toc-number">2.</span> <span class="toc-text">2. 字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-常见的字符串常量和表达式"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 常见的字符串常量和表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-字符串反斜杠字符"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 字符串反斜杠字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-Python3-0中的字符串方法调用"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 Python3.0中的字符串方法调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-字符串格式化代码"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 字符串格式化代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-列表"><span class="toc-number">3.</span> <span class="toc-text">3. 列表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-常用列表常量和操作"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 常用列表常量和操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-字典"><span class="toc-number">4.</span> <span class="toc-text">4. 字典</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-常见字典常量和操作"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 常见字典常量和操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-元组"><span class="toc-number">5.</span> <span class="toc-text">5. 元组</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-文件"><span class="toc-number">6.</span> <span class="toc-text">6. 文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-常见文件运算"><span class="toc-number">6.1.</span> <span class="toc-text">6.1 常见文件运算</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-对象"><span class="toc-number">7.</span> <span class="toc-text">7. 对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-对象分类"><span class="toc-number">7.1.</span> <span class="toc-text">7.1 对象分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-对象真值"><span class="toc-number">7.2.</span> <span class="toc-text">7.2 对象真值</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-数字"><span class="toc-number">1.</span> <span class="toc-text">1. 数字</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-基本数字常量"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 基本数字常量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-Python表达式操作符及程序"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 Python表达式操作符及程序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-字符串"><span class="toc-number">2.</span> <span class="toc-text">2. 字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-常见的字符串常量和表达式"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 常见的字符串常量和表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-字符串反斜杠字符"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 字符串反斜杠字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-Python3-0中的字符串方法调用"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 Python3.0中的字符串方法调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-字符串格式化代码"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 字符串格式化代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-列表"><span class="toc-number">3.</span> <span class="toc-text">3. 列表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-常用列表常量和操作"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 常用列表常量和操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-字典"><span class="toc-number">4.</span> <span class="toc-text">4. 字典</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-常见字典常量和操作"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 常见字典常量和操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-元组"><span class="toc-number">5.</span> <span class="toc-text">5. 元组</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-文件"><span class="toc-number">6.</span> <span class="toc-text">6. 文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-常见文件运算"><span class="toc-number">6.1.</span> <span class="toc-text">6.1 常见文件运算</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-对象"><span class="toc-number">7.</span> <span class="toc-text">7. 对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-对象分类"><span class="toc-number">7.1.</span> <span class="toc-text">7.1 对象分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-对象真值"><span class="toc-number">7.2.</span> <span class="toc-text">7.2 对象真值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-常见运算符重载方法"><span class="toc-number">7.3.</span> <span class="toc-text">7.3 常见运算符重载方法</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -1538,6 +1691,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WebServer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
@@ -1550,7 +1715,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">typora</a>
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1558,15 +1723,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">paper writing</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
             
             <div class="clearfix"></div>
