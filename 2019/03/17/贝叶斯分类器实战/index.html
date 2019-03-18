@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//elevenzou.github.io">
-  <title>程序设计题(一)：谁是小偷？ | ElevenZou的博客</title>
+  <title>贝叶斯分类器实战 | ElevenZou的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="锻炼思维能力，将具体问题抽象为逻辑关系，再利用计算机进行解答。 问题：某地发生了一起盗窃案，警察抓到了4个犯罪嫌疑人，罪犯为其中一人，拷问时：  A说：不是我 B说：是C C说：是D D说：不是我  已知3个人说的是真话，1个人说的是假话，现在根据这些信息，找出罪犯。">
-<meta name="keywords" content="程序设计">
+  <meta name="description" content="贝叶斯分类器（Bayesian classifier）是一种非常常见的基于条件框架的分类器。">
+<meta name="keywords" content="机器学习,贝叶斯分类器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="程序设计题(一)：谁是小偷？">
-<meta property="og:url" content="//elevenzou.github.io/2019/01/13/程序设计题(一)/index.html">
+<meta property="og:title" content="贝叶斯分类器实战">
+<meta property="og:url" content="//elevenzou.github.io/2019/03/17/贝叶斯分类器实战/index.html">
 <meta property="og:site_name" content="ElevenZou的博客">
-<meta property="og:description" content="锻炼思维能力，将具体问题抽象为逻辑关系，再利用计算机进行解答。 问题：某地发生了一起盗窃案，警察抓到了4个犯罪嫌疑人，罪犯为其中一人，拷问时：  A说：不是我 B说：是C C说：是D D说：不是我  已知3个人说的是真话，1个人说的是假话，现在根据这些信息，找出罪犯。">
+<meta property="og:description" content="贝叶斯分类器（Bayesian classifier）是一种非常常见的基于条件框架的分类器。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-14T03:38:08.233Z">
+<meta property="og:updated_time" content="2019-03-18T06:57:08.419Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="程序设计题(一)：谁是小偷？">
-<meta name="twitter:description" content="锻炼思维能力，将具体问题抽象为逻辑关系，再利用计算机进行解答。 问题：某地发生了一起盗窃案，警察抓到了4个犯罪嫌疑人，罪犯为其中一人，拷问时：  A说：不是我 B说：是C C说：是D D说：不是我  已知3个人说的是真话，1个人说的是假话，现在根据这些信息，找出罪犯。">
+<meta name="twitter:title" content="贝叶斯分类器实战">
+<meta name="twitter:description" content="贝叶斯分类器（Bayesian classifier）是一种非常常见的基于条件框架的分类器。">
   
     <link rel="alternative" href="/atom.xml" title="ElevenZou的博客" type="application/atom+xml">
   
@@ -167,281 +167,55 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-程序设计题(一)" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-贝叶斯分类器实战" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      程序设计题(一)：谁是小偷？
+      贝叶斯分类器实战
     </h1>
   
 
         
-        <a href="/2019/01/13/程序设计题(一)/" class="archive-article-date">
-  	<time datetime="2019-01-13T13:22:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-13</time>
+        <a href="/2019/03/17/贝叶斯分类器实战/" class="archive-article-date">
+  	<time datetime="2019-03-17T13:05:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>锻炼思维能力，将具体问题抽象为逻辑关系，再利用计算机进行解答。</p>
-<p>问题：某地发生了一起盗窃案，警察抓到了4个犯罪嫌疑人，罪犯为其中一人，拷问时：</p>
-<ul>
-<li>A说：不是我</li>
-<li>B说：是C</li>
-<li>C说：是D</li>
-<li>D说：不是我</li>
-</ul>
-<p>已知3个人说的是真话，1个人说的是假话，现在根据这些信息，找出罪犯。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>贝叶斯分类器（Bayesian classifier）是一种非常常见的基于条件框架的分类器。</p>
 <a id="more"></a>
-<p>解答：将具体问题抽象为逻辑关系</p>
-<p>声明变量，thisman表示要找的小偷，定义为字符变量</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">char thisman='';  // 定义字符变量并将其初始化为空</span><br></pre></td></tr></table></figure>
-<p>让<code>“==”</code>的含义为“<strong>是</strong>”，让<code>“!=”</code>的含义为“<strong>不是</strong>”</p>
-<p>利用关系表达式将4个人所说的话表示成：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">说话人</th>
-<th style="text-align:center">说的话</th>
-<th style="text-align:center">写成关系表达式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">A</td>
-<td style="text-align:center">“不是我”</td>
-<td style="text-align:center">thisman != ‘A’</td>
-</tr>
-<tr>
-<td style="text-align:center">B</td>
-<td style="text-align:center">”是C“</td>
-<td style="text-align:center">thisman == ‘C’</td>
-</tr>
-<tr>
-<td style="text-align:center">C</td>
-<td style="text-align:center">“是D”</td>
-<td style="text-align:center">thisman == ‘D’</td>
-</tr>
-<tr>
-<td style="text-align:center">D</td>
-<td style="text-align:center">“不是我”</td>
-<td style="text-align:center">thisman != ‘D’</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong>枚举法</strong>思路：</p>
-<p>(所谓枚举就是按照四种假定逐一地去测试4个人的话有几句是真话，如果不满足三句为真，则否定这一假定，换下一个状态再试)</p>
-<p>A、B、C、D、四个人，只有一个人是小偷，令小偷为1，不是小偷为0，可以有如下4中状态（情况）</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">状态</th>
-<th style="text-align:center">A</th>
-<th style="text-align:center">B</th>
-<th style="text-align:center">C</th>
-<th style="text-align:center">D</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-</tr>
-<tr>
-<td style="text-align:center">2</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-</tr>
-<tr>
-<td style="text-align:center">3</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-</tr>
-<tr>
-<td style="text-align:center">4</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>这4种状态可以简化写成：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">状态</th>
-<th style="text-align:center">赋值表达式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">thisman = ‘A’</td>
-</tr>
-<tr>
-<td style="text-align:center">2</td>
-<td style="text-align:center">thisman = ‘B’</td>
-</tr>
-<tr>
-<td style="text-align:center">3</td>
-<td style="text-align:center">thisman = ‘C’</td>
-</tr>
-<tr>
-<td style="text-align:center">4</td>
-<td style="text-align:center">thisman = ‘D’</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong>具体做法</strong>：</p>
-<p>（1） 假定thisman= ‘A’代入四句话中：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">状态</th>
-<th style="text-align:center">说的话</th>
-<th style="text-align:center">关系表达式</th>
-<th style="text-align:center">C</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">A</td>
-<td style="text-align:center">thisman != ‘A’</td>
-<td style="text-align:center">‘A’ != ‘A’</td>
-<td style="text-align:center">0</td>
-</tr>
-<tr>
-<td style="text-align:center">B</td>
-<td style="text-align:center">thisman == ‘C’</td>
-<td style="text-align:center">‘A’ == ‘C’</td>
-<td style="text-align:center">0</td>
-</tr>
-<tr>
-<td style="text-align:center">C</td>
-<td style="text-align:center">thisman == ‘D’</td>
-<td style="text-align:center">‘A’ == ‘D’</td>
-<td style="text-align:center">0</td>
-</tr>
-<tr>
-<td style="text-align:center">D</td>
-<td style="text-align:center">thisman != ‘D’</td>
-<td style="text-align:center">‘A’ != ‘D’</td>
-<td style="text-align:center">1</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>和为1，所以A不是小偷</p>
-<p>（2） 假定thisman=’B’代入四句话中：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">状态</th>
-<th style="text-align:center">说的话</th>
-<th style="text-align:center">关系表达式</th>
-<th style="text-align:center">C</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">A</td>
-<td style="text-align:center">thisman != ‘A’</td>
-<td style="text-align:center">‘B’ != ‘A’</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td style="text-align:center">B</td>
-<td style="text-align:center">thisman == ‘C’</td>
-<td style="text-align:center">‘B’ == ‘C’</td>
-<td style="text-align:center">0</td>
-</tr>
-<tr>
-<td style="text-align:center">C</td>
-<td style="text-align:center">thisman == ‘D’</td>
-<td style="text-align:center">‘B’ == ‘D’</td>
-<td style="text-align:center">0</td>
-</tr>
-<tr>
-<td style="text-align:center">D</td>
-<td style="text-align:center">thisman != ‘D’</td>
-<td style="text-align:center">‘B’ != ‘D’</td>
-<td style="text-align:center">1</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>和为2，所以B不是小偷</p>
-<p>（3） 假定thisman=’C’代入四句话中：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">状态</th>
-<th style="text-align:center">说的话</th>
-<th style="text-align:center">关系表达式</th>
-<th style="text-align:center">C</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">A</td>
-<td style="text-align:center">thisman != ‘A’</td>
-<td style="text-align:center">‘C’ != ‘A’</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td style="text-align:center">B</td>
-<td style="text-align:center">thisman == ‘C’</td>
-<td style="text-align:center">‘C’ == ‘C’</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td style="text-align:center">C</td>
-<td style="text-align:center">thisman == ‘D’</td>
-<td style="text-align:center">‘C’ == ‘D’</td>
-<td style="text-align:center">0</td>
-</tr>
-<tr>
-<td style="text-align:center">D</td>
-<td style="text-align:center">thisman != ‘D’</td>
-<td style="text-align:center">‘C’ != ‘D’</td>
-<td style="text-align:center">1</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>和为3，所以C是小偷</p>
-<p>综上所述一个一个人去试，就是枚举。从编程的角度，<strong>实现枚举最好用循环结构</strong>。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// *******************************************************</span></span><br><span class="line"><span class="comment">// * 谁是小偷 ?                                         </span></span><br><span class="line"><span class="comment">// * A说:不是我                                          </span></span><br><span class="line"><span class="comment">// * B说:是C                                           </span></span><br><span class="line"><span class="comment">// * C说:是D                                           </span></span><br><span class="line"><span class="comment">// * D说:不是我                                          </span></span><br><span class="line"><span class="comment">// * 已知A、B、C、D中有一个人是小偷，3个人说了真话，1个人说了假话</span></span><br><span class="line"><span class="comment">// * author: Eleven                                     </span></span><br><span class="line"><span class="comment">// * date:2019/1/13</span></span><br><span class="line"><span class="comment">// * version: 1.0</span></span><br><span class="line"><span class="comment">// ********************************************************</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream.h&gt;  // 预编译命令</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span>             <span class="comment">// 主函数</span></span></span><br><span class="line"><span class="function"></span>&#123;                       <span class="comment">// 主函数开始</span></span><br><span class="line">	<span class="keyword">char</span> thisman = <span class="string">' '</span>; <span class="comment">// 声明字符变量thisman,赋值为空字符' '</span></span><br><span class="line">	<span class="keyword">int</span> k=<span class="number">0</span>,g=<span class="number">0</span>,sum = <span class="number">0</span>;        <span class="comment">// 声明整型计数k、有解标志g、总数sum</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=<span class="number">4</span>;k=k+<span class="number">1</span>) <span class="comment">// 计数型循环，循环的控制变量为k</span></span><br><span class="line">	&#123;                       <span class="comment">// 循环体开始</span></span><br><span class="line">		thisman = <span class="number">64</span>+k;     <span class="comment">// 产生被试者依次为'A','B','C','D'，赋值给thisman</span></span><br><span class="line">		sum = (thisman != <span class="string">'A'</span>)   <span class="comment">// 测试'A'的话是否为真 </span></span><br><span class="line">            + (thisman == <span class="string">'C'</span>)   <span class="comment">// 测试'B'的话是否为真 </span></span><br><span class="line">            + (thisman == <span class="string">'D'</span>)   <span class="comment">// 测试'C'的话是否为真 </span></span><br><span class="line">            + (thisman != <span class="string">'D'</span>);  <span class="comment">// 测试'D'的话是否为真 </span></span><br><span class="line">		<span class="keyword">if</span>(sum == <span class="number">3</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"the theft is "</span> &lt;&lt; thisman &lt;&lt; <span class="built_in">endl</span>;  <span class="comment">// 输出结果（谁是小偷）</span></span><br><span class="line">            g = <span class="number">1</span>;               <span class="comment">// 有解标志置1</span></span><br><span class="line">        &#125;</span><br><span class="line">	&#125;                            <span class="comment">// 循环体结束</span></span><br><span class="line">    <span class="keyword">if</span>(g!=<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Can't found"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">&#125;                                <span class="comment">// 主函数结束</span></span><br></pre></td></tr></table></figure>
-<p>把<strong>thisman</strong>去掉，上面程序可以进一步简化成：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// *******************************************************</span></span><br><span class="line"><span class="comment">// * 谁是小偷 ?                                         </span></span><br><span class="line"><span class="comment">// * A说:不是我                                          </span></span><br><span class="line"><span class="comment">// * B说:是C                                           </span></span><br><span class="line"><span class="comment">// * C说:是D                                           </span></span><br><span class="line"><span class="comment">// * D说:不是我                                          </span></span><br><span class="line"><span class="comment">// * 已知A、B、C、D中有一个人是小偷，3个人说了真话，1个人说了假话</span></span><br><span class="line"><span class="comment">// * author: Eleven                                     </span></span><br><span class="line"><span class="comment">// * date:2019/1/14</span></span><br><span class="line"><span class="comment">// * version: 2.0</span></span><br><span class="line"><span class="comment">// ********************************************************</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream.h&gt;  // 预编译命令</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span>             <span class="comment">// 主函数</span></span></span><br><span class="line"><span class="function"></span>&#123;                       <span class="comment">// 主函数开始</span></span><br><span class="line">	<span class="keyword">int</span> k=<span class="number">0</span>,g=<span class="number">0</span>,sum = <span class="number">0</span>;        <span class="comment">// 声明整型计数k、有解标志g、总数sum</span></span><br><span class="line">	<span class="keyword">for</span>(k=<span class="number">1</span>;k&lt;=<span class="number">4</span>;k=k+<span class="number">1</span>) <span class="comment">// 计数型循环，循环的控制变量为k</span></span><br><span class="line">	&#123;                       <span class="comment">// 循环体开始</span></span><br><span class="line">		sum = <span class="number">0</span>;            <span class="comment">// 每次循环开始将sum置为0</span></span><br><span class="line">		<span class="keyword">if</span>(k!=<span class="number">1</span>)sum=sum+<span class="number">1</span>;   <span class="comment">// 测试'A'的话是否为真 </span></span><br><span class="line">        <span class="keyword">if</span>(k==<span class="number">3</span>)sum=sum+<span class="number">1</span>;   <span class="comment">// 测试'B'的话是否为真 </span></span><br><span class="line">        <span class="keyword">if</span>(k==<span class="number">4</span>)sum=sum+<span class="number">1</span>;   <span class="comment">// 测试'C'的话是否为真 </span></span><br><span class="line">        <span class="keyword">if</span>(k!=<span class="number">4</span>)sum=sum+<span class="number">1</span>;   <span class="comment">// 测试'D'的话是否为真 </span></span><br><span class="line">		<span class="keyword">if</span>(sum == <span class="number">3</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"the theft is "</span> &lt;&lt; <span class="keyword">char</span>(<span class="number">64</span>+k) &lt;&lt; <span class="built_in">endl</span>;  <span class="comment">// 输出结果（谁是小偷）</span></span><br><span class="line">            g = <span class="number">1</span>;               <span class="comment">// 有解标志置1</span></span><br><span class="line">        &#125;</span><br><span class="line">	&#125;                            <span class="comment">// 循环体结束</span></span><br><span class="line">    <span class="keyword">if</span>(g!=<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Can't found"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">&#125;                                <span class="comment">// 主函数结束</span></span><br></pre></td></tr></table></figure>
-<p>还可以把<strong>sum</strong>也给去掉，并加入<strong>break</strong>跳出循环，上面程序可以进一步简化成：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// *******************************************************</span></span><br><span class="line"><span class="comment">// * 谁是小偷 ?                                         </span></span><br><span class="line"><span class="comment">// * A说:不是我                                          </span></span><br><span class="line"><span class="comment">// * B说:是C                                           </span></span><br><span class="line"><span class="comment">// * C说:是D                                           </span></span><br><span class="line"><span class="comment">// * D说:不是我                                          </span></span><br><span class="line"><span class="comment">// * 已知A、B、C、D中有一个人是小偷，3个人说了真话，1个人说了假话</span></span><br><span class="line"><span class="comment">// * author: Eleven                                     </span></span><br><span class="line"><span class="comment">// * date:2019/1/14</span></span><br><span class="line"><span class="comment">// * version: 3.0</span></span><br><span class="line"><span class="comment">// ********************************************************</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream.h&gt;  // 预编译命令</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span>             <span class="comment">// 主函数</span></span></span><br><span class="line"><span class="function"></span>&#123;                       <span class="comment">// 主函数开始</span></span><br><span class="line">	<span class="keyword">int</span> k=<span class="number">0</span>,g=<span class="number">0</span>;        <span class="comment">// 声明整型计数k、有解标志g、总数sum</span></span><br><span class="line">	<span class="keyword">for</span>(k=<span class="number">1</span>;k&lt;=<span class="number">4</span>;k=k+<span class="number">1</span>) <span class="comment">// 计数型循环，循环的控制变量为k</span></span><br><span class="line">	&#123;                       <span class="comment">// 循环体开始</span></span><br><span class="line">		<span class="keyword">if</span>((k!=<span class="number">1</span>)+(k==<span class="number">3</span>)+(k==<span class="number">4</span>)+(k!=<span class="number">4</span>)==<span class="number">3</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"the theft is "</span> &lt;&lt; <span class="keyword">char</span>(<span class="number">64</span>+k) &lt;&lt; <span class="built_in">endl</span>;  <span class="comment">// 输出结果（谁是小偷）</span></span><br><span class="line">            g = <span class="number">1</span>;               <span class="comment">// 有解标志置1</span></span><br><span class="line">        &#125;</span><br><span class="line">	&#125;                            <span class="comment">// 循环体结束</span></span><br><span class="line">    <span class="keyword">if</span>(g!=<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Can't found"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">&#125;                                <span class="comment">// 主函数结束</span></span><br></pre></td></tr></table></figure>
-<p>输出结果为：</p>
+<p>贝叶斯定理：设实验$E$的样本空间为$S$，$A$为$E$的事件，$B_1,B_2,…,B_n$为$S$的一个划分，且$P(A)&gt;0,P(B_i)&gt;0,(i=1,2,…,n)$，则$A$事件发生的条件下$B_i$发生的概率(即条件概率)为：</p>
+<script type="math/tex; mode=display">
+P(B_i|A)=\frac{P(B_iA)}{P(A)}=\frac{P(A|B_i)P(B_i)}{\sum_{j=1}^nP(A|B_j)P(B_j)}</script><p>人们通常只能观测到事物的表面，因此我们需要一个猜测，来让我们更好的推测和认识事物的本身。比如我们从一个装有黑白球的袋子里摸球，通常的问题是正向概率问题——已知袋中黑白球有多少，然后去求摸到黑球或白球的概率；而现在，我们考虑逆向概率问题——事先不知道袋子里面黑白球的比例，从袋子里摸出一个或好几个球，观察这些球的颜色后，对袋子中黑白色球的比例，你能作出什么样的预测。</p>
+<p>关于贝叶斯分类器的原理，网上已经有许多博客和文档做了详细的介绍，本文主要分析和实现基于贝叶斯分类器的两个项目：拼写纠正实例和文本分析。</p>
+<h1 id="1-拼写纠正实例"><a href="#1-拼写纠正实例" class="headerlink" title="1. 拼写纠正实例"></a>1. 拼写纠正实例</h1><p>应用背景：当用户输入一个不存在于英文字典中的单词时，需要对用户的输入进行纠正，从他实际输入的单词中去推测他真正想要输入的单词</p>
+<p>分析：记用户实际输入的单词为D，猜测他真正想输入的单词为h1,h2,h3,…</p>
+<p>则他真正想输入h1的概率表示为P(h1|D)，他真正想输入h2的概率表示为P(h2|D)，他真正想输入h3的概率表示为P(h3|D)，……</p>
+<p>对于条件概率P(h1|D)，应用贝叶斯公式：P(h1|D) = P(h1) * P(D|h1) / P(D)</p>
+<p>同理：P(h2|D) = P(h2) * P(D|h2) / P(D)</p>
+<p>P(h3|D) = P(h3) * P(D|h3) / P(D)</p>
+<p>。。。。。</p>
+<p>我们通过比较P(h1|D)，P(h2|D)，P(h3|D)，…的大小，推断出他真正想输入的单词是什么。因为P(D)是一样的，所有在比较时可以忽略这个常数，则问题转化为P(h_)*P(D|h_)的比较。即求解：</p>
+<script type="math/tex; mode=display">
+\arg \max P(h|D)\propto \arg \max P(h)*P(D|h)</script><p>P(h)为先验概率，指文章中出现一个正确拼写词h的概率，也就是说，在英文文章中h出现的概率有多大，而这个英文文章可以是由我们指定的语料库。</p>
+<p>P(D|h)指在用户想输入h的情况下输出D的概率，因为这个是代表用户以多大的概率把h敲出D，这个概率可以通过计算<a href="https://en.wikipedia.org/wiki/Edit_distance" target="_blank" rel="noopener">编辑距离(Edit Distance)</a>得到。</p>
+<p><a href="https://github.com/ElevenZou/Machine-Learning" target="_blank" rel="noopener">语料库下载地址</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 载入python内置库re、collections</span></span><br><span class="line"><span class="comment"># re正则库：https://docs.python.org/3.6/library/re.html</span></span><br><span class="line"><span class="comment"># collections扩展集合库：https://docs.python.org/3.6/library/collections.html</span></span><br><span class="line"><span class="keyword">import</span> re, collections</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">words</span><span class="params">(text)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    function：把语料中的单词全部抽取出来，转化为小写，并且去掉单词中间的特殊符号</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">return</span> re.findall(<span class="string">'[a-z]+'</span>, text.lower())</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(features)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    function：以带有默认值1的字典的形式统计词出现的次数，遇到语料库中没有的词，默认出现过1次</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    model = collections.defaultdict(<span class="keyword">lambda</span>: <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> features:</span><br><span class="line">        model[f] += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> model</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载并处理语料库，统计词频</span></span><br><span class="line">NWORDS = train(words(open(<span class="string">'big.txt'</span>).read()))</span><br><span class="line"><span class="comment"># 定义单词表</span></span><br><span class="line">alphabet = <span class="string">'abcdefghijklmnopqrstuvwxyz'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edits1</span><span class="params">(word)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    function: 返回所有与单词word的编辑距离为 1 的集合</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    n = len(word) </span><br><span class="line">    <span class="comment"># 删除、换位、替换、插入</span></span><br><span class="line">    <span class="keyword">return</span> set([word[<span class="number">0</span>:i] + word[i+<span class="number">1</span>:] <span class="keyword">for</span> i <span class="keyword">in</span> range(n)] + [word[<span class="number">0</span>:i] + word[i+<span class="number">1</span>] + word[i] + word[i+<span class="number">2</span>:] <span class="keyword">for</span> i <span class="keyword">in</span> range(n<span class="number">-1</span>)] + [word[<span class="number">0</span>:i] + c + word[i+<span class="number">1</span>:] <span class="keyword">for</span> i <span class="keyword">in</span> range(n) <span class="keyword">for</span> c <span class="keyword">in</span> alphabet] + [word[<span class="number">0</span>:i] + c + word[i:] <span class="keyword">for</span> i <span class="keyword">in</span> range(n+<span class="number">1</span>) <span class="keyword">for</span> c <span class="keyword">in</span> alphabet])</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">known_edits2</span><span class="params">(word)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    function: 优化编辑距离为 2 的集合，所有只把那些正确的词作为候选词</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">return</span> set(e2 <span class="keyword">for</span> e1 <span class="keyword">in</span> edits1(word) <span class="keyword">for</span> e2 <span class="keyword">in</span> edits1(e1) <span class="keyword">if</span> e2 <span class="keyword">in</span> NWORDS)</span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">known</span><span class="params">(words)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    function: 定义编辑距离优先级</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">return</span> set(w <span class="keyword">for</span> w <span class="keyword">in</span> words <span class="keyword">if</span> w <span class="keyword">in</span> NWORDS)</span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">correct</span><span class="params">(word)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    function: 如果known非空，则candidates就会选择这个集合，而不继续计算后面的</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    candidates = known([word]) <span class="keyword">or</span> known(edits1(word)) <span class="keyword">or</span> known_edits2(word) <span class="keyword">or</span> [word]</span><br><span class="line">    <span class="keyword">return</span> max(candidates, key=<span class="keyword">lambda</span> w: NWORDS[w])</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    <span class="comment"># 大功告成 ：）</span></span><br><span class="line">    correct(<span class="string">'hitoo'</span>)</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
 <blockquote>
-<p>the theft is  C<br>Press any key to continue</p>
+<p>‘more’</p>
 </blockquote>
-<p>参考：清华大学吴文虎教授《计算机程序设计基础》讲义</p>
+<h1 id="2-文本分析实例"><a href="#2-文本分析实例" class="headerlink" title="2. 文本分析实例"></a>2. 文本分析实例</h1><p>应用背景：计算机自动对一个文本的内容进行分析，并将该文本的主题归类，比如汽车，财经，科技类等等。</p>
+<p>分析：使用贝叶斯的多项式分类器进行文本分析，先对用于训练分类器的语料库进行清洗，滤除nan数据，再使用jieba分词器对语料库的数据进行分词处理，再去掉停用词，统计词频，将词频转化为词频向量，然后用于贝叶斯多项式模型训练。</p>
+<p><a href="https://github.com/ElevenZou/Machine-Learning" target="_blank" rel="noopener">语料库下载地址</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入库</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> TfidfVectorizer</span><br><span class="line"><span class="keyword">from</span> sklearn.naive_bayes <span class="keyword">import</span> MultinomialNB</span><br><span class="line"><span class="keyword">from</span> sklearn.externals <span class="keyword">import</span> joblib</span><br><span class="line">time_start = time.time()</span><br><span class="line"><span class="comment"># 导入语料库</span></span><br><span class="line">corpus_sgnews = pd.read_table(<span class="string">'val.txt'</span>, names=[<span class="string">'category'</span>, <span class="string">'theme'</span>, <span class="string">'URL'</span>, <span class="string">'content'</span>], encoding=<span class="string">'utf-8'</span>)</span><br><span class="line"><span class="comment"># 滤除缺失数据</span></span><br><span class="line">corpus_sgnews = corpus_sgnews.dropna()</span><br><span class="line"><span class="comment"># 将新闻内容“content”转化为list-to-list格式</span></span><br><span class="line">content = corpus_sgnews.content.values.tolist()</span><br><span class="line"><span class="comment"># 使用jieba分词器,将“content”列表进行词语切分处理</span></span><br><span class="line">content_words = []</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> content:</span><br><span class="line">    current_line = jieba.lcut(line)</span><br><span class="line">    <span class="keyword">if</span> len(current_line) &gt; <span class="number">1</span> <span class="keyword">and</span> current_line != <span class="string">'\r\n'</span>:</span><br><span class="line">        content_words.append(current_line)</span><br><span class="line"><span class="comment"># 将分词后的"content_words"转化为pandas的DataFrame结构</span></span><br><span class="line">df_content = pd.DataFrame(&#123;<span class="string">'content_words'</span>: content_words&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载停用词表</span></span><br><span class="line">stopwords = pd.read_csv(<span class="string">'stopwords.txt'</span>, index_col=<span class="keyword">False</span>, sep=<span class="string">'\t'</span>, quoting=<span class="number">3</span>, names=[<span class="string">'stopword'</span>], encoding=<span class="string">'utf-8'</span>)</span><br><span class="line"><span class="comment"># 去掉停用词</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">drop_stopwords</span><span class="params">(contents, stopwords)</span>:</span></span><br><span class="line">    contents_clean = []</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> contents:</span><br><span class="line">        line_clean = []</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> line:</span><br><span class="line">            <span class="keyword">if</span> word <span class="keyword">in</span> stopwords:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            line_clean.append(word)</span><br><span class="line">        contents_clean.append(line_clean)</span><br><span class="line">    <span class="keyword">return</span> contents_clean</span><br><span class="line"></span><br><span class="line">contents = df_content.content_words.values.tolist()</span><br><span class="line">stopwords = stopwords.stopword.values.tolist()</span><br><span class="line">contents_clean = drop_stopwords(contents, stopwords)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改分类标签</span></span><br><span class="line">df_train = pd.DataFrame(&#123;<span class="string">'contents_clean'</span>: contents_clean, <span class="string">'label'</span>: corpus_sgnews[<span class="string">'category'</span>]&#125;)</span><br><span class="line">label_mapping = &#123;<span class="string">"汽车"</span>: <span class="number">1</span>, <span class="string">"财经"</span>: <span class="number">2</span>, <span class="string">"科技"</span>: <span class="number">3</span>, <span class="string">"健康"</span>: <span class="number">4</span>, <span class="string">"体育"</span>: <span class="number">5</span>, <span class="string">"教育"</span>: <span class="number">6</span>, <span class="string">"文化"</span>: <span class="number">7</span>, <span class="string">"军事"</span>: <span class="number">8</span>, <span class="string">"娱乐"</span>: <span class="number">9</span>, <span class="string">"时尚"</span>: <span class="number">0</span>&#125;</span><br><span class="line">df_train[<span class="string">'label'</span>] = df_train[<span class="string">'label'</span>].map(label_mapping)</span><br><span class="line"><span class="comment"># 划分训练集和测试集</span></span><br><span class="line">x_train, x_test, y_train, y_test = train_test_split(df_train[<span class="string">'contents_clean'</span>].values, df_train[<span class="string">'label'</span>].values, random_state=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 统计训练集词频</span></span><br><span class="line">words = []</span><br><span class="line"><span class="keyword">for</span> line_index <span class="keyword">in</span> range(len(x_train)):</span><br><span class="line">        words.append(<span class="string">' '</span>.join(x_train[line_index]))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 词频向量化</span></span><br><span class="line">vec = TfidfVectorizer(analyzer=<span class="string">'word'</span>, max_features=<span class="number">4000</span>, lowercase=<span class="keyword">False</span>)</span><br><span class="line">vec.fit(words)</span><br><span class="line">time_start2 = time.time()</span><br><span class="line">t1 = time_start2-time_start</span><br><span class="line">print(<span class="string">f"处理数据花费时间：<span class="subst">&#123;t1&#125;</span> s"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用多项式(词频)贝叶斯模型</span></span><br><span class="line">classifier = MultinomialNB()</span><br><span class="line">classifier.fit(vec.transform(words), y_train)</span><br><span class="line">joblib.dump(classifier, <span class="string">"NewsClassifier.m"</span>)</span><br><span class="line">t2 = time.time()-time_start2</span><br><span class="line">print(<span class="string">f"训练模型花费时间：<span class="subst">&#123;t2&#125;</span> s"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 统计测试集词频</span></span><br><span class="line">test_words = []</span><br><span class="line"><span class="keyword">for</span> line_index <span class="keyword">in</span> range(len(x_test)):</span><br><span class="line">        test_words.append(<span class="string">' '</span>.join(x_test[line_index]))</span><br><span class="line"></span><br><span class="line">accr = classifier.score(vec.transform(test_words), y_test)</span><br><span class="line">print(<span class="string">f"准确率：<span class="subst">&#123;accr*<span class="number">100</span>&#125;</span>%"</span>)</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">处理数据花费时间：69<span class="selector-class">.19276833534241</span> <span class="selector-tag">s</span></span><br><span class="line">训练模型花费时间：1<span class="selector-class">.3220014572143555</span> <span class="selector-tag">s</span></span><br><span class="line">准确率：81<span class="selector-class">.52000000000001</span>%</span><br></pre></td></tr></table></figure>
 
       
       
@@ -454,7 +228,7 @@ var _hmt = _hmt || [];
           
           <br>
           <strong>本文链接：</strong>
-          https://elevenzou.github.io/2019/01/13/程序设计题(一)/
+          https://elevenzou.github.io/2019/03/17/贝叶斯分类器实战/
           <br>
           <strong>版权声明：</strong>
           本作品采用
@@ -505,7 +279,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">程序设计</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">贝叶斯分类器</a>
         		</li>
       		
 		</ul>
@@ -561,7 +339,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://elevenzou.github.io/2019/01/13/程序设计题(一)/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://elevenzou.github.io/2019/03/17/贝叶斯分类器实战/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -575,18 +353,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2019/01/14/程序设计题(二)/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          程序设计题(二)：谁是凶手？
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/01/12/数据结构之线性表/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">数据结构之线性表</div>
+    <a href="/2019/02/28/WebServer的安装与配置/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">WebServer的安装与配置</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -613,7 +382,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-拼写纠正实例"><span class="toc-number">1.</span> <span class="toc-text">1. 拼写纠正实例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-文本分析实例"><span class="toc-number">2.</span> <span class="toc-text">2. 文本分析实例</span></a></li></ol>
                     </div>
                 </span>
             </div>
