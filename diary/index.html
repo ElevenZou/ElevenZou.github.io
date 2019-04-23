@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="//elevenzou.github.io">
   <title>随笔 | ElevenZou的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="2019-04-22今天在工作中碰到了Linux设置开机自启动服务程序的问题，在此记录几条跟service相关的指令： 12345678910111213141516171819202122# 开启某服务的开机自启动systemctl enable httpd.service# 关闭某服务的开机自启动systemctl disable httpd.service# 检查某服务的当前状态system">
+  <meta name="description" content="2019-04-231234567891011121314151617181920[zouxiongbin@node01 ~]$ ls -l总用量 652396-rw-rw-r--  1 zouxiongbin zouxiongbin        71 3月  29 16:24 adrwxrwxr-x 23 zouxiongbin zouxiongbin      4096 3月   6 21:">
 <meta name="keywords" content="“python,C++,压缩感知,程序猿,代码,机器学习”">
 <meta property="og:type" content="website">
 <meta property="og:title" content="随笔">
 <meta property="og:url" content="//elevenzou.github.io/diary/index.html">
 <meta property="og:site_name" content="ElevenZou的博客">
-<meta property="og:description" content="2019-04-22今天在工作中碰到了Linux设置开机自启动服务程序的问题，在此记录几条跟service相关的指令： 12345678910111213141516171819202122# 开启某服务的开机自启动systemctl enable httpd.service# 关闭某服务的开机自启动systemctl disable httpd.service# 检查某服务的当前状态system">
+<meta property="og:description" content="2019-04-231234567891011121314151617181920[zouxiongbin@node01 ~]$ ls -l总用量 652396-rw-rw-r--  1 zouxiongbin zouxiongbin        71 3月  29 16:24 adrwxrwxr-x 23 zouxiongbin zouxiongbin      4096 3月   6 21:">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-22T13:24:39.563Z">
+<meta property="og:updated_time" content="2019-04-23T15:08:23.170Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="随笔">
-<meta name="twitter:description" content="2019-04-22今天在工作中碰到了Linux设置开机自启动服务程序的问题，在此记录几条跟service相关的指令： 12345678910111213141516171819202122# 开启某服务的开机自启动systemctl enable httpd.service# 关闭某服务的开机自启动systemctl disable httpd.service# 检查某服务的当前状态system">
+<meta name="twitter:description" content="2019-04-231234567891011121314151617181920[zouxiongbin@node01 ~]$ ls -l总用量 652396-rw-rw-r--  1 zouxiongbin zouxiongbin        71 3月  29 16:24 adrwxrwxr-x 23 zouxiongbin zouxiongbin      4096 3月   6 21:">
   
     <link rel="alternative" href="/atom.xml" title="ElevenZou的博客" type="application/atom+xml">
   
@@ -180,14 +180,40 @@ var _hmt = _hmt || [];
 
         
         <a href="/diary/index.html" class="archive-article-date">
-  	<time datetime="2019-04-22T13:24:39.563Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-22</time>
+  	<time datetime="2019-04-23T15:08:23.170Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="2019-04-22"><a href="#2019-04-22" class="headerlink" title="2019-04-22"></a>2019-04-22</h1><p>今天在工作中碰到了Linux设置开机自启动服务程序的问题，在此记录几条跟service相关的指令：</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="2019-04-23"><a href="#2019-04-23" class="headerlink" title="2019-04-23"></a>2019-04-23</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[zouxiongbin@node01 ~]$ ls -l</span><br><span class="line">总用量 652396</span><br><span class="line">-rw-rw-r--  1 zouxiongbin zouxiongbin        71 3月  29 16:24 a</span><br><span class="line">drwxrwxr-x 23 zouxiongbin zouxiongbin      4096 3月   6 21:32 anaconda3</span><br><span class="line">-rw-rw-r--  1 zouxiongbin zouxiongbin 667976437 11月 20 04:00 Anaconda3-5.3.1-Linux-x86_64.sh</span><br><span class="line">-rwxrwxr-x  1 zouxiongbin zouxiongbin       169 3月  29 15:52 b</span><br><span class="line">-rw-rw-r--  1 zouxiongbin zouxiongbin       196 3月  29 15:52 c</span><br><span class="line">-rwxrwxr-x  1 zouxiongbin zouxiongbin       147 3月  29 16:01 d</span><br><span class="line">-rwxrwxr-x  1 zouxiongbin zouxiongbin        76 3月  29 16:10 e</span><br><span class="line">-rw-rw-r--  1 zouxiongbin zouxiongbin        85 3月  29 16:31 f</span><br><span class="line">-rw-rw-r--  2 zouxiongbin zouxiongbin        26 3月  29 18:51 file.txt</span><br><span class="line">-rw-rw-r--  2 zouxiongbin zouxiongbin        26 3月  29 18:51 file.txt.back</span><br><span class="line">-rw-rw-r--  1 zouxiongbin zouxiongbin        95 3月  29 16:39 g</span><br><span class="line">-rw-rw-r--  1 zouxiongbin zouxiongbin        81 3月  29 16:39 h</span><br><span class="line">-rw-rw-r--  1 zouxiongbin zouxiongbin        59 3月  29 19:47 iii</span><br><span class="line">-rw-rw-r--  1 zouxiongbin zouxiongbin       344 3月  28 15:03 log.tar.gz</span><br><span class="line">drwxrwxr-x  2 zouxiongbin zouxiongbin      4096 2月  28 10:22 perl5</span><br><span class="line">-rwxrwxr-x  1 zouxiongbin zouxiongbin        36 3月  29 18:20 ss</span><br><span class="line">-rwxrwxr-x  1 zouxiongbin zouxiongbin        51 3月  29 18:19 sss</span><br><span class="line">drwxrwxr-x  2 zouxiongbin zouxiongbin      4096 3月  29 13:29 test1</span><br></pre></td></tr></table></figure>
+<p>输入<strong>ls -l</strong>查看该目录下文件信息，输出如上所示，在此记录一下上面输出的含义：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-rw-rw-r--  1 zouxiongbin zouxiongbin        71 3月  29 16:24 a</span><br><span class="line">[ 档案属性 ][连结][拥有者]    [ 群组 ]        [文件容量][修改日期][文件名]</span><br></pre></td></tr></table></figure>
+<p>档案属性：</p>
+<ul>
+<li>[-] 普通文件</li>
+<li>[d] 目录</li>
+<li>[l] 连结档(link file)</li>
+<li>[b] 块设备文件</li>
+<li>[c] 字符设备文件</li>
+<li>[r] 可读</li>
+<li>[w] 可写</li>
+<li>[x] 可执行</li>
+<li>第1个字符代表文档所述类型：-、d、l、b、c</li>
+<li>第2个—第4个字符代表档案拥有者权限</li>
+<li>第5个—第7个字符代表档案所属群组权限</li>
+<li>第8个—第10个字符代表其他人的权限</li>
+</ul>
+<p>改变档案权限：</p>
+<ul>
+<li>chgrp： 改变档案所属群组</li>
+<li>chown：改变档案所属人</li>
+<li>chmod：改变档案的属性</li>
+</ul>
+<p><strong>Note</strong>：如果要连目录下的所有次目录或档案同时更改档案属性的话，直接加上<strong>-R</strong>的参数</p>
+<hr>
+<h1 id="2019-04-22"><a href="#2019-04-22" class="headerlink" title="2019-04-22"></a>2019-04-22</h1><p>今天在工作中碰到了Linux设置开机自启动服务程序的问题，在此记录几条跟service相关的指令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 开启某服务的开机自启动</span></span><br><span class="line">systemctl enable httpd.service</span><br><span class="line"><span class="meta">#</span><span class="bash"> 关闭某服务的开机自启动</span></span><br><span class="line">systemctl disable httpd.service</span><br><span class="line"><span class="meta">#</span><span class="bash"> 检查某服务的当前状态</span></span><br><span class="line">systemctl status httpd.service</span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动某服务</span></span><br><span class="line">systemctl start httpd.service</span><br><span class="line"><span class="meta">#</span><span class="bash"> 停止某服务</span></span><br><span class="line">systemctl stop httpd.service</span><br><span class="line"><span class="meta">#</span><span class="bash"> 重启某服务</span></span><br><span class="line">systemctl restart httpd.service</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看所有已启动的服务</span></span><br><span class="line">systemctl list-units --type=service</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看某服务的使用文档、简介、位置</span></span><br><span class="line">man httpd</span><br><span class="line">info httpd</span><br><span class="line">pinfo httpd</span><br><span class="line">which httpd</span><br><span class="line">whatis httpd</span><br><span class="line">whereis httpd</span><br><span class="line">locate httpd.service</span><br></pre></td></tr></table></figure>
 <p>权限不够时在命令前加上sudo。</p>
 <hr>
@@ -339,7 +365,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-04-22"><span class="toc-number">1.</span> <span class="toc-text">2019-04-22</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-03-08"><span class="toc-number">2.</span> <span class="toc-text">2019-03-08</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-02-18"><span class="toc-number">3.</span> <span class="toc-text">2019-02-18</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-01-15"><span class="toc-number">4.</span> <span class="toc-text">2019-01-15</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-01-13"><span class="toc-number">5.</span> <span class="toc-text">2019-01-13</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-01-12"><span class="toc-number">6.</span> <span class="toc-text">2019-01-12</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-01-05"><span class="toc-number">7.</span> <span class="toc-text">2019-01-05</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-01-04"><span class="toc-number">8.</span> <span class="toc-text">2019-01-04</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-01-03"><span class="toc-number">9.</span> <span class="toc-text">2019-01-03</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-12-21"><span class="toc-number">10.</span> <span class="toc-text">2018-12-21</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-11-30"><span class="toc-number">11.</span> <span class="toc-text">2018-11-30</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-11-29"><span class="toc-number">12.</span> <span class="toc-text">2018-11-29</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-04-23"><span class="toc-number">1.</span> <span class="toc-text">2019-04-23</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-04-22"><span class="toc-number">2.</span> <span class="toc-text">2019-04-22</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-03-08"><span class="toc-number">3.</span> <span class="toc-text">2019-03-08</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-02-18"><span class="toc-number">4.</span> <span class="toc-text">2019-02-18</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-01-15"><span class="toc-number">5.</span> <span class="toc-text">2019-01-15</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-01-13"><span class="toc-number">6.</span> <span class="toc-text">2019-01-13</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-01-12"><span class="toc-number">7.</span> <span class="toc-text">2019-01-12</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-01-05"><span class="toc-number">8.</span> <span class="toc-text">2019-01-05</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-01-04"><span class="toc-number">9.</span> <span class="toc-text">2019-01-04</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-01-03"><span class="toc-number">10.</span> <span class="toc-text">2019-01-03</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-12-21"><span class="toc-number">11.</span> <span class="toc-text">2018-12-21</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-11-30"><span class="toc-number">12.</span> <span class="toc-text">2018-11-30</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-11-29"><span class="toc-number">13.</span> <span class="toc-text">2018-11-29</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -484,7 +510,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">typora</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WebServer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -496,11 +526,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">Data Structure</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">WebServer</a>
+                <a href="javascript:void(0)" class="js-tag color2">typora</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,10 +539,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">程序设计</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Data Structure</a>
               </li>
              
               <li class="article-tag-list-item">
