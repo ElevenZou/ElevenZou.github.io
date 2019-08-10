@@ -168,6 +168,236 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-刷题笔记4" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/10/刷题笔记4/">刷题笔记4</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/10/刷题笔记4/" class="archive-article-date">
+  	<time datetime="2019-08-10T11:53:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><a id="more"></a>
+<h2 id="1-找出缺失的整数"><a href="#1-找出缺失的整数" class="headerlink" title="1.找出缺失的整数"></a>1.找出缺失的整数</h2><p>数组A包含了0到n的所有整数，但其中缺失了一个。对于这个问题，我们设定限制，使得一次操作无法取得数组number里某个整数的完整内容。唯一的可用操作是询问数组中第i个元素的二进制的第j位(最低位为第0位)，该操作的时间复杂度为常数，请设计算法，在O(n)的时间内找到这个数。</p>
+<p>给定一个数组<strong>number</strong>，即所有剩下的数按从小到大排列的二进制各位的值，如A[0][1]表示剩下的第二个数二进制从低到高的第二位。同时给定一个int <strong>n</strong>，意义如题。请返回缺失的数。</p>
+<p>C++解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Finder</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMissing</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; numbers, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i % <span class="number">2</span> != numbers[i][<span class="number">0</span>])&#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>python解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="2-像素设定"><a href="#2-像素设定" class="headerlink" title="2.像素设定"></a>2.像素设定</h2><p>有一个单色屏幕储存在一维数组中，其中数组的每个元素代表连续的8位的像素的值，请实现一个函数，将第x到第y个像素涂上颜色(像素标号从零开始)，并尝试尽量使用最快的办法。</p>
+<p>给定表示屏幕的数组<strong>screen</strong>(数组中的每个元素代表连续的8个像素，且从左至右的像素分别对应元素的二进制的从低到高位)，以及int   <strong>x</strong>,int <strong>y</strong>，意义如题意所述，保证输入数据合法。请返回涂色后的新的屏幕数组。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Render</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; renderPixel(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; screen, <span class="keyword">int</span> x, <span class="keyword">int</span> y) &#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = x; i &lt;= y; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> k = i % <span class="number">8</span>;</span><br><span class="line">            <span class="keyword">int</span> t = i / <span class="number">8</span>;</span><br><span class="line">            screen[t] = screen[t] | (<span class="number">1</span> &lt;&lt; k);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> screen;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="3-蚂蚁相撞"><a href="#3-蚂蚁相撞" class="headerlink" title="3.蚂蚁相撞"></a>3.蚂蚁相撞</h2><p>在n个顶点的多边形上有n只蚂蚁，这些蚂蚁同时开始沿着多边形的边爬行，请求出这些蚂蚁相撞的概率。(这里的相撞是指存在任意两只蚂蚁会相撞)</p>
+<p>给定一个int <strong>n</strong>(3&lt;=n&lt;=10000)，代表n边形和n只蚂蚁，请返回一个double，为相撞的概率。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="4-判断直线相交"><a href="#4-判断直线相交" class="headerlink" title="4.判断直线相交"></a>4.判断直线相交</h2><p>给定直角坐标系上的两条直线，确定这两条直线会不会相交。</p>
+<p>线段以斜率和截距的形式给出，即double <strong>s1</strong>，double <strong>s2</strong>，double <strong>y1</strong>，double <strong>y2</strong>，分别代表直线1和2的斜率(即s1,s2)和截距(即y1,y2)，请返回一个bool，代表给定的两条直线是否相交。这里两直线重合也认为相交。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CrossLine</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkCrossLine</span><span class="params">(<span class="keyword">double</span> s1, <span class="keyword">double</span> s2, <span class="keyword">double</span> y1, <span class="keyword">double</span> y2)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">abs</span>(s1 - s2) &gt; <span class="number">1e-6</span> || <span class="built_in">abs</span>(y1 - y2) &lt; <span class="number">1e-6</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="5-加法运算替代"><a href="#5-加法运算替代" class="headerlink" title="5.加法运算替代"></a>5.加法运算替代</h2><p>请编写一个方法，实现整数的乘法、减法和除法运算(这里的除指整除)。只允许使用加号。</p>
+<p>给定两个正整数int <strong>a</strong>,int <strong>b</strong>,同时给定一个int <strong>type</strong>代表运算的类型，1为求a ＊ b，0为求a ／ b，-1为求a － b。请返回计算的结果，保证数据合法且结果一定在int范围内。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AddSubstitution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">calc</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> type)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">if</span>(type == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">int</span> t = a;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; b; i++)&#123;</span><br><span class="line">                a += t;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">if</span> (type == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">int</span> t = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> tmp = b;</span><br><span class="line">            <span class="keyword">for</span>(;;t++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(a &lt; b)&#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                b += tmp;</span><br><span class="line">            &#125;</span><br><span class="line">            a = t;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">if</span>(type == <span class="number">-1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(a &gt;= b)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;; i++)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(b + i == a)&#123;</span><br><span class="line">                        a = i;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;; i--)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(b + i == a)&#123;</span><br><span class="line">                        a = i;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="6-平分的直线"><a href="#6-平分的直线" class="headerlink" title="6.平分的直线"></a>6.平分的直线</h2><p>在二维平面上，有两个正方形，请找出一条直线，能够将这两个正方形对半分。假定正方形的上下两条边与x轴平行。</p>
+<p>给定两个vecotr<strong>A</strong>和<strong>B</strong>，分别为两个正方形的四个顶点。请返回一个vector，代表所求的平分直线的斜率和截距，保证斜率存在。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">struct Point &#123;</span></span><br><span class="line"><span class="comment">    int x;</span></span><br><span class="line"><span class="comment">    int y;</span></span><br><span class="line"><span class="comment">    Point() :</span></span><br><span class="line"><span class="comment">            x(0), y(0) &#123;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    Point(int xx, int yy) &#123;</span></span><br><span class="line"><span class="comment">        x = xx;</span></span><br><span class="line"><span class="comment">        y = yy;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;;*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bipartition</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; getBipartition(<span class="built_in">vector</span>&lt;Point&gt; A, <span class="built_in">vector</span>&lt;Point&gt; B) &#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">double</span> ax = <span class="number">0</span>, ay = <span class="number">0</span>, bx = <span class="number">0</span>, by = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)&#123;</span><br><span class="line">            ax += A[i].x;</span><br><span class="line">            ay += A[i].y;</span><br><span class="line">            bx += B[i].x;</span><br><span class="line">            by += B[i].y;</span><br><span class="line">        &#125;</span><br><span class="line">        ax = ax / <span class="number">4</span>;</span><br><span class="line">        ay = ay / <span class="number">4</span>;</span><br><span class="line">        bx = bx / <span class="number">4</span>;</span><br><span class="line">        by = by / <span class="number">4</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; result;</span><br><span class="line">        result.push_back((ay - by) / (ax - bx));</span><br><span class="line">        result.push_back(ay - result[<span class="number">0</span>]*ax);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="7-穿点最多的直线"><a href="#7-穿点最多的直线" class="headerlink" title="7.穿点最多的直线"></a>7.穿点最多的直线</h2><p>在二维平面上，有一些点，请找出经过点数最多的那条线。</p>
+<p>给定一个点集vector<point><strong>p</strong>和点集的大小<strong>n</strong>,没有两个点的横坐标相等的情况,请返回一个vector<double>，代表经过点数最多的那条直线的斜率和截距。</double></point></p>
+<p>python解法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># class Point:</span></span><br><span class="line"><span class="comment">#     def __init__(self, a=0, b=0):</span></span><br><span class="line"><span class="comment">#         self.x = a</span></span><br><span class="line"><span class="comment">#         self.y = b</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DenseLine</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getLine</span><span class="params">(self, p, n)</span>:</span></span><br><span class="line">        <span class="comment"># write code here</span></span><br><span class="line">        m = [<span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">        res = &#123;&#125;</span><br><span class="line">        cnt = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>, n):</span><br><span class="line">                k = (p[i].y - p[j].y) / (p[i].x - p[j].x)</span><br><span class="line">                res[k] = res.get(k, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> res[k] &gt; cnt:</span><br><span class="line">                    m[<span class="number">0</span>] = k</span><br><span class="line">                    m[<span class="number">1</span>] = p[i].y - p[i].x * k</span><br><span class="line">                    cnt = res[k]</span><br><span class="line">            <span class="keyword">return</span> m</span><br></pre></td></tr></table></figure>
+<h2 id="8-第k个数"><a href="#8-第k个数" class="headerlink" title="8.第k个数"></a>8.第k个数</h2><p>有一些数的素因子只有3、5、7，请设计一个算法，找出其中的第k个数。</p>
+<p>给定一个数int <strong>k</strong>，请返回第k个数。保证k小于等于100。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KthNumber</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKth</span><span class="params">(<span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">int</span> num = <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">while</span>(num &amp;&amp; k)&#123;</span><br><span class="line">            <span class="keyword">int</span> temp = num;</span><br><span class="line">            <span class="keyword">while</span>(temp % <span class="number">3</span> == <span class="number">0</span>)&#123;</span><br><span class="line">                temp /= <span class="number">3</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(temp % <span class="number">5</span> == <span class="number">0</span>)&#123;</span><br><span class="line">                temp /= <span class="number">5</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(temp % <span class="number">7</span> ==<span class="number">0</span>)&#123;</span><br><span class="line">                temp /= <span class="number">7</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(<span class="number">1</span> == temp)&#123;</span><br><span class="line">                k--;</span><br><span class="line">            &#125;</span><br><span class="line">            num++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> --num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="9-上楼梯"><a href="#9-上楼梯" class="headerlink" title="9.上楼梯"></a>9.上楼梯</h2><p>有个小孩正在上楼梯，楼梯有n阶台阶，小孩一次可以上1阶、2阶、3阶。请实现一个方法，计算小孩有多少种上楼的方式。为了防止溢出，请将结果Mod 1000000007</p>
+<p>给定一个正整数int <strong>n</strong>，请返回一个数，代表上楼的方式数。保证n小于等于100000。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GoUpstairs</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countWays</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> b = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> c = <span class="number">4</span>;</span><br><span class="line">        <span class="keyword">if</span>(n &lt; <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> a;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> b;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">3</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> c;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">4</span>; i &lt;= n; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> temp = ((a + b) % <span class="number">1000000007</span> + c) % <span class="number">1000000007</span>;</span><br><span class="line">            a = b;</span><br><span class="line">            b = c;</span><br><span class="line">            c = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="10-机器人走方格I"><a href="#10-机器人走方格I" class="headerlink" title="10.机器人走方格I"></a>10.机器人走方格I</h2><p>有一个XxY的网格，一个机器人只能走格点且只能向右或向下走，要从左上角走到右下角。请设计一个算法，计算机器人有多少种走法。</p>
+<p>给定两个正整数int <strong>x</strong>,int <strong>y</strong>，请返回机器人的走法数目。保证x＋y小于等于12。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Robot</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countWays</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">if</span>(x &lt;= <span class="number">0</span> || y &lt;= <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(x == <span class="number">1</span> || y == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> countWays(x - <span class="number">1</span>, y) + countWays(x, y<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+      
+	  
+      
+        <div class="declare" hidden="hidden"></div>
+      
+	  
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/10/刷题笔记4/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-刷题笔记3" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/09/刷题笔记3/">刷题笔记3</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/09/刷题笔记3/" class="archive-article-date">
+  	<time datetime="2019-08-09T11:53:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><a id="more"></a>
+<h2 id="1-输出单层结点"><a href="#1-输出单层结点" class="headerlink" title="1.输出单层结点"></a>1.输出单层结点</h2><p>对于一棵二叉树，请设计一个算法，创建含有某一深度上所有结点的链表。</p>
+<p>给定二叉树的根结点指针TreeNode<em> <em>*root</em></em>，以及链表上结点的深度，请返回一个链表ListNode，代表该深度上所有结点的值，请按树上从左往右的顺序链接，保证深度不超过树的高度，树上结点的值为非负整数且不超过100000</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">struct TreeNode &#123;</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    struct TreeNode *left;</span></span><br><span class="line"><span class="comment">    struct TreeNode *right;</span></span><br><span class="line"><span class="comment">    TreeNode(int x) :</span></span><br><span class="line"><span class="comment">            val(x), left(NULL), right(NULL) &#123;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;;*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">struct ListNode &#123;</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    struct ListNode *next;</span></span><br><span class="line"><span class="comment">    ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment">&#125;;*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeLevel</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ListNode* ln = <span class="keyword">new</span> ListNode(<span class="number">-1</span>);</span><br><span class="line">    ListNode* p = ln;</span><br><span class="line">    <span class="function">ListNode* <span class="title">getTreeLevel</span><span class="params">(TreeNode* root, <span class="keyword">int</span> dep)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">NULL</span> || dep &lt;= <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(dep == <span class="number">1</span>)&#123;</span><br><span class="line">            p-&gt;next = <span class="keyword">new</span> ListNode(root-&gt;val);</span><br><span class="line">            p = p-&gt;next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            getTreeLevel(root-&gt;left, dep - <span class="number">1</span>);</span><br><span class="line">            getTreeLevel(root-&gt;right, dep - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ln-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="2-检查是否为二叉查找树"><a href="#2-检查是否为二叉查找树" class="headerlink" title="2.检查是否为二叉查找树"></a>2.检查是否为二叉查找树</h2><p>请实现一个函数，检查一棵二叉树是否为二叉查找树。</p>
+<p>给定树的根结点指针TreeNode<em> <em>*root</em></em>，请返回一个bool，代表该树是否为二叉查找树。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">struct TreeNode &#123;</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    struct TreeNode *left;</span></span><br><span class="line"><span class="comment">    struct TreeNode *right;</span></span><br><span class="line"><span class="comment">    TreeNode(int x) :</span></span><br><span class="line"><span class="comment">            val(x), left(NULL), right(NULL) &#123;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;;*/</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Checker</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> m = INT_MIN;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkBST</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">if</span>(!root)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!checkBST(root-&gt;left))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">if</span>(root-&gt;val &gt; m)&#123;</span><br><span class="line">            m = root-&gt;val;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!checkBST(root-&gt;right))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="3-深度"><a href="#3-深度" class="headerlink" title="3.深度"></a>3.深度</h2><p>请设计一个算法，寻找二叉树中指定结点的下一个结点（即中序遍历的后继）。</p>
+<p>给定树的根结点指针TreeNode<em> <strong>root</strong>和结点的值int <em>*p</em></em>，请返回值为p的结点的后继结点的值。保证结点的值大于等于零小于等于100000且没有重复值，若不存在后继返回-1。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">struct TreeNode &#123;</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    struct TreeNode *left;</span></span><br><span class="line"><span class="comment">    struct TreeNode *right;</span></span><br><span class="line"><span class="comment">    TreeNode(int x) :</span></span><br><span class="line"><span class="comment">            val(x), left(NULL), right(NULL) &#123;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;;*/</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Successor</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findSucc</span><span class="params">(TreeNode* root, <span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">bool</span> sign = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> findSucc1(root, p, sign);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findSucc1</span><span class="params">(TreeNode* root, <span class="keyword">int</span> p, <span class="keyword">bool</span> &amp;sign)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> left = findSucc1(root-&gt;left, p, sign);</span><br><span class="line">        <span class="keyword">if</span>(left != <span class="number">-1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(sign == <span class="literal">true</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> root-&gt;val;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(root-&gt;val == p)&#123;</span><br><span class="line">            sign = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> findSucc1(root-&gt;right, p, sign);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="4-最近公共祖先"><a href="#4-最近公共祖先" class="headerlink" title="4.最近公共祖先"></a>4.最近公共祖先</h2><p>有一棵无穷大的满二叉树，其结点按根结点一层一层地从左往右依次编号，根结点编号为1。现在有两个结点a，b。请设计一个算法，求出a和b点的最近公共祖先的编号。</p>
+<p>给定两个int <strong>a</strong>,<strong>b</strong>。为给定结点的编号。请返回<strong>a</strong>和<strong>b</strong>的最近公共祖先的编号。注意这里结点本身也可认为是其祖先。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LCA</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getLCA</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">while</span>(a != b)&#123;</span><br><span class="line">            <span class="keyword">if</span>(a &gt; b)&#123;</span><br><span class="line">                a /= <span class="number">2</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                b /= <span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LCA</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getLCA</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">if</span>(a == b)&#123;</span><br><span class="line">            <span class="keyword">return</span> a;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a&gt;b? getLCA(a/<span class="number">2</span>, b): getLCA(a, b/<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="5-二叉树中和为某一值的路径"><a href="#5-二叉树中和为某一值的路径" class="headerlink" title="5.二叉树中和为某一值的路径"></a>5.二叉树中和为某一值的路径</h2><p>输入一颗二叉树的根节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。(注意: 在返回值的list中，数组长度大的数组靠前)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">struct TreeNode &#123;</span></span><br><span class="line"><span class="comment">	int val;</span></span><br><span class="line"><span class="comment">	struct TreeNode *left;</span></span><br><span class="line"><span class="comment">	struct TreeNode *right;</span></span><br><span class="line"><span class="comment">	TreeNode(int x) :</span></span><br><span class="line"><span class="comment">			val(x), left(NULL), right(NULL) &#123;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">&#125;;*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; FindPath(TreeNode* root,<span class="keyword">int</span> expectNumber) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; ret;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; trace;</span><br><span class="line">        <span class="keyword">if</span>(root)&#123;</span><br><span class="line">            dfs(root, expectNumber, ret, trace);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* root, <span class="keyword">int</span> s, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp;ret, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;trace)</span></span>&#123;</span><br><span class="line">        trace.push_back(root-&gt;val);</span><br><span class="line">        <span class="keyword">if</span>(!root-&gt;left &amp;&amp; !root-&gt;right)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s == root-&gt;val)&#123;</span><br><span class="line">                ret.push_back(trace);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(root-&gt;left)&#123;</span><br><span class="line">            dfs(root-&gt;left, s - root-&gt;val, ret, trace);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(root-&gt;right)&#123;</span><br><span class="line">            dfs(root-&gt;right, s - root-&gt;val, ret, trace);</span><br><span class="line">        &#125;</span><br><span class="line">        trace.pop_back();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="6-二进制插入"><a href="#6-二进制插入" class="headerlink" title="6.二进制插入"></a>6.二进制插入</h2><p>有两个32位整数n和m，请编写算法将m的二进制数位插入到n的二进制的第j到第i位,其中二进制的位数从低位数到高位且以0开始。</p>
+<p>给定两个数int <strong>n</strong>和int <strong>m</strong>，同时给定int <strong>j</strong>和int <strong>i</strong>，意义如题所述，请返回操作后的数，保证n的第j到第i位均为零，且m的二进制位数小于等于i-j+1。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BinInsert</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">binInsert</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m, <span class="keyword">int</span> j, <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="comment">// return n ^ (m &lt;&lt; j); </span></span><br><span class="line">        <span class="comment">// return n | (m &lt;&lt; j); </span></span><br><span class="line">        <span class="keyword">return</span> n + (m &lt;&lt; j); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="7-二进制小数"><a href="#7-二进制小数" class="headerlink" title="7.二进制小数"></a>7.二进制小数</h2><p>有一个介于0和1之间的实数，类型为double，返回它的二进制表示。如果该数字无法精确地用32位以内的二进制表示，返回“Error”。</p>
+<p>给定一个double <strong>num</strong>，表示0到1的实数，请返回一个string，代表该数的二进制表示或者“Error”。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BinDecimal</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">printBin</span><span class="params">(<span class="keyword">double</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">if</span>(num &gt;= <span class="number">1</span> || num &lt; <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Error"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">string</span> str = <span class="string">"0."</span>;</span><br><span class="line">        <span class="keyword">while</span>(num &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(str.size() &gt; <span class="number">32</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">"Error"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            num = num * <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(num &gt;= <span class="number">1</span>)&#123;</span><br><span class="line">                str += <span class="string">"1"</span>;</span><br><span class="line">                num -= <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                str += <span class="string">"0"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> str;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="8-最接近的数"><a href="#8-最接近的数" class="headerlink" title="8.最接近的数"></a>8.最接近的数</h2><p>有一个正整数，请找出其二进制表示中1的个数相同、且大小最接近的那两个数。(一个略大，一个略小)</p>
+<p>给定正整数int <strong>x</strong>，请返回一个vector，代表所求的两个数（小的在前）。保证答案存在。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CloseNumber</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; getCloseNumber(<span class="keyword">int</span> x) &#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; result;</span><br><span class="line">        <span class="keyword">int</span> c01 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> c11 = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> c1 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> c0 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> c = x, d = x;</span><br><span class="line">        <span class="keyword">while</span>(((c &amp; <span class="number">1</span>) == <span class="number">0</span>) &amp;&amp; (c != <span class="number">0</span>))&#123;</span><br><span class="line">            c01++;</span><br><span class="line">            c &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>((c &amp; <span class="number">1</span>) == <span class="number">1</span>)&#123;</span><br><span class="line">            c11++;</span><br><span class="line">            c &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>((d &amp; <span class="number">1</span>) == <span class="number">1</span>)&#123;</span><br><span class="line">            c1++;</span><br><span class="line">            d &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(((d &amp; <span class="number">1</span>) == <span class="number">0</span>) &amp;&amp; (d != <span class="number">0</span>))&#123;</span><br><span class="line">            c0++;</span><br><span class="line">            d &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        result.push_back((x - (<span class="number">1</span> &lt;&lt; (c1)) - (<span class="number">1</span> &lt;&lt; (c0 - <span class="number">1</span>)) + <span class="number">1</span>));</span><br><span class="line">        result.push_back((x + (<span class="number">1</span> &lt;&lt; (c11 - <span class="number">1</span>)) + (<span class="number">1</span> &lt;&lt; c01) - <span class="number">1</span>));</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>python解法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CloseNumber</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getCloseNumber</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="comment"># write code here</span></span><br><span class="line">        res = [<span class="number">0</span>, <span class="number">0</span>];</span><br><span class="line">        n = x</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">            n -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> bin(x).count(<span class="string">"1"</span>) == bin(n).count(<span class="string">"1"</span>):</span><br><span class="line">                res[<span class="number">0</span>] = n</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        n = x</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">            n += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> bin(x).count(<span class="string">"1"</span>) == bin(n).count(<span class="string">"1"</span>):</span><br><span class="line">                res[<span class="number">1</span>] = n</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<h2 id="9-整数转化"><a href="#9-整数转化" class="headerlink" title="9.整数转化"></a>9.整数转化</h2><p>编写一个函数，确定需要改变几个位，才能将整数A转变成整数B。</p>
+<p>给定两个整数int <strong>A</strong>，int <strong>B</strong>。请返回需要改变的数位个数。</p>
+<p>C++解法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Transform</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">calcCost</span><span class="params">(<span class="keyword">int</span> A, <span class="keyword">int</span> B)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">int</span> X = A ^ B, cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(X)&#123;</span><br><span class="line">            X &amp;= X - <span class="number">1</span>;</span><br><span class="line">            cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>python解法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Transform</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">calcCost</span><span class="params">(self, A, B)</span>:</span></span><br><span class="line">        <span class="comment"># write code here</span></span><br><span class="line">        <span class="keyword">return</span> bin(A ^ B).count(<span class="string">"1"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="10-奇偶位交换"><a href="#10-奇偶位交换" class="headerlink" title="10.奇偶位交换"></a>10.奇偶位交换</h2><p>请编写程序交换一个数的二进制的奇数位和偶数位。（使用越少的指令越好）</p>
+<p>给定一个int <strong>x</strong>，请返回交换后的数int。</p>
+<p>C++解法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Exchange</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">exchangeOddEven</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">int</span> oddVal = (x &amp; <span class="number">0xAAAAAAAA</span>);</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">int</span> evenVal = (x &amp; <span class="number">0x55555555</span>);</span><br><span class="line">        <span class="keyword">return</span> (oddVal &gt;&gt; <span class="number">1</span>) + (evenVal &lt;&lt; <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>python解法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Exchange</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">exchangeOddEven</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="comment"># write code here</span></span><br><span class="line">        <span class="keyword">return</span> ((x &amp; <span class="number">0xAAAAAAAA</span>) &gt;&gt; <span class="number">1</span>) | ((x &amp; <span class="number">0x55555555</span>) &lt;&lt; <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+      
+      
+	  
+      
+        <div class="declare" hidden="hidden"></div>
+      
+	  
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">code</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/09/刷题笔记3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-刷题笔记2" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -854,166 +1084,6 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/02/15/机器学习——推荐系统/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Linux常用命令" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/27/Linux常用命令/">Linux常用指令</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/27/Linux常用命令/" class="archive-article-date">
-  	<time datetime="2019-01-27T14:15:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本篇记录<strong>linux系统常用指令</strong>，为方便以后查阅。主要内容有软件操作指令、服务器硬件资源和磁盘操作指令、文件与文件夹操作指令、文本编辑器Vim常用指令、系统用户操作指令、防火墙设置指令、提权和文件传输操作指令等，本篇内容持续更新中。。。</p>
-        
-      
-      
-	  
-      
-        <div class="declare" hidden="hidden"></div>
-      
-	  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/27/Linux常用命令/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-远程连接SSH" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/25/远程连接SSH/">远程服务器管理工具SSH</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/25/远程连接SSH/" class="archive-article-date">
-  	<time datetime="2019-01-25T14:15:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本篇简单记录一下学习Linux操作系统典型应用之“远程SSH连接”的笔记，为方便以后查阅。主要内容有介绍SSH，记录服务器和客户端分别安装与远程连接SSH的方法，SSH中config的用法，免密码登录SSH的方法。</p>
-<p>操作环境：VMWare虚拟机中的CentOS 7，Windows10的Xshell 5工具</p>
-<p>目的：利用SSH服务创建一个相对安全可靠的连接，在本地控制和管理远程服务器。</p>
-        
-      
-      
-	  
-      
-        <div class="declare" hidden="hidden"></div>
-      
-	  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/25/远程连接SSH/">展开全文 >></a>
         </p>
       
 
