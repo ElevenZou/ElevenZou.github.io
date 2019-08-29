@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="//elevenzou.github.io">
   <title>刷题笔记1 | ElevenZou的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.确定字符互异请实现一个算法，确定一个字符串的所有字符是否全都不同。这里我们要求不允许使用额外的存储结构。 给定一个string iniString，请返回一个bool值,True代表所有字符全都不同，False代表存在相同的字符。保证字符串中的字符为ASCII字符。字符串的长度小于等于3000。 1234567891011121314class Different &amp;#123;public:">
+  <meta name="description" content="[TOC]">
 <meta name="keywords" content="code">
 <meta property="og:type" content="article">
 <meta property="og:title" content="刷题笔记1">
 <meta property="og:url" content="//elevenzou.github.io/2019/08/07/刷题笔记1/index.html">
 <meta property="og:site_name" content="ElevenZou的博客">
-<meta property="og:description" content="1.确定字符互异请实现一个算法，确定一个字符串的所有字符是否全都不同。这里我们要求不允许使用额外的存储结构。 给定一个string iniString，请返回一个bool值,True代表所有字符全都不同，False代表存在相同的字符。保证字符串中的字符为ASCII字符。字符串的长度小于等于3000。 1234567891011121314class Different &amp;#123;public:">
+<meta property="og:description" content="[TOC]">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-08T02:25:10.351Z">
+<meta property="og:updated_time" content="2019-08-29T08:24:48.735Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="刷题笔记1">
-<meta name="twitter:description" content="1.确定字符互异请实现一个算法，确定一个字符串的所有字符是否全都不同。这里我们要求不允许使用额外的存储结构。 给定一个string iniString，请返回一个bool值,True代表所有字符全都不同，False代表存在相同的字符。保证字符串中的字符为ASCII字符。字符串的长度小于等于3000。 1234567891011121314class Different &amp;#123;public:">
+<meta name="twitter:description" content="[TOC]">
   
     <link rel="alternative" href="/atom.xml" title="ElevenZou的博客" type="application/atom+xml">
   
@@ -187,7 +187,8 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><a id="more"></a>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>[TOC]</p>
+<a id="more"></a>
 <h2 id="1-确定字符互异"><a href="#1-确定字符互异" class="headerlink" title="1.确定字符互异"></a>1.确定字符互异</h2><p>请实现一个算法，确定一个字符串的所有字符是否全都不同。这里我们要求不允许使用额外的存储结构。</p>
 <p>给定一个string <strong>iniString</strong>，请返回一个bool值,<strong>True</strong>代表所有字符全都不同，<strong>False</strong>代表存在相同的字符。保证字符串中的字符为ASCII字符。字符串的长度小于等于3000。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Different</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkDifferent</span><span class="params">(<span class="built_in">string</span> iniString)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;i: iniString)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;j: iniString)&#123;</span><br><span class="line">                <span class="keyword">if</span>((i == j) &amp;&amp; (&amp;i != &amp;j))&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -350,11 +351,11 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2019/08/08/刷题笔记2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/08/07/数据结构--位运算/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          刷题笔记2
+          数据结构--位运算
         
       </div>
     </a>
@@ -545,11 +546,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color5">code</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">字典学习</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -557,11 +558,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+                <a href="javascript:void(0)" class="js-tag color5">程序设计</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">程序设计</a>
+                <a href="javascript:void(0)" class="js-tag color5">字典学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,7 +570,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">code</a>
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">

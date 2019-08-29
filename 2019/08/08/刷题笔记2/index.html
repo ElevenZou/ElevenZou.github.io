@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="//elevenzou.github.io">
   <title>刷题笔记2 | ElevenZou的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.链表分割编写代码，以给定值x为基准将链表分割成两部分，所有小于x的结点排在大于或等于x的结点之前 给定一个链表的头指针 ListNode *pHead，请返回重新排列后的链表的头指针。注意：分割以后保持原来的数据顺序不变。 12345678910111213141516171819202122232425262728293031/*struct ListNode &amp;#123;    int">
+  <meta name="description" content="[TOC]">
 <meta name="keywords" content="code">
 <meta property="og:type" content="article">
 <meta property="og:title" content="刷题笔记2">
 <meta property="og:url" content="//elevenzou.github.io/2019/08/08/刷题笔记2/index.html">
 <meta property="og:site_name" content="ElevenZou的博客">
-<meta property="og:description" content="1.链表分割编写代码，以给定值x为基准将链表分割成两部分，所有小于x的结点排在大于或等于x的结点之前 给定一个链表的头指针 ListNode *pHead，请返回重新排列后的链表的头指针。注意：分割以后保持原来的数据顺序不变。 12345678910111213141516171819202122232425262728293031/*struct ListNode &amp;#123;    int">
+<meta property="og:description" content="[TOC]">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-08T09:21:29.097Z">
+<meta property="og:updated_time" content="2019-08-29T08:23:46.991Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="刷题笔记2">
-<meta name="twitter:description" content="1.链表分割编写代码，以给定值x为基准将链表分割成两部分，所有小于x的结点排在大于或等于x的结点之前 给定一个链表的头指针 ListNode *pHead，请返回重新排列后的链表的头指针。注意：分割以后保持原来的数据顺序不变。 12345678910111213141516171819202122232425262728293031/*struct ListNode &amp;#123;    int">
+<meta name="twitter:description" content="[TOC]">
   
     <link rel="alternative" href="/atom.xml" title="ElevenZou的博客" type="application/atom+xml">
   
@@ -187,7 +187,8 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><a id="more"></a>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>[TOC]</p>
+<a id="more"></a>
 <h2 id="1-链表分割"><a href="#1-链表分割" class="headerlink" title="1.链表分割"></a>1.链表分割</h2><p>编写代码，以给定值x为基准将链表分割成两部分，所有小于x的结点排在大于或等于x的结点之前</p>
 <p>给定一个链表的头指针 ListNode<em> <em>*pHead</em></em>，请返回重新排列后的链表的头指针。注意：分割以后保持原来的数据顺序不变。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">struct ListNode &#123;</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    struct ListNode *next;</span></span><br><span class="line"><span class="comment">    ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment">&#125;;*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Partition</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">partition</span><span class="params">(ListNode* pHead, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">if</span>(pHead == <span class="literal">nullptr</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode *smallList = <span class="keyword">new</span> ListNode(<span class="number">-1</span>);</span><br><span class="line">        ListNode *bigList = <span class="keyword">new</span> ListNode(<span class="number">-1</span>);</span><br><span class="line">        ListNode *ps = smallList, *pb = bigList, *cur = pHead;</span><br><span class="line">        <span class="keyword">while</span>(cur)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cur-&gt;val &lt; x)&#123;</span><br><span class="line">                ps-&gt;next = <span class="keyword">new</span> ListNode(cur-&gt;val);</span><br><span class="line">                ps = ps-&gt;next;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                pb-&gt;next = <span class="keyword">new</span> ListNode(cur-&gt;val);</span><br><span class="line">                pb = pb-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            cur = cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        pb-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">        ps-&gt;next = bigList-&gt;next;</span><br><span class="line">        <span class="keyword">return</span> smallList-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -361,8 +362,8 @@ var _hmt = _hmt || [];
     </a>
   
   
-    <a href="/2019/08/07/刷题笔记1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">刷题笔记1</div>
+    <a href="/2019/08/07/数据结构--位运算/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据结构--位运算</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -546,11 +547,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color5">code</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">字典学习</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,11 +559,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+                <a href="javascript:void(0)" class="js-tag color5">程序设计</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">程序设计</a>
+                <a href="javascript:void(0)" class="js-tag color5">字典学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -570,7 +571,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">code</a>
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
